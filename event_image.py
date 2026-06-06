@@ -177,14 +177,22 @@ def build_event_image(results: list[dict], title: str,
 
     display = results[:3] if not is_o3 else results[:7]
 
-    # ── O3 banner (decorative strip — max 90px tall) ──────────────────────────
+    # ── O3 banner — ~2 row heights tall, aspect ratio preserved, centered ───────
     o3_banner: Optional[Image.Image] = None
-    BANNER_H = 0
+    BANNER_H  = 0
+    _banner_x = 0
     if is_o3:
         try:
             raw = Image.open(_O3_BANNER_PATH).convert("RGBA")
-            BANNER_H  = 90          # fixed height — keeps it decorative, not dominant
-            o3_banner = raw.resize((IMG_W, BANNER_H), Image.LANCZOS)
+            bw, bh   = raw.size
+            target_h = 2 * (ROW_H + 8)           # height of two list rows
+            target_w = int(bw * target_h / bh)   # proportional width
+            if target_w > IMG_W:                  # too wide — scale to fit width
+                target_w = IMG_W
+                target_h = int(bh * IMG_W / bw)
+            BANNER_H  = target_h
+            _banner_x = (IMG_W - target_w) // 2  # center horizontally
+            o3_banner = raw.resize((target_w, target_h), Image.LANCZOS)
         except Exception:
             o3_banner = None
             BANNER_H  = 0
@@ -211,7 +219,7 @@ def build_event_image(results: list[dict], title: str,
     draw = ImageDraw.Draw(img)
 
     if o3_banner:
-        img.paste(o3_banner, (0, 0), o3_banner)
+        img.paste(o3_banner, (_banner_x, 0), o3_banner)
 
     try:
         font_name  = ImageFont.truetype("arialbd.ttf", 15)
