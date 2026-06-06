@@ -2,7 +2,25 @@ import urllib.request
 from bs4 import BeautifulSoup
 from PIL import Image, ImageDraw, ImageFont
 from typing import Optional
+from datetime import datetime
+import pytz
 import os
+
+_TZ_EASTERN = pytz.timezone("America/New_York")
+
+def format_death_time(raw: str) -> str:
+    """Parse RealmEye ISO UTC death time and display in US Eastern, no seconds."""
+    try:
+        s = raw.strip()
+        if s.endswith("Z"):
+            s = s[:-1] + "+00:00"
+        dt = datetime.fromisoformat(s)
+        if dt.tzinfo is None:
+            dt = pytz.utc.localize(dt)
+        dt_et = dt.astimezone(_TZ_EASTERN)
+        return dt_et.strftime("%b %d, %Y  %I:%M %p")   # e.g. "Jun 06, 2026  11:53 AM"
+    except Exception:
+        return raw
 
 FONT      = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 FONT_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
@@ -282,7 +300,7 @@ def build_death_card(death: dict, out_path: str = "./images/death_output.png"):
         cx = draw.textbbox((lw, 52), val, font=font_small)[2]
 
     # ── Time ─────────────────────────────────────────────────────────────────
-    draw.text((text_x, 70), death["time"], font=font_tiny, fill=TEXT_MUTED)
+    draw.text((text_x, 70), format_death_time(death["time"]), font=font_tiny, fill=TEXT_MUTED)
 
     # ── Divider ───────────────────────────────────────────────────────────────
     draw.rectangle([(12, 98), (CARD_W - 12, 99)], fill=(50, 50, 65))

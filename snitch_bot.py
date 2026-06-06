@@ -216,7 +216,7 @@ async def run_guild_graveyard():
                     f"**Stats:** {latest['stats']}  "
                     f"**Base Fame:** {latest['base_fame']}  "
                     f"**Total Fame:** {latest['total_fame']}\n"
-                    f"**Time:** {latest['time']}"
+                    f"**Time:** {dc.format_death_time(latest['time'])}"
                 )
 
                 if img_path and os.path.exists(img_path):
@@ -1444,6 +1444,119 @@ async def testdeath(ctx):
         raise
 
 
+@bot.command(name="drecent")
+async def drecent(ctx):
+    """Show the last 5 guild deaths as death cards."""
+    import death_card as dc
+    await ctx.send("Pulling up the graveyard... 💀 give me a second, this might take a moment!")
+    try:
+        deaths = dc.fetch_latest_deaths(guild)
+        if not deaths:
+            await ctx.send("No recent deaths! The guild is thriving 😮 ...for now.")
+            return
+        recent = deaths[:5]
+        await ctx.send(f"Found **{len(recent)}** recent death(s) — here they are, RIP 😔")
+        loop = asyncio.get_event_loop()
+        for i, death in enumerate(recent):
+            try:
+                out_path = f"./images/death_cmd_{i}.png"
+                img_path = await loop.run_in_executor(
+                    None, lambda d=death, p=out_path: dc.build_death_card(d, p)
+                )
+                await ctx.send(file=discord.File(img_path))
+            except Exception as e:
+                await ctx.send(f"Couldn't build the card for **{death.get('player-name', '?')}** 😭")
+                print(f"drecent card error: {e}")
+    except Exception as e:
+        await ctx.send("Couldn't pull the graveyard... RealmEye might be napping 😴")
+        print(f"drecent error: {e}")
+
+
+@bot.command(name="dtop")
+async def dtop(ctx):
+    """Top guild deaths this week by base fame, with total fame contributed."""
+    import death_card as dc
+    from datetime import datetime, timezone, timedelta
+
+    await ctx.send("Checking this week's graveyard hall of fame... 💀📊 one moment!")
+    try:
+        deaths = dc.fetch_latest_deaths(guild)
+        if not deaths:
+            await ctx.send("No deaths found! Either everyone is immortal, or RealmEye is napping 😴")
+            return
+
+        now_utc   = datetime.now(timezone.utc)
+        week_ago  = now_utc - timedelta(days=7)
+
+        def _fame(s) -> int:
+            try:
+                return int(str(s).replace(" ", "").replace(",", "").replace("\xa0", ""))
+            except Exception:
+                return 0
+
+        def _parse_dt(raw: str):
+            try:
+                s = raw.strip()
+                if s.endswith("Z"):
+                    s = s[:-1] + "+00:00"
+                return datetime.fromisoformat(s)
+            except Exception:
+                return None
+
+        week_deaths = [d for d in deaths if (t := _parse_dt(d.get("time", ""))) and t >= week_ago]
+
+        if not week_deaths:
+            await ctx.send("No deaths this week! Everyone's been suspiciously careful 🤔")
+            return
+
+        week_deaths.sort(key=lambda d: _fame(d.get("base_fame", 0)), reverse=True)
+        total_base  = sum(_fame(d.get("base_fame",  0)) for d in week_deaths)
+        total_total = sum(_fame(d.get("total_fame", 0)) for d in week_deaths)
+        top = week_deaths[:5]
+
+        embed = discord.Embed(
+            title="💀  This Week's Hall of Fallen Heroes",
+            description=(
+                f"**{len(week_deaths)}** guild member(s) fell this week.\n"
+                f"All those deaths contributed **{total_base:,}** base fame — ouch 😬\n"
+                f"Total fame lost: **{total_total:,}** — rest in peace, legends 🪦"
+            ),
+            color=0xC0392B
+        )
+        medals = ["🥇", "🥈", "🥉", "4️⃣", "5️⃣"]
+        for i, d in enumerate(top):
+            bf = _fame(d.get("base_fame", 0))
+            tf = _fame(d.get("total_fame", 0))
+            embed.add_field(
+                name=f"{medals[i]}  {d['player-name']}",
+                value=(
+                    f"**{bf:,}** base fame · **{tf:,}** total\n"
+                    f"Killed by: {d['killed_by']}\n"
+                    f"🕐 {dc.format_death_time(d['time'])}"
+                ),
+                inline=False
+            )
+        embed.set_footer(text="Guill the Intern™  ·  !drecent for the last 5 death cards")
+        await ctx.send(embed=embed)
+
+        # Post death cards for the top 3
+        await ctx.send("And here are the death cards for the top fallen heroes this week:")
+        loop = asyncio.get_event_loop()
+        for i, death in enumerate(top[:3]):
+            try:
+                out_path = f"./images/death_top_{i}.png"
+                img_path = await loop.run_in_executor(
+                    None, lambda d=death, p=out_path: dc.build_death_card(d, p)
+                )
+                await ctx.send(file=discord.File(img_path))
+            except Exception as e:
+                print(f"dtop card error: {e}")
+
+    except Exception as e:
+        await ctx.send("Something went wrong pulling the graveyard 😭 Try again in a bit!")
+        print(f"dtop error: {e}")
+
+
 # ── Guild event competition commands (disabled — not in use) ──────────
 # !trackable, !eventadd, !events, !event, !eventend, !eventall
 # To re-enable: uncomment this section and add "import guild_events as ge"
@@ -1767,6 +1880,16 @@ async def leaderboards(ctx):
             "`!item <name>` — Item wiki lookup\n"
             "`!find <event>` — Active realm events\n"
             "`!find o3` — O3 realm scores"
+        ),
+        inline=True
+    )
+
+    embed.add_field(
+        name="💀 Deaths",
+        value=(
+            "`!drecent` — Last 5 death cards\n"
+            "`!dtop` — Top deaths this week\n"
+            "`!testdeath` — Test death card"
         ),
         inline=True
     )
@@ -2225,13 +2348,17 @@ COMMAND_CATEGORIES = [
         ("!trivia list",            "Browse question bank"),
         ("!trivia stop",            "Stop active round"),
     ]),
+    ("💀  DEATHS", [
+        ("!drecent",                "Last 5 death cards"),
+        ("!dtop",                   "Top deaths this week by fame"),
+        ("!testdeath",              "Test death card"),
+    ]),
     ("🔧  ADMIN & UTILS", [
         ("!snapshot [--shinies]",   "Save baseline (for events/seasonrace)"),
         ("!newseason",              "Mark season start"),
         ("!refresh",                "Clear data cache"),
         ("!leaderboards",           "Pinnable guide embed"),
         ("!gannounce",              "Post daily report"),
-        ("!testdeath",              "Test death card"),
     ]),
 ]
 
@@ -2357,6 +2484,28 @@ async def help_cmd(ctx, *, command_name: str = ""):
                 "Last 7 days of seasonal fame gains for all members.",
                 "!gweekly"
             ),
+            "drecent": (
+                "!drecent",
+                "Shows the last 5 guild deaths as death cards.\n"
+                "Each card shows the player's class sprite, items (with enchantment rarity colors and shiny sprites), "
+                "killer, stats, fame, and time of death in US Eastern time.\n"
+                "Item images are fetched from the RealmEye wiki and cached — first run may be slightly slower.",
+                "!drecent"
+            ),
+            "dtop": (
+                "!dtop",
+                "Shows this week's top guild deaths ranked by base fame.\n"
+                "Includes a summary of total base fame and total fame contributed by all deaths this week.\n"
+                "Also posts death cards for the top 3 deaths.\n"
+                "Only counts deaths from the last 7 days.",
+                "!dtop"
+            ),
+            "testdeath": (
+                "!testdeath",
+                "Fetches the most recent guild death and posts it as a death card.\n"
+                "Useful for testing the death announcer after changes.",
+                "!testdeath"
+            ),
         }
 
         if command_name in help_details:
@@ -2429,6 +2578,15 @@ async def help_cmd(ctx, *, command_name: str = ""):
             "`!item <name>` — Item wiki lookup\n"
             "`!find <event>` — Active realm events\n"
             "`!find o3` — O3 realm scores"
+        ),
+        inline=True
+    )
+    embed.add_field(
+        name="💀 Deaths",
+        value=(
+            "`!drecent` — Last 5 death cards\n"
+            "`!dtop` — Top deaths this week\n"
+            "`!testdeath` — Test death card"
         ),
         inline=True
     )
