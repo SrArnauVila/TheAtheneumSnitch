@@ -1,0 +1,6420 @@
+{
+  "snapshots": [
+    {
+      "timestamp": 1779849009,
+      "date": "2026-05-27 02:30 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 48273,
+          "seasonal_fame": 18489,
+          "stars": 64,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 23090,
+          "seasonal_fame": 18527,
+          "stars": 33,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 115948,
+          "seasonal_fame": 93489,
+          "stars": 78,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42890,
+          "seasonal_fame": 24546,
+          "stars": 78,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 35675,
+          "seasonal_fame": 24777,
+          "stars": 53,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "doctordeca": {
+          "name": "DoctorDeca",
+          "rank": "Officer",
+          "fame": 6325,
+          "seasonal_fame": 0,
+          "stars": 55,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 35534,
+          "seasonal_fame": 6063,
+          "stars": 49,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31016,
+          "seasonal_fame": 11612,
+          "stars": 50,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "yukotari": {
+          "name": "Yukotari",
+          "rank": "Member",
+          "fame": 29869,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 29383,
+          "seasonal_fame": 19650,
+          "stars": 54,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 16708,
+          "seasonal_fame": 15298,
+          "stars": 25,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "furyofzion": {
+          "name": "Furyofzion",
+          "rank": "Member",
+          "fame": 11457,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 7113,
+          "seasonal_fame": 6572,
+          "stars": 27,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "spiteblade": {
+          "name": "SpiteBlade",
+          "rank": "Member",
+          "fame": 4149,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "brewdetector": {
+          "name": "BrewDetector",
+          "rank": "Member",
+          "fame": 2292,
+          "seasonal_fame": 0,
+          "stars": 34,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "boxlicker": {
+          "name": "BoxLicker",
+          "rank": "Member",
+          "fame": 1937,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "ethanliyo": {
+          "name": "EthanLiyo",
+          "rank": "Initiate",
+          "fame": 44446,
+          "seasonal_fame": 0,
+          "stars": 67,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Initiate",
+          "fame": 23642,
+          "seasonal_fame": 11229,
+          "stars": 59,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 18422,
+          "seasonal_fame": 17403,
+          "stars": 13,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Initiate",
+          "fame": 17331,
+          "seasonal_fame": 1827,
+          "stars": 23,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 17054,
+          "seasonal_fame": 15392,
+          "stars": 38,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 32,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 9926,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Initiate",
+          "fame": 8504,
+          "seasonal_fame": 3890,
+          "stars": 51,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 6549,
+          "seasonal_fame": 6549,
+          "stars": 24,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "mixxons": {
+          "name": "MixxonS",
+          "rank": "Initiate",
+          "fame": 3948,
+          "seasonal_fame": 0,
+          "stars": 7,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3487,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "ravensking": {
+          "name": "RAVENSKING",
+          "rank": "Initiate",
+          "fame": 1896,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "zulmietekx": {
+          "name": "Zulmietekx",
+          "rank": "Initiate",
+          "fame": 386,
+          "seasonal_fame": 0,
+          "stars": 57,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        },
+        "sirplunk": {
+          "name": "SirPlunk",
+          "rank": "Initiate",
+          "fame": 26,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0,
+          "exaltations": 0,
+          "skins": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1779850459,
+      "date": "2026-05-27 02:54 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 48273,
+          "active_fame": 48273,
+          "seasonal_fame": 18489,
+          "stars": 64,
+          "shinies": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 23090,
+          "active_fame": 23090,
+          "seasonal_fame": 18527,
+          "stars": 33,
+          "shinies": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 115948,
+          "active_fame": 115948,
+          "seasonal_fame": 93489,
+          "stars": 78,
+          "shinies": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42890,
+          "active_fame": 42890,
+          "seasonal_fame": 24546,
+          "stars": 78,
+          "shinies": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 35675,
+          "active_fame": 35675,
+          "seasonal_fame": 24777,
+          "stars": 53,
+          "shinies": 0
+        },
+        "doctordeca": {
+          "name": "DoctorDeca",
+          "rank": "Officer",
+          "fame": 6325,
+          "active_fame": 6325,
+          "seasonal_fame": 0,
+          "stars": 55,
+          "shinies": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "active_fame": 148262,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "active_fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "active_fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 35534,
+          "active_fame": 35534,
+          "seasonal_fame": 6063,
+          "stars": 49,
+          "shinies": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31016,
+          "active_fame": 31016,
+          "seasonal_fame": 11612,
+          "stars": 50,
+          "shinies": 0
+        },
+        "yukotari": {
+          "name": "Yukotari",
+          "rank": "Member",
+          "fame": 29869,
+          "active_fame": 29869,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 29383,
+          "active_fame": 29383,
+          "seasonal_fame": 19650,
+          "stars": 54,
+          "shinies": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 16708,
+          "active_fame": 16708,
+          "seasonal_fame": 15298,
+          "stars": 25,
+          "shinies": 0
+        },
+        "furyofzion": {
+          "name": "Furyofzion",
+          "rank": "Member",
+          "fame": 11457,
+          "active_fame": 11457,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 7113,
+          "active_fame": 7113,
+          "seasonal_fame": 6572,
+          "stars": 27,
+          "shinies": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "active_fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "active_fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0
+        },
+        "spiteblade": {
+          "name": "SpiteBlade",
+          "rank": "Member",
+          "fame": 4149,
+          "active_fame": 4149,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "brewdetector": {
+          "name": "BrewDetector",
+          "rank": "Member",
+          "fame": 2292,
+          "active_fame": 2292,
+          "seasonal_fame": 0,
+          "stars": 34,
+          "shinies": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "active_fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        },
+        "boxlicker": {
+          "name": "BoxLicker",
+          "rank": "Member",
+          "fame": 1937,
+          "active_fame": 1937,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "active_fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0
+        },
+        "ethanliyo": {
+          "name": "EthanLiyo",
+          "rank": "Initiate",
+          "fame": 44446,
+          "active_fame": 44446,
+          "seasonal_fame": 0,
+          "stars": 67,
+          "shinies": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "active_fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "active_fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Initiate",
+          "fame": 23644,
+          "active_fame": 23644,
+          "seasonal_fame": 11231,
+          "stars": 59,
+          "shinies": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 18422,
+          "active_fame": 18422,
+          "seasonal_fame": 17403,
+          "stars": 13,
+          "shinies": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Initiate",
+          "fame": 17331,
+          "active_fame": 17331,
+          "seasonal_fame": 1827,
+          "stars": 23,
+          "shinies": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 17054,
+          "active_fame": 17054,
+          "seasonal_fame": 15392,
+          "stars": 38,
+          "shinies": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "active_fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 32,
+          "shinies": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 9926,
+          "active_fame": 9926,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Initiate",
+          "fame": 8504,
+          "active_fame": 8504,
+          "seasonal_fame": 3890,
+          "stars": 51,
+          "shinies": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "active_fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 6549,
+          "active_fame": 6549,
+          "seasonal_fame": 6549,
+          "stars": 24,
+          "shinies": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "active_fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "active_fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "active_fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0
+        },
+        "mixxons": {
+          "name": "MixxonS",
+          "rank": "Initiate",
+          "fame": 3948,
+          "active_fame": 3948,
+          "seasonal_fame": 0,
+          "stars": 7,
+          "shinies": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3487,
+          "active_fame": 3487,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "active_fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "ravensking": {
+          "name": "RAVENSKING",
+          "rank": "Initiate",
+          "fame": 1896,
+          "active_fame": 1896,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "active_fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "active_fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "active_fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "active_fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "active_fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0
+        },
+        "zulmietekx": {
+          "name": "Zulmietekx",
+          "rank": "Initiate",
+          "fame": 386,
+          "active_fame": 386,
+          "seasonal_fame": 0,
+          "stars": 57,
+          "shinies": 0
+        },
+        "sirplunk": {
+          "name": "SirPlunk",
+          "rank": "Initiate",
+          "fame": 26,
+          "active_fame": 26,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1779912750,
+      "date": "2026-05-27 20:12 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 48273,
+          "active_fame": 48273,
+          "seasonal_fame": 18489,
+          "stars": 64,
+          "shinies": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 23533,
+          "active_fame": 23533,
+          "seasonal_fame": 18970,
+          "stars": 34,
+          "shinies": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 115948,
+          "active_fame": 115948,
+          "seasonal_fame": 95390,
+          "stars": 78,
+          "shinies": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42890,
+          "active_fame": 42890,
+          "seasonal_fame": 24546,
+          "stars": 78,
+          "shinies": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 37424,
+          "active_fame": 37424,
+          "seasonal_fame": 26547,
+          "stars": 53,
+          "shinies": 0
+        },
+        "doctordeca": {
+          "name": "DoctorDeca",
+          "rank": "Officer",
+          "fame": 6325,
+          "active_fame": 6325,
+          "seasonal_fame": 0,
+          "stars": 55,
+          "shinies": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "active_fame": 148262,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "active_fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "active_fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 35534,
+          "active_fame": 35534,
+          "seasonal_fame": 6063,
+          "stars": 49,
+          "shinies": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31016,
+          "active_fame": 31016,
+          "seasonal_fame": 11612,
+          "stars": 50,
+          "shinies": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 30098,
+          "active_fame": 30098,
+          "seasonal_fame": 20365,
+          "stars": 54,
+          "shinies": 0
+        },
+        "yukotari": {
+          "name": "Yukotari",
+          "rank": "Member",
+          "fame": 29869,
+          "active_fame": 29869,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 16708,
+          "active_fame": 16708,
+          "seasonal_fame": 15298,
+          "stars": 25,
+          "shinies": 0
+        },
+        "furyofzion": {
+          "name": "Furyofzion",
+          "rank": "Member",
+          "fame": 11457,
+          "active_fame": 11457,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 7113,
+          "active_fame": 7113,
+          "seasonal_fame": 6572,
+          "stars": 27,
+          "shinies": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "active_fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "active_fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0
+        },
+        "brewdetector": {
+          "name": "BrewDetector",
+          "rank": "Member",
+          "fame": 2292,
+          "active_fame": 2292,
+          "seasonal_fame": 0,
+          "stars": 34,
+          "shinies": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "active_fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        },
+        "boxlicker": {
+          "name": "BoxLicker",
+          "rank": "Member",
+          "fame": 1937,
+          "active_fame": 1937,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "crazyriver": {
+          "name": "Crazyriver",
+          "rank": "Initiate",
+          "fame": 148288,
+          "active_fame": 148288,
+          "seasonal_fame": 0,
+          "stars": 79,
+          "shinies": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "active_fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0
+        },
+        "ethanliyo": {
+          "name": "EthanLiyo",
+          "rank": "Initiate",
+          "fame": 44446,
+          "active_fame": 44446,
+          "seasonal_fame": 0,
+          "stars": 67,
+          "shinies": 0
+        },
+        "starcannon": {
+          "name": "StarCannon",
+          "rank": "Initiate",
+          "fame": 40905,
+          "active_fame": 40905,
+          "seasonal_fame": 7794,
+          "stars": 35,
+          "shinies": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "active_fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "active_fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Initiate",
+          "fame": 25626,
+          "active_fame": 25626,
+          "seasonal_fame": 13213,
+          "stars": 59,
+          "shinies": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 23404,
+          "active_fame": 23404,
+          "seasonal_fame": 21742,
+          "stars": 39,
+          "shinies": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 19026,
+          "active_fame": 19026,
+          "seasonal_fame": 18007,
+          "stars": 13,
+          "shinies": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Initiate",
+          "fame": 17333,
+          "active_fame": 17333,
+          "seasonal_fame": 2305,
+          "stars": 23,
+          "shinies": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "active_fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 32,
+          "shinies": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 10962,
+          "active_fame": 10962,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Initiate",
+          "fame": 8504,
+          "active_fame": 8504,
+          "seasonal_fame": 3890,
+          "stars": 51,
+          "shinies": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "active_fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 6917,
+          "active_fame": 6917,
+          "seasonal_fame": 6917,
+          "stars": 25,
+          "shinies": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "active_fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "active_fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "active_fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0
+        },
+        "mixxons": {
+          "name": "MixxonS",
+          "rank": "Initiate",
+          "fame": 3948,
+          "active_fame": 3948,
+          "seasonal_fame": 0,
+          "stars": 7,
+          "shinies": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3487,
+          "active_fame": 3487,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "active_fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "ravensking": {
+          "name": "RAVENSKING",
+          "rank": "Initiate",
+          "fame": 1896,
+          "active_fame": 1896,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "active_fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "active_fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "active_fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "active_fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "active_fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0
+        },
+        "zulmietekx": {
+          "name": "Zulmietekx",
+          "rank": "Initiate",
+          "fame": 386,
+          "active_fame": 386,
+          "seasonal_fame": 0,
+          "stars": 57,
+          "shinies": 0
+        },
+        "sirplunk": {
+          "name": "SirPlunk",
+          "rank": "Initiate",
+          "fame": 26,
+          "active_fame": 26,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1779926405,
+      "date": "2026-05-28 00:00 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 48361,
+          "active_fame": 48361,
+          "seasonal_fame": 18577,
+          "stars": 64,
+          "shinies": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 23864,
+          "active_fame": 23864,
+          "seasonal_fame": 19301,
+          "stars": 34,
+          "shinies": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 116406,
+          "active_fame": 116406,
+          "seasonal_fame": 95848,
+          "stars": 78,
+          "shinies": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42890,
+          "active_fame": 42890,
+          "seasonal_fame": 24546,
+          "stars": 78,
+          "shinies": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 37424,
+          "active_fame": 37424,
+          "seasonal_fame": 26547,
+          "stars": 53,
+          "shinies": 0
+        },
+        "doctordeca": {
+          "name": "DoctorDeca",
+          "rank": "Officer",
+          "fame": 6325,
+          "active_fame": 6325,
+          "seasonal_fame": 0,
+          "stars": 55,
+          "shinies": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "active_fame": 148262,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "active_fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "active_fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 35593,
+          "active_fame": 35593,
+          "seasonal_fame": 6447,
+          "stars": 49,
+          "shinies": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31016,
+          "active_fame": 31016,
+          "seasonal_fame": 11612,
+          "stars": 50,
+          "shinies": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 30098,
+          "active_fame": 30098,
+          "seasonal_fame": 20365,
+          "stars": 54,
+          "shinies": 0
+        },
+        "yukotari": {
+          "name": "Yukotari",
+          "rank": "Member",
+          "fame": 29869,
+          "active_fame": 29869,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 17032,
+          "active_fame": 17032,
+          "seasonal_fame": 15298,
+          "stars": 25,
+          "shinies": 0
+        },
+        "furyofzion": {
+          "name": "Furyofzion",
+          "rank": "Member",
+          "fame": 11457,
+          "active_fame": 11457,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 7113,
+          "active_fame": 7113,
+          "seasonal_fame": 6572,
+          "stars": 27,
+          "shinies": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "active_fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "active_fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0
+        },
+        "brewdetector": {
+          "name": "BrewDetector",
+          "rank": "Member",
+          "fame": 2292,
+          "active_fame": 2292,
+          "seasonal_fame": 0,
+          "stars": 34,
+          "shinies": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "active_fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        },
+        "boxlicker": {
+          "name": "BoxLicker",
+          "rank": "Member",
+          "fame": 1937,
+          "active_fame": 1937,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "crazyriver": {
+          "name": "Crazyriver",
+          "rank": "Initiate",
+          "fame": 148288,
+          "active_fame": 148288,
+          "seasonal_fame": 0,
+          "stars": 79,
+          "shinies": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "active_fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0
+        },
+        "ethanliyo": {
+          "name": "EthanLiyo",
+          "rank": "Initiate",
+          "fame": 44446,
+          "active_fame": 44446,
+          "seasonal_fame": 0,
+          "stars": 67,
+          "shinies": 0
+        },
+        "starcannon": {
+          "name": "StarCannon",
+          "rank": "Initiate",
+          "fame": 40905,
+          "active_fame": 40905,
+          "seasonal_fame": 7794,
+          "stars": 35,
+          "shinies": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "active_fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "active_fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Initiate",
+          "fame": 25959,
+          "active_fame": 25959,
+          "seasonal_fame": 13546,
+          "stars": 59,
+          "shinies": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 24090,
+          "active_fame": 24090,
+          "seasonal_fame": 22428,
+          "stars": 39,
+          "shinies": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 19026,
+          "active_fame": 19026,
+          "seasonal_fame": 18007,
+          "stars": 13,
+          "shinies": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Initiate",
+          "fame": 17336,
+          "active_fame": 17336,
+          "seasonal_fame": 2305,
+          "stars": 23,
+          "shinies": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "active_fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 32,
+          "shinies": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 12012,
+          "active_fame": 12012,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Initiate",
+          "fame": 8855,
+          "active_fame": 8855,
+          "seasonal_fame": 3890,
+          "stars": 51,
+          "shinies": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "active_fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 6917,
+          "active_fame": 6917,
+          "seasonal_fame": 6917,
+          "stars": 25,
+          "shinies": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "active_fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "active_fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "active_fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0
+        },
+        "mixxons": {
+          "name": "MixxonS",
+          "rank": "Initiate",
+          "fame": 3948,
+          "active_fame": 3948,
+          "seasonal_fame": 0,
+          "stars": 7,
+          "shinies": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3487,
+          "active_fame": 3487,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "active_fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "ravensking": {
+          "name": "RAVENSKING",
+          "rank": "Initiate",
+          "fame": 1896,
+          "active_fame": 1896,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "active_fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "active_fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "active_fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "active_fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "active_fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0
+        },
+        "zulmietekx": {
+          "name": "Zulmietekx",
+          "rank": "Initiate",
+          "fame": 386,
+          "active_fame": 386,
+          "seasonal_fame": 0,
+          "stars": 57,
+          "shinies": 0
+        },
+        "sirplunk": {
+          "name": "SirPlunk",
+          "rank": "Initiate",
+          "fame": 26,
+          "active_fame": 26,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1779942357,
+      "date": "2026-05-28 04:25 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 48361,
+          "active_fame": 48361,
+          "seasonal_fame": 18577,
+          "stars": 64,
+          "shinies": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 23864,
+          "active_fame": 23864,
+          "seasonal_fame": 19301,
+          "stars": 34,
+          "shinies": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 116406,
+          "active_fame": 116406,
+          "seasonal_fame": 95848,
+          "stars": 78,
+          "shinies": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42890,
+          "active_fame": 42890,
+          "seasonal_fame": 24546,
+          "stars": 78,
+          "shinies": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 37424,
+          "active_fame": 37424,
+          "seasonal_fame": 26547,
+          "stars": 53,
+          "shinies": 0
+        },
+        "doctordeca": {
+          "name": "DoctorDeca",
+          "rank": "Officer",
+          "fame": 6325,
+          "active_fame": 6325,
+          "seasonal_fame": 0,
+          "stars": 55,
+          "shinies": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "active_fame": 148262,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "active_fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "active_fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 35637,
+          "active_fame": 35637,
+          "seasonal_fame": 6491,
+          "stars": 49,
+          "shinies": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31016,
+          "active_fame": 31016,
+          "seasonal_fame": 11612,
+          "stars": 50,
+          "shinies": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 30186,
+          "active_fame": 30186,
+          "seasonal_fame": 20453,
+          "stars": 54,
+          "shinies": 0
+        },
+        "yukotari": {
+          "name": "Yukotari",
+          "rank": "Member",
+          "fame": 29869,
+          "active_fame": 29869,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 17296,
+          "active_fame": 17296,
+          "seasonal_fame": 15562,
+          "stars": 25,
+          "shinies": 0
+        },
+        "furyofzion": {
+          "name": "Furyofzion",
+          "rank": "Member",
+          "fame": 11457,
+          "active_fame": 11457,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 7113,
+          "active_fame": 7113,
+          "seasonal_fame": 6572,
+          "stars": 27,
+          "shinies": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "active_fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "active_fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "active_fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        },
+        "crazyriver": {
+          "name": "Crazyriver",
+          "rank": "Initiate",
+          "fame": 148288,
+          "active_fame": 148288,
+          "seasonal_fame": 0,
+          "stars": 79,
+          "shinies": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "active_fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0
+        },
+        "ethanliyo": {
+          "name": "EthanLiyo",
+          "rank": "Initiate",
+          "fame": 44446,
+          "active_fame": 44446,
+          "seasonal_fame": 0,
+          "stars": 67,
+          "shinies": 0
+        },
+        "starcannon": {
+          "name": "StarCannon",
+          "rank": "Initiate",
+          "fame": 41133,
+          "active_fame": 41133,
+          "seasonal_fame": 7794,
+          "stars": 35,
+          "shinies": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "active_fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "active_fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Initiate",
+          "fame": 29128,
+          "active_fame": 29128,
+          "seasonal_fame": 16715,
+          "stars": 60,
+          "shinies": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 24090,
+          "active_fame": 24090,
+          "seasonal_fame": 22428,
+          "stars": 39,
+          "shinies": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 19026,
+          "active_fame": 19026,
+          "seasonal_fame": 18007,
+          "stars": 13,
+          "shinies": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Initiate",
+          "fame": 17411,
+          "active_fame": 17411,
+          "seasonal_fame": 2305,
+          "stars": 23,
+          "shinies": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "active_fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 32,
+          "shinies": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 12012,
+          "active_fame": 12012,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Initiate",
+          "fame": 9224,
+          "active_fame": 9224,
+          "seasonal_fame": 3890,
+          "stars": 51,
+          "shinies": 0
+        },
+        "keffyss": {
+          "name": "Keffyss",
+          "rank": "Initiate",
+          "fame": 8000,
+          "active_fame": 8000,
+          "seasonal_fame": 3821,
+          "stars": 26,
+          "shinies": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "active_fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 6917,
+          "active_fame": 6917,
+          "seasonal_fame": 6917,
+          "stars": 25,
+          "shinies": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "active_fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "active_fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "active_fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0
+        },
+        "mixxons": {
+          "name": "MixxonS",
+          "rank": "Initiate",
+          "fame": 3948,
+          "active_fame": 3948,
+          "seasonal_fame": 0,
+          "stars": 7,
+          "shinies": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3487,
+          "active_fame": 3487,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "active_fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "imortals": {
+          "name": "Imortals",
+          "rank": "Initiate",
+          "fame": 1926,
+          "active_fame": 1926,
+          "seasonal_fame": 1926,
+          "stars": 5,
+          "shinies": 0
+        },
+        "ravensking": {
+          "name": "RAVENSKING",
+          "rank": "Initiate",
+          "fame": 1896,
+          "active_fame": 1896,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "active_fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "active_fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0
+        },
+        "robiix": {
+          "name": "Robiix",
+          "rank": "Initiate",
+          "fame": 1780,
+          "active_fame": 1780,
+          "seasonal_fame": 1780,
+          "stars": 17,
+          "shinies": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "active_fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "active_fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "active_fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0
+        },
+        "sirplunk": {
+          "name": "SirPlunk",
+          "rank": "Initiate",
+          "fame": 26,
+          "active_fame": 26,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1780007870,
+      "date": "2026-05-28 22:37 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 48361,
+          "active_fame": 48361,
+          "seasonal_fame": 18577,
+          "stars": 64,
+          "shinies": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 24264,
+          "active_fame": 24264,
+          "seasonal_fame": 19701,
+          "stars": 34,
+          "shinies": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 116406,
+          "active_fame": 116406,
+          "seasonal_fame": 95848,
+          "stars": 78,
+          "shinies": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42890,
+          "active_fame": 42890,
+          "seasonal_fame": 24546,
+          "stars": 78,
+          "shinies": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 37424,
+          "active_fame": 37424,
+          "seasonal_fame": 26547,
+          "stars": 53,
+          "shinies": 0
+        },
+        "doctordeca": {
+          "name": "DoctorDeca",
+          "rank": "Officer",
+          "fame": 6325,
+          "active_fame": 6325,
+          "seasonal_fame": 0,
+          "stars": 55,
+          "shinies": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "active_fame": 148262,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "active_fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "active_fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 35637,
+          "active_fame": 35637,
+          "seasonal_fame": 6491,
+          "stars": 49,
+          "shinies": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 31237,
+          "active_fame": 31237,
+          "seasonal_fame": 21504,
+          "stars": 54,
+          "shinies": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31016,
+          "active_fame": 31016,
+          "seasonal_fame": 11612,
+          "stars": 50,
+          "shinies": 0
+        },
+        "yukotari": {
+          "name": "Yukotari",
+          "rank": "Member",
+          "fame": 29869,
+          "active_fame": 29869,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 17533,
+          "active_fame": 17533,
+          "seasonal_fame": 15799,
+          "stars": 25,
+          "shinies": 0
+        },
+        "furyofzion": {
+          "name": "Furyofzion",
+          "rank": "Member",
+          "fame": 11457,
+          "active_fame": 11457,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 7113,
+          "active_fame": 7113,
+          "seasonal_fame": 6572,
+          "stars": 27,
+          "shinies": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "active_fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "active_fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "active_fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        },
+        "crazyriver": {
+          "name": "Crazyriver",
+          "rank": "Initiate",
+          "fame": 148516,
+          "active_fame": 148516,
+          "seasonal_fame": 0,
+          "stars": 79,
+          "shinies": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "active_fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0
+        },
+        "ethanliyo": {
+          "name": "EthanLiyo",
+          "rank": "Initiate",
+          "fame": 44446,
+          "active_fame": 44446,
+          "seasonal_fame": 0,
+          "stars": 67,
+          "shinies": 0
+        },
+        "starcannon": {
+          "name": "StarCannon",
+          "rank": "Initiate",
+          "fame": 43536,
+          "active_fame": 43536,
+          "seasonal_fame": 7794,
+          "stars": 36,
+          "shinies": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "active_fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Initiate",
+          "fame": 30703,
+          "active_fame": 30703,
+          "seasonal_fame": 17696,
+          "stars": 60,
+          "shinies": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "active_fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 24377,
+          "active_fame": 24377,
+          "seasonal_fame": 22715,
+          "stars": 39,
+          "shinies": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 19026,
+          "active_fame": 19026,
+          "seasonal_fame": 18007,
+          "stars": 13,
+          "shinies": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Initiate",
+          "fame": 17413,
+          "active_fame": 17413,
+          "seasonal_fame": 2305,
+          "stars": 23,
+          "shinies": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "active_fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 32,
+          "shinies": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 12619,
+          "active_fame": 12619,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0
+        },
+        "keffyss": {
+          "name": "Keffyss",
+          "rank": "Initiate",
+          "fame": 11682,
+          "active_fame": 11682,
+          "seasonal_fame": 7503,
+          "stars": 28,
+          "shinies": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Initiate",
+          "fame": 9224,
+          "active_fame": 9224,
+          "seasonal_fame": 3890,
+          "stars": 51,
+          "shinies": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 7238,
+          "active_fame": 7238,
+          "seasonal_fame": 7238,
+          "stars": 25,
+          "shinies": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "active_fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "active_fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "active_fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "active_fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0
+        },
+        "mixxons": {
+          "name": "MixxonS",
+          "rank": "Initiate",
+          "fame": 3948,
+          "active_fame": 3948,
+          "seasonal_fame": 0,
+          "stars": 7,
+          "shinies": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3487,
+          "active_fame": 3487,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "active_fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "robiix": {
+          "name": "Robiix",
+          "rank": "Initiate",
+          "fame": 3069,
+          "active_fame": 3069,
+          "seasonal_fame": 3069,
+          "stars": 19,
+          "shinies": 0
+        },
+        "imortals": {
+          "name": "Imortals",
+          "rank": "Initiate",
+          "fame": 1928,
+          "active_fame": 1928,
+          "seasonal_fame": 1928,
+          "stars": 5,
+          "shinies": 0
+        },
+        "ravensking": {
+          "name": "RAVENSKING",
+          "rank": "Initiate",
+          "fame": 1896,
+          "active_fame": 1896,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "active_fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "active_fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "active_fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "active_fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "active_fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0
+        },
+        "sirplunk": {
+          "name": "SirPlunk",
+          "rank": "Initiate",
+          "fame": 26,
+          "active_fame": 26,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1780012807,
+      "date": "2026-05-29 00:00 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 48361,
+          "active_fame": 48361,
+          "seasonal_fame": 18577,
+          "stars": 64,
+          "shinies": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 24264,
+          "active_fame": 24264,
+          "seasonal_fame": 19701,
+          "stars": 34,
+          "shinies": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 116406,
+          "active_fame": 116406,
+          "seasonal_fame": 95848,
+          "stars": 78,
+          "shinies": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42918,
+          "active_fame": 42918,
+          "seasonal_fame": 24574,
+          "stars": 78,
+          "shinies": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 37424,
+          "active_fame": 37424,
+          "seasonal_fame": 26547,
+          "stars": 53,
+          "shinies": 0
+        },
+        "doctordeca": {
+          "name": "DoctorDeca",
+          "rank": "Officer",
+          "fame": 6325,
+          "active_fame": 6325,
+          "seasonal_fame": 0,
+          "stars": 55,
+          "shinies": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "active_fame": 148262,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "active_fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "active_fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 35637,
+          "active_fame": 35637,
+          "seasonal_fame": 6491,
+          "stars": 49,
+          "shinies": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 31237,
+          "active_fame": 31237,
+          "seasonal_fame": 21504,
+          "stars": 54,
+          "shinies": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31016,
+          "active_fame": 31016,
+          "seasonal_fame": 11612,
+          "stars": 50,
+          "shinies": 0
+        },
+        "yukotari": {
+          "name": "Yukotari",
+          "rank": "Member",
+          "fame": 29869,
+          "active_fame": 29869,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 17533,
+          "active_fame": 17533,
+          "seasonal_fame": 15799,
+          "stars": 25,
+          "shinies": 0
+        },
+        "furyofzion": {
+          "name": "Furyofzion",
+          "rank": "Member",
+          "fame": 11457,
+          "active_fame": 11457,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 7113,
+          "active_fame": 7113,
+          "seasonal_fame": 6572,
+          "stars": 27,
+          "shinies": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "active_fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "active_fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "active_fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        },
+        "crazyriver": {
+          "name": "Crazyriver",
+          "rank": "Initiate",
+          "fame": 148516,
+          "active_fame": 148516,
+          "seasonal_fame": 0,
+          "stars": 79,
+          "shinies": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "active_fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0
+        },
+        "ethanliyo": {
+          "name": "EthanLiyo",
+          "rank": "Initiate",
+          "fame": 44446,
+          "active_fame": 44446,
+          "seasonal_fame": 0,
+          "stars": 67,
+          "shinies": 0
+        },
+        "starcannon": {
+          "name": "StarCannon",
+          "rank": "Initiate",
+          "fame": 43536,
+          "active_fame": 43536,
+          "seasonal_fame": 7794,
+          "stars": 36,
+          "shinies": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "active_fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Initiate",
+          "fame": 31432,
+          "active_fame": 31432,
+          "seasonal_fame": 17696,
+          "stars": 60,
+          "shinies": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "active_fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 24377,
+          "active_fame": 24377,
+          "seasonal_fame": 22715,
+          "stars": 39,
+          "shinies": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 19026,
+          "active_fame": 19026,
+          "seasonal_fame": 18007,
+          "stars": 13,
+          "shinies": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Initiate",
+          "fame": 17413,
+          "active_fame": 17413,
+          "seasonal_fame": 2305,
+          "stars": 23,
+          "shinies": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "active_fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 32,
+          "shinies": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 12619,
+          "active_fame": 12619,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0
+        },
+        "keffyss": {
+          "name": "Keffyss",
+          "rank": "Initiate",
+          "fame": 11865,
+          "active_fame": 11865,
+          "seasonal_fame": 7686,
+          "stars": 28,
+          "shinies": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Initiate",
+          "fame": 9224,
+          "active_fame": 9224,
+          "seasonal_fame": 3890,
+          "stars": 51,
+          "shinies": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 7238,
+          "active_fame": 7238,
+          "seasonal_fame": 7238,
+          "stars": 25,
+          "shinies": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "active_fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "active_fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "active_fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "active_fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0
+        },
+        "mixxons": {
+          "name": "MixxonS",
+          "rank": "Initiate",
+          "fame": 3948,
+          "active_fame": 3948,
+          "seasonal_fame": 0,
+          "stars": 7,
+          "shinies": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3487,
+          "active_fame": 3487,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "active_fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "robiix": {
+          "name": "Robiix",
+          "rank": "Initiate",
+          "fame": 3121,
+          "active_fame": 3121,
+          "seasonal_fame": 3121,
+          "stars": 19,
+          "shinies": 0
+        },
+        "imortals": {
+          "name": "Imortals",
+          "rank": "Initiate",
+          "fame": 2070,
+          "active_fame": 2070,
+          "seasonal_fame": 2070,
+          "stars": 5,
+          "shinies": 0
+        },
+        "ravensking": {
+          "name": "RAVENSKING",
+          "rank": "Initiate",
+          "fame": 1896,
+          "active_fame": 1896,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "active_fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "active_fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "active_fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "active_fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "active_fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0
+        },
+        "sirplunk": {
+          "name": "SirPlunk",
+          "rank": "Initiate",
+          "fame": 26,
+          "active_fame": 26,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1780016484,
+      "date": "2026-05-29 01:01 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 48925,
+          "active_fame": 48925,
+          "seasonal_fame": 19141,
+          "stars": 64,
+          "shinies": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 24264,
+          "active_fame": 24264,
+          "seasonal_fame": 19701,
+          "stars": 34,
+          "shinies": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 116406,
+          "active_fame": 116406,
+          "seasonal_fame": 95848,
+          "stars": 78,
+          "shinies": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42918,
+          "active_fame": 42918,
+          "seasonal_fame": 24574,
+          "stars": 78,
+          "shinies": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 37424,
+          "active_fame": 37424,
+          "seasonal_fame": 26547,
+          "stars": 53,
+          "shinies": 0
+        },
+        "doctordeca": {
+          "name": "DoctorDeca",
+          "rank": "Officer",
+          "fame": 6325,
+          "active_fame": 6325,
+          "seasonal_fame": 0,
+          "stars": 55,
+          "shinies": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "active_fame": 148262,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "active_fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "active_fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 35637,
+          "active_fame": 35637,
+          "seasonal_fame": 6491,
+          "stars": 49,
+          "shinies": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 31237,
+          "active_fame": 31237,
+          "seasonal_fame": 21504,
+          "stars": 54,
+          "shinies": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31016,
+          "active_fame": 31016,
+          "seasonal_fame": 11612,
+          "stars": 50,
+          "shinies": 0
+        },
+        "yukotari": {
+          "name": "Yukotari",
+          "rank": "Member",
+          "fame": 29869,
+          "active_fame": 29869,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 17533,
+          "active_fame": 17533,
+          "seasonal_fame": 15799,
+          "stars": 25,
+          "shinies": 0
+        },
+        "furyofzion": {
+          "name": "Furyofzion",
+          "rank": "Member",
+          "fame": 11457,
+          "active_fame": 11457,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 7113,
+          "active_fame": 7113,
+          "seasonal_fame": 6572,
+          "stars": 27,
+          "shinies": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "active_fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "active_fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "active_fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        },
+        "crazyriver": {
+          "name": "Crazyriver",
+          "rank": "Initiate",
+          "fame": 148516,
+          "active_fame": 148516,
+          "seasonal_fame": 0,
+          "stars": 79,
+          "shinies": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "active_fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0
+        },
+        "ethanliyo": {
+          "name": "EthanLiyo",
+          "rank": "Initiate",
+          "fame": 44446,
+          "active_fame": 44446,
+          "seasonal_fame": 0,
+          "stars": 67,
+          "shinies": 0
+        },
+        "starcannon": {
+          "name": "StarCannon",
+          "rank": "Initiate",
+          "fame": 43536,
+          "active_fame": 43536,
+          "seasonal_fame": 7794,
+          "stars": 36,
+          "shinies": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "active_fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Initiate",
+          "fame": 31432,
+          "active_fame": 31432,
+          "seasonal_fame": 17696,
+          "stars": 60,
+          "shinies": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "active_fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 24377,
+          "active_fame": 24377,
+          "seasonal_fame": 22715,
+          "stars": 39,
+          "shinies": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 19026,
+          "active_fame": 19026,
+          "seasonal_fame": 18007,
+          "stars": 13,
+          "shinies": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Initiate",
+          "fame": 17413,
+          "active_fame": 17413,
+          "seasonal_fame": 2305,
+          "stars": 23,
+          "shinies": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "active_fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 32,
+          "shinies": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 12619,
+          "active_fame": 12619,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0
+        },
+        "keffyss": {
+          "name": "Keffyss",
+          "rank": "Initiate",
+          "fame": 11865,
+          "active_fame": 11865,
+          "seasonal_fame": 7686,
+          "stars": 28,
+          "shinies": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Initiate",
+          "fame": 9224,
+          "active_fame": 9224,
+          "seasonal_fame": 3890,
+          "stars": 51,
+          "shinies": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 7238,
+          "active_fame": 7238,
+          "seasonal_fame": 7238,
+          "stars": 25,
+          "shinies": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "active_fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "active_fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "active_fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "active_fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0
+        },
+        "mixxons": {
+          "name": "MixxonS",
+          "rank": "Initiate",
+          "fame": 3948,
+          "active_fame": 3948,
+          "seasonal_fame": 0,
+          "stars": 7,
+          "shinies": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3487,
+          "active_fame": 3487,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "active_fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "robiix": {
+          "name": "Robiix",
+          "rank": "Initiate",
+          "fame": 3121,
+          "active_fame": 3121,
+          "seasonal_fame": 3121,
+          "stars": 19,
+          "shinies": 0
+        },
+        "imortals": {
+          "name": "Imortals",
+          "rank": "Initiate",
+          "fame": 2121,
+          "active_fame": 2121,
+          "seasonal_fame": 2121,
+          "stars": 5,
+          "shinies": 0
+        },
+        "ravensking": {
+          "name": "RAVENSKING",
+          "rank": "Initiate",
+          "fame": 1896,
+          "active_fame": 1896,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "active_fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "active_fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "active_fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "active_fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "active_fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0
+        },
+        "sirplunk": {
+          "name": "SirPlunk",
+          "rank": "Initiate",
+          "fame": 26,
+          "active_fame": 26,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1780099247,
+      "date": "2026-05-30 00:00 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 48925,
+          "active_fame": 48925,
+          "seasonal_fame": 19141,
+          "stars": 64,
+          "shinies": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 24264,
+          "active_fame": 24264,
+          "seasonal_fame": 19701,
+          "stars": 34,
+          "shinies": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 116819,
+          "active_fame": 116819,
+          "seasonal_fame": 96261,
+          "stars": 78,
+          "shinies": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42918,
+          "active_fame": 42918,
+          "seasonal_fame": 24574,
+          "stars": 78,
+          "shinies": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 37424,
+          "active_fame": 37424,
+          "seasonal_fame": 26547,
+          "stars": 53,
+          "shinies": 0
+        },
+        "doctordeca": {
+          "name": "DoctorDeca",
+          "rank": "Officer",
+          "fame": 6325,
+          "active_fame": 6325,
+          "seasonal_fame": 0,
+          "stars": 55,
+          "shinies": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "active_fame": 148262,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "active_fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "active_fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 35836,
+          "active_fame": 35836,
+          "seasonal_fame": 6491,
+          "stars": 49,
+          "shinies": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 31405,
+          "active_fame": 31405,
+          "seasonal_fame": 21672,
+          "stars": 54,
+          "shinies": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31016,
+          "active_fame": 31016,
+          "seasonal_fame": 11612,
+          "stars": 50,
+          "shinies": 0
+        },
+        "yukotari": {
+          "name": "Yukotari",
+          "rank": "Member",
+          "fame": 29869,
+          "active_fame": 29869,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 20147,
+          "active_fame": 20147,
+          "seasonal_fame": 18413,
+          "stars": 25,
+          "shinies": 0
+        },
+        "furyofzion": {
+          "name": "Furyofzion",
+          "rank": "Member",
+          "fame": 11457,
+          "active_fame": 11457,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 7113,
+          "active_fame": 7113,
+          "seasonal_fame": 6572,
+          "stars": 27,
+          "shinies": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "active_fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "active_fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "active_fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        },
+        "crazyriver": {
+          "name": "Crazyriver",
+          "rank": "Initiate",
+          "fame": 153848,
+          "active_fame": 153848,
+          "seasonal_fame": 0,
+          "stars": 79,
+          "shinies": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "active_fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0
+        },
+        "ethanliyo": {
+          "name": "EthanLiyo",
+          "rank": "Initiate",
+          "fame": 44446,
+          "active_fame": 44446,
+          "seasonal_fame": 0,
+          "stars": 67,
+          "shinies": 0
+        },
+        "starcannon": {
+          "name": "StarCannon",
+          "rank": "Initiate",
+          "fame": 44173,
+          "active_fame": 44173,
+          "seasonal_fame": 7794,
+          "stars": 41,
+          "shinies": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "active_fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Initiate",
+          "fame": 34246,
+          "active_fame": 34246,
+          "seasonal_fame": 17696,
+          "stars": 60,
+          "shinies": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "active_fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 24994,
+          "active_fame": 24994,
+          "seasonal_fame": 23332,
+          "stars": 39,
+          "shinies": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 19026,
+          "active_fame": 19026,
+          "seasonal_fame": 18007,
+          "stars": 13,
+          "shinies": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Initiate",
+          "fame": 17413,
+          "active_fame": 17413,
+          "seasonal_fame": 2305,
+          "stars": 23,
+          "shinies": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "active_fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 32,
+          "shinies": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 12727,
+          "active_fame": 12727,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0
+        },
+        "keffyss": {
+          "name": "Keffyss",
+          "rank": "Initiate",
+          "fame": 12166,
+          "active_fame": 12166,
+          "seasonal_fame": 7987,
+          "stars": 28,
+          "shinies": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Initiate",
+          "fame": 9293,
+          "active_fame": 9293,
+          "seasonal_fame": 4273,
+          "stars": 51,
+          "shinies": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 7382,
+          "active_fame": 7382,
+          "seasonal_fame": 7382,
+          "stars": 25,
+          "shinies": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "active_fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "active_fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "active_fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "active_fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0
+        },
+        "robiix": {
+          "name": "Robiix",
+          "rank": "Initiate",
+          "fame": 4425,
+          "active_fame": 4425,
+          "seasonal_fame": 4425,
+          "stars": 21,
+          "shinies": 0
+        },
+        "mixxons": {
+          "name": "MixxonS",
+          "rank": "Initiate",
+          "fame": 3948,
+          "active_fame": 3948,
+          "seasonal_fame": 0,
+          "stars": 7,
+          "shinies": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3493,
+          "active_fame": 3493,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "active_fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "imortals": {
+          "name": "Imortals",
+          "rank": "Initiate",
+          "fame": 2121,
+          "active_fame": 2121,
+          "seasonal_fame": 2121,
+          "stars": 5,
+          "shinies": 0
+        },
+        "ravensking": {
+          "name": "RAVENSKING",
+          "rank": "Initiate",
+          "fame": 1896,
+          "active_fame": 1896,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "active_fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "active_fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "active_fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "active_fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "active_fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0
+        },
+        "sirplunk": {
+          "name": "SirPlunk",
+          "rank": "Initiate",
+          "fame": 26,
+          "active_fame": 26,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1780185605,
+      "date": "2026-05-31 00:00 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 48925,
+          "active_fame": 48925,
+          "seasonal_fame": 19141,
+          "stars": 64,
+          "shinies": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 24617,
+          "active_fame": 24617,
+          "seasonal_fame": 20054,
+          "stars": 34,
+          "shinies": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 120696,
+          "active_fame": 120696,
+          "seasonal_fame": 100138,
+          "stars": 78,
+          "shinies": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42918,
+          "active_fame": 42918,
+          "seasonal_fame": 24574,
+          "stars": 78,
+          "shinies": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 37424,
+          "active_fame": 37424,
+          "seasonal_fame": 27360,
+          "stars": 53,
+          "shinies": 0
+        },
+        "doctordeca": {
+          "name": "DoctorDeca",
+          "rank": "Officer",
+          "fame": 6325,
+          "active_fame": 6325,
+          "seasonal_fame": 0,
+          "stars": 55,
+          "shinies": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "active_fame": 148262,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "active_fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "active_fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 35983,
+          "active_fame": 35983,
+          "seasonal_fame": 6885,
+          "stars": 49,
+          "shinies": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 31746,
+          "active_fame": 31746,
+          "seasonal_fame": 30012,
+          "stars": 26,
+          "shinies": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 31736,
+          "active_fame": 31736,
+          "seasonal_fame": 22003,
+          "stars": 54,
+          "shinies": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31089,
+          "active_fame": 31089,
+          "seasonal_fame": 11685,
+          "stars": 50,
+          "shinies": 0
+        },
+        "yukotari": {
+          "name": "Yukotari",
+          "rank": "Member",
+          "fame": 29869,
+          "active_fame": 29869,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 7113,
+          "active_fame": 7113,
+          "seasonal_fame": 6572,
+          "stars": 27,
+          "shinies": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "active_fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "active_fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "active_fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        },
+        "crazyriver": {
+          "name": "Crazyriver",
+          "rank": "Initiate",
+          "fame": 172691,
+          "active_fame": 172691,
+          "seasonal_fame": 0,
+          "stars": 79,
+          "shinies": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "active_fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0
+        },
+        "starcannon": {
+          "name": "StarCannon",
+          "rank": "Initiate",
+          "fame": 45706,
+          "active_fame": 45706,
+          "seasonal_fame": 7794,
+          "stars": 41,
+          "shinies": 0
+        },
+        "ethanliyo": {
+          "name": "EthanLiyo",
+          "rank": "Initiate",
+          "fame": 44446,
+          "active_fame": 44446,
+          "seasonal_fame": 0,
+          "stars": 67,
+          "shinies": 0
+        },
+        "tutators": {
+          "name": "TUTATORS",
+          "rank": "Initiate",
+          "fame": 41513,
+          "active_fame": 41513,
+          "seasonal_fame": 760,
+          "stars": 46,
+          "shinies": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Initiate",
+          "fame": 40090,
+          "active_fame": 40090,
+          "seasonal_fame": 17696,
+          "stars": 60,
+          "shinies": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "active_fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "active_fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 25345,
+          "active_fame": 25345,
+          "seasonal_fame": 23683,
+          "stars": 39,
+          "shinies": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 19026,
+          "active_fame": 19026,
+          "seasonal_fame": 18007,
+          "stars": 13,
+          "shinies": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Initiate",
+          "fame": 17413,
+          "active_fame": 17413,
+          "seasonal_fame": 2305,
+          "stars": 23,
+          "shinies": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "active_fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 33,
+          "shinies": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 12886,
+          "active_fame": 12886,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0
+        },
+        "keffyss": {
+          "name": "Keffyss",
+          "rank": "Initiate",
+          "fame": 12166,
+          "active_fame": 12166,
+          "seasonal_fame": 7987,
+          "stars": 28,
+          "shinies": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Initiate",
+          "fame": 10028,
+          "active_fame": 10028,
+          "seasonal_fame": 5008,
+          "stars": 51,
+          "shinies": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 7571,
+          "active_fame": 7571,
+          "seasonal_fame": 7571,
+          "stars": 25,
+          "shinies": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "active_fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "active_fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "active_fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "active_fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0
+        },
+        "robiix": {
+          "name": "Robiix",
+          "rank": "Initiate",
+          "fame": 4457,
+          "active_fame": 4457,
+          "seasonal_fame": 4457,
+          "stars": 22,
+          "shinies": 0
+        },
+        "mixxons": {
+          "name": "MixxonS",
+          "rank": "Initiate",
+          "fame": 3948,
+          "active_fame": 3948,
+          "seasonal_fame": 0,
+          "stars": 7,
+          "shinies": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3493,
+          "active_fame": 3493,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "active_fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "imortals": {
+          "name": "Imortals",
+          "rank": "Initiate",
+          "fame": 2298,
+          "active_fame": 2298,
+          "seasonal_fame": 2298,
+          "stars": 5,
+          "shinies": 0
+        },
+        "ravensking": {
+          "name": "RAVENSKING",
+          "rank": "Initiate",
+          "fame": 1896,
+          "active_fame": 1896,
+          "seasonal_fame": 0,
+          "stars": 13,
+          "shinies": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "active_fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "active_fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "active_fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "active_fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "active_fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0
+        },
+        "sirplunk": {
+          "name": "SirPlunk",
+          "rank": "Initiate",
+          "fame": 26,
+          "active_fame": 26,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1780266972,
+      "date": "2026-05-31 22:36 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 50005,
+          "active_fame": 50005,
+          "seasonal_fame": 20341,
+          "stars": 65,
+          "shinies": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 26016,
+          "active_fame": 26016,
+          "seasonal_fame": 21453,
+          "stars": 34,
+          "shinies": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 125213,
+          "active_fame": 125213,
+          "seasonal_fame": 112235,
+          "stars": 78,
+          "shinies": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42918,
+          "active_fame": 42918,
+          "seasonal_fame": 24574,
+          "stars": 78,
+          "shinies": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 37424,
+          "active_fame": 37424,
+          "seasonal_fame": 27360,
+          "stars": 53,
+          "shinies": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "active_fame": 148262,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "active_fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Member",
+          "fame": 49297,
+          "active_fame": 49297,
+          "seasonal_fame": 17716,
+          "stars": 61,
+          "shinies": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "active_fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 36071,
+          "active_fame": 36071,
+          "seasonal_fame": 7088,
+          "stars": 49,
+          "shinies": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 33276,
+          "active_fame": 33276,
+          "seasonal_fame": 30545,
+          "stars": 27,
+          "shinies": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 32287,
+          "active_fame": 32287,
+          "seasonal_fame": 22554,
+          "stars": 54,
+          "shinies": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31089,
+          "active_fame": 31089,
+          "seasonal_fame": 11685,
+          "stars": 50,
+          "shinies": 0
+        },
+        "yukotari": {
+          "name": "Yukotari",
+          "rank": "Member",
+          "fame": 29869,
+          "active_fame": 29869,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Member",
+          "fame": 10208,
+          "active_fame": 10208,
+          "seasonal_fame": 5300,
+          "stars": 51,
+          "shinies": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 7925,
+          "active_fame": 7925,
+          "seasonal_fame": 7384,
+          "stars": 27,
+          "shinies": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "active_fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "active_fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "active_fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        },
+        "crazyriver": {
+          "name": "Crazyriver",
+          "rank": "Initiate",
+          "fame": 176793,
+          "active_fame": 176793,
+          "seasonal_fame": 0,
+          "stars": 79,
+          "shinies": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "active_fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0
+        },
+        "starcannon": {
+          "name": "StarCannon",
+          "rank": "Initiate",
+          "fame": 45706,
+          "active_fame": 45706,
+          "seasonal_fame": 7794,
+          "stars": 41,
+          "shinies": 0
+        },
+        "ethanliyo": {
+          "name": "EthanLiyo",
+          "rank": "Initiate",
+          "fame": 44446,
+          "active_fame": 44446,
+          "seasonal_fame": 0,
+          "stars": 67,
+          "shinies": 0
+        },
+        "oriojdl": {
+          "name": "Oriojdl",
+          "rank": "Initiate",
+          "fame": 43685,
+          "active_fame": 43685,
+          "seasonal_fame": 0,
+          "stars": 57,
+          "shinies": 0
+        },
+        "tutators": {
+          "name": "TUTATORS",
+          "rank": "Initiate",
+          "fame": 41513,
+          "active_fame": 41513,
+          "seasonal_fame": 760,
+          "stars": 46,
+          "shinies": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "active_fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "active_fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 25345,
+          "active_fame": 25345,
+          "seasonal_fame": 23683,
+          "stars": 39,
+          "shinies": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 19666,
+          "active_fame": 19666,
+          "seasonal_fame": 18647,
+          "stars": 13,
+          "shinies": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Initiate",
+          "fame": 17413,
+          "active_fame": 17413,
+          "seasonal_fame": 2305,
+          "stars": 23,
+          "shinies": 0
+        },
+        "dapigspjs": {
+          "name": "Dapigspjs",
+          "rank": "Initiate",
+          "fame": 15892,
+          "active_fame": 15892,
+          "seasonal_fame": 6252,
+          "stars": 60,
+          "shinies": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 14379,
+          "active_fame": 14379,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "active_fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 33,
+          "shinies": 0
+        },
+        "keffyss": {
+          "name": "Keffyss",
+          "rank": "Initiate",
+          "fame": 12363,
+          "active_fame": 12363,
+          "seasonal_fame": 8184,
+          "stars": 28,
+          "shinies": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 7581,
+          "active_fame": 7581,
+          "seasonal_fame": 7581,
+          "stars": 25,
+          "shinies": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "active_fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "active_fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "active_fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0
+        },
+        "robiix": {
+          "name": "Robiix",
+          "rank": "Initiate",
+          "fame": 5091,
+          "active_fame": 5091,
+          "seasonal_fame": 5091,
+          "stars": 24,
+          "shinies": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "active_fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0
+        },
+        "mixxons": {
+          "name": "MixxonS",
+          "rank": "Initiate",
+          "fame": 3948,
+          "active_fame": 3948,
+          "seasonal_fame": 0,
+          "stars": 7,
+          "shinies": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3871,
+          "active_fame": 3871,
+          "seasonal_fame": 0,
+          "stars": 14,
+          "shinies": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "active_fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "imortals": {
+          "name": "Imortals",
+          "rank": "Initiate",
+          "fame": 2337,
+          "active_fame": 2337,
+          "seasonal_fame": 2337,
+          "stars": 5,
+          "shinies": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "active_fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "active_fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "active_fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0
+        },
+        "noobchaosss": {
+          "name": "Noobchaosss",
+          "rank": "Initiate",
+          "fame": 1279,
+          "active_fame": 1279,
+          "seasonal_fame": 1045,
+          "stars": 24,
+          "shinies": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "active_fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "active_fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1780268492,
+      "date": "2026-05-31 23:01 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 50005,
+          "active_fame": 50005,
+          "seasonal_fame": 20341,
+          "stars": 65,
+          "shinies": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 26016,
+          "active_fame": 26016,
+          "seasonal_fame": 21453,
+          "stars": 34,
+          "shinies": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 125213,
+          "active_fame": 125213,
+          "seasonal_fame": 112235,
+          "stars": 78,
+          "shinies": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42918,
+          "active_fame": 42918,
+          "seasonal_fame": 24574,
+          "stars": 78,
+          "shinies": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 37424,
+          "active_fame": 37424,
+          "seasonal_fame": 27360,
+          "stars": 53,
+          "shinies": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "active_fame": 148262,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "active_fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Member",
+          "fame": 49297,
+          "active_fame": 49297,
+          "seasonal_fame": 17716,
+          "stars": 61,
+          "shinies": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "active_fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 36071,
+          "active_fame": 36071,
+          "seasonal_fame": 7088,
+          "stars": 49,
+          "shinies": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 33276,
+          "active_fame": 33276,
+          "seasonal_fame": 30545,
+          "stars": 27,
+          "shinies": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 32287,
+          "active_fame": 32287,
+          "seasonal_fame": 22554,
+          "stars": 54,
+          "shinies": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31089,
+          "active_fame": 31089,
+          "seasonal_fame": 11685,
+          "stars": 50,
+          "shinies": 0
+        },
+        "yukotari": {
+          "name": "Yukotari",
+          "rank": "Member",
+          "fame": 29869,
+          "active_fame": 29869,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Member",
+          "fame": 10208,
+          "active_fame": 10208,
+          "seasonal_fame": 5300,
+          "stars": 51,
+          "shinies": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 7925,
+          "active_fame": 7925,
+          "seasonal_fame": 7384,
+          "stars": 27,
+          "shinies": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "active_fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "active_fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "active_fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        },
+        "crazyriver": {
+          "name": "Crazyriver",
+          "rank": "Initiate",
+          "fame": 176793,
+          "active_fame": 176793,
+          "seasonal_fame": 0,
+          "stars": 79,
+          "shinies": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "active_fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0
+        },
+        "starcannon": {
+          "name": "StarCannon",
+          "rank": "Initiate",
+          "fame": 45706,
+          "active_fame": 45706,
+          "seasonal_fame": 7794,
+          "stars": 41,
+          "shinies": 0
+        },
+        "ethanliyo": {
+          "name": "EthanLiyo",
+          "rank": "Initiate",
+          "fame": 44446,
+          "active_fame": 44446,
+          "seasonal_fame": 0,
+          "stars": 67,
+          "shinies": 0
+        },
+        "oriojdl": {
+          "name": "Oriojdl",
+          "rank": "Initiate",
+          "fame": 43685,
+          "active_fame": 43685,
+          "seasonal_fame": 0,
+          "stars": 57,
+          "shinies": 0
+        },
+        "tutators": {
+          "name": "TUTATORS",
+          "rank": "Initiate",
+          "fame": 41513,
+          "active_fame": 41513,
+          "seasonal_fame": 760,
+          "stars": 46,
+          "shinies": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "active_fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "active_fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 25345,
+          "active_fame": 25345,
+          "seasonal_fame": 23683,
+          "stars": 39,
+          "shinies": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 19846,
+          "active_fame": 19846,
+          "seasonal_fame": 18827,
+          "stars": 13,
+          "shinies": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Initiate",
+          "fame": 17413,
+          "active_fame": 17413,
+          "seasonal_fame": 2305,
+          "stars": 23,
+          "shinies": 0
+        },
+        "dapigspjs": {
+          "name": "Dapigspjs",
+          "rank": "Initiate",
+          "fame": 15892,
+          "active_fame": 15892,
+          "seasonal_fame": 6252,
+          "stars": 60,
+          "shinies": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 14379,
+          "active_fame": 14379,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "active_fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 33,
+          "shinies": 0
+        },
+        "keffyss": {
+          "name": "Keffyss",
+          "rank": "Initiate",
+          "fame": 12363,
+          "active_fame": 12363,
+          "seasonal_fame": 8184,
+          "stars": 28,
+          "shinies": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 7581,
+          "active_fame": 7581,
+          "seasonal_fame": 7581,
+          "stars": 25,
+          "shinies": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "active_fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "active_fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "active_fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0
+        },
+        "robiix": {
+          "name": "Robiix",
+          "rank": "Initiate",
+          "fame": 5091,
+          "active_fame": 5091,
+          "seasonal_fame": 5091,
+          "stars": 24,
+          "shinies": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "active_fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0
+        },
+        "mixxons": {
+          "name": "MixxonS",
+          "rank": "Initiate",
+          "fame": 3948,
+          "active_fame": 3948,
+          "seasonal_fame": 0,
+          "stars": 7,
+          "shinies": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3871,
+          "active_fame": 3871,
+          "seasonal_fame": 0,
+          "stars": 14,
+          "shinies": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "active_fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "imortals": {
+          "name": "Imortals",
+          "rank": "Initiate",
+          "fame": 2337,
+          "active_fame": 2337,
+          "seasonal_fame": 2337,
+          "stars": 5,
+          "shinies": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "active_fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "active_fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "active_fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0
+        },
+        "noobchaosss": {
+          "name": "Noobchaosss",
+          "rank": "Initiate",
+          "fame": 1279,
+          "active_fame": 1279,
+          "seasonal_fame": 1224,
+          "stars": 24,
+          "shinies": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "active_fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "active_fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1780272017,
+      "date": "2026-06-01 00:00 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 50007,
+          "active_fame": 50007,
+          "seasonal_fame": 20343,
+          "stars": 65,
+          "shinies": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 26016,
+          "active_fame": 26016,
+          "seasonal_fame": 21453,
+          "stars": 34,
+          "shinies": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 125213,
+          "active_fame": 125213,
+          "seasonal_fame": 112235,
+          "stars": 78,
+          "shinies": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42918,
+          "active_fame": 42918,
+          "seasonal_fame": 24574,
+          "stars": 78,
+          "shinies": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 37424,
+          "active_fame": 37424,
+          "seasonal_fame": 27360,
+          "stars": 53,
+          "shinies": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "active_fame": 148262,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "active_fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Member",
+          "fame": 49297,
+          "active_fame": 49297,
+          "seasonal_fame": 17716,
+          "stars": 61,
+          "shinies": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "active_fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 36071,
+          "active_fame": 36071,
+          "seasonal_fame": 7088,
+          "stars": 49,
+          "shinies": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 33276,
+          "active_fame": 33276,
+          "seasonal_fame": 30545,
+          "stars": 27,
+          "shinies": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 32287,
+          "active_fame": 32287,
+          "seasonal_fame": 22554,
+          "stars": 54,
+          "shinies": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31089,
+          "active_fame": 31089,
+          "seasonal_fame": 11685,
+          "stars": 50,
+          "shinies": 0
+        },
+        "yukotari": {
+          "name": "Yukotari",
+          "rank": "Member",
+          "fame": 29869,
+          "active_fame": 29869,
+          "seasonal_fame": 0,
+          "stars": 41,
+          "shinies": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Member",
+          "fame": 10208,
+          "active_fame": 10208,
+          "seasonal_fame": 5300,
+          "stars": 51,
+          "shinies": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 8911,
+          "active_fame": 8911,
+          "seasonal_fame": 8370,
+          "stars": 27,
+          "shinies": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "active_fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "active_fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "active_fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        },
+        "crazyriver": {
+          "name": "Crazyriver",
+          "rank": "Initiate",
+          "fame": 176793,
+          "active_fame": 176793,
+          "seasonal_fame": 0,
+          "stars": 79,
+          "shinies": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "active_fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0
+        },
+        "starcannon": {
+          "name": "StarCannon",
+          "rank": "Initiate",
+          "fame": 45706,
+          "active_fame": 45706,
+          "seasonal_fame": 7794,
+          "stars": 41,
+          "shinies": 0
+        },
+        "ethanliyo": {
+          "name": "EthanLiyo",
+          "rank": "Initiate",
+          "fame": 44446,
+          "active_fame": 44446,
+          "seasonal_fame": 0,
+          "stars": 67,
+          "shinies": 0
+        },
+        "oriojdl": {
+          "name": "Oriojdl",
+          "rank": "Initiate",
+          "fame": 43685,
+          "active_fame": 43685,
+          "seasonal_fame": 0,
+          "stars": 57,
+          "shinies": 0
+        },
+        "tutators": {
+          "name": "TUTATORS",
+          "rank": "Initiate",
+          "fame": 41513,
+          "active_fame": 41513,
+          "seasonal_fame": 760,
+          "stars": 46,
+          "shinies": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "active_fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "active_fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 25345,
+          "active_fame": 25345,
+          "seasonal_fame": 23683,
+          "stars": 39,
+          "shinies": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 19954,
+          "active_fame": 19954,
+          "seasonal_fame": 18935,
+          "stars": 13,
+          "shinies": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Initiate",
+          "fame": 17413,
+          "active_fame": 17413,
+          "seasonal_fame": 2305,
+          "stars": 23,
+          "shinies": 0
+        },
+        "dapigspjs": {
+          "name": "Dapigspjs",
+          "rank": "Initiate",
+          "fame": 15892,
+          "active_fame": 15892,
+          "seasonal_fame": 6252,
+          "stars": 60,
+          "shinies": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 14379,
+          "active_fame": 14379,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "active_fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 33,
+          "shinies": 0
+        },
+        "keffyss": {
+          "name": "Keffyss",
+          "rank": "Initiate",
+          "fame": 12363,
+          "active_fame": 12363,
+          "seasonal_fame": 8184,
+          "stars": 28,
+          "shinies": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 7581,
+          "active_fame": 7581,
+          "seasonal_fame": 7581,
+          "stars": 25,
+          "shinies": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "active_fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "active_fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "active_fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0
+        },
+        "robiix": {
+          "name": "Robiix",
+          "rank": "Initiate",
+          "fame": 5091,
+          "active_fame": 5091,
+          "seasonal_fame": 5091,
+          "stars": 24,
+          "shinies": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "active_fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0
+        },
+        "mixxons": {
+          "name": "MixxonS",
+          "rank": "Initiate",
+          "fame": 3948,
+          "active_fame": 3948,
+          "seasonal_fame": 0,
+          "stars": 7,
+          "shinies": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3871,
+          "active_fame": 3871,
+          "seasonal_fame": 0,
+          "stars": 14,
+          "shinies": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "active_fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "imortals": {
+          "name": "Imortals",
+          "rank": "Initiate",
+          "fame": 2337,
+          "active_fame": 2337,
+          "seasonal_fame": 2337,
+          "stars": 5,
+          "shinies": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "active_fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "active_fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0
+        },
+        "noobchaosss": {
+          "name": "Noobchaosss",
+          "rank": "Initiate",
+          "fame": 1673,
+          "active_fame": 1673,
+          "seasonal_fame": 1673,
+          "stars": 24,
+          "shinies": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "active_fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "active_fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "active_fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1780358414,
+      "date": "2026-06-02 00:00 UTC",
+      "members": {
+        "arnauvila": {
+          "name": "Arnauvila",
+          "rank": "Founder",
+          "fame": 50181,
+          "active_fame": 50181,
+          "seasonal_fame": 20517,
+          "stars": 65,
+          "shinies": 0
+        },
+        "oskicraft": {
+          "name": "Oskicraft",
+          "rank": "Leader",
+          "fame": 26016,
+          "active_fame": 26016,
+          "seasonal_fame": 21453,
+          "stars": 34,
+          "shinies": 0
+        },
+        "letuso": {
+          "name": "Letuso",
+          "rank": "Officer",
+          "fame": 125377,
+          "active_fame": 125377,
+          "seasonal_fame": 113350,
+          "stars": 78,
+          "shinies": 0
+        },
+        "chocogole": {
+          "name": "Chocogole",
+          "rank": "Officer",
+          "fame": 42918,
+          "active_fame": 42918,
+          "seasonal_fame": 24574,
+          "stars": 78,
+          "shinies": 0
+        },
+        "drlouden": {
+          "name": "DRLOUDEN",
+          "rank": "Officer",
+          "fame": 37424,
+          "active_fame": 37424,
+          "seasonal_fame": 27360,
+          "stars": 53,
+          "shinies": 0
+        },
+        "minamarsu": {
+          "name": "Minamarsu",
+          "rank": "Member",
+          "fame": 148178,
+          "active_fame": 148262,
+          "seasonal_fame": 28196,
+          "stars": 71,
+          "shinies": 0
+        },
+        "borkobline": {
+          "name": "BorkoblinE",
+          "rank": "Member",
+          "fame": 57038,
+          "active_fame": 57038,
+          "seasonal_fame": 11391,
+          "stars": 57,
+          "shinies": 0
+        },
+        "drapseth": {
+          "name": "Drapseth",
+          "rank": "Member",
+          "fame": 55837,
+          "active_fame": 55837,
+          "seasonal_fame": 17716,
+          "stars": 61,
+          "shinies": 0
+        },
+        "sotuthio": {
+          "name": "Sotuthio",
+          "rank": "Member",
+          "fame": 39607,
+          "active_fame": 39607,
+          "seasonal_fame": 35300,
+          "stars": 54,
+          "shinies": 0
+        },
+        "midnyter": {
+          "name": "Midnyter",
+          "rank": "Member",
+          "fame": 36608,
+          "active_fame": 36608,
+          "seasonal_fame": 26875,
+          "stars": 55,
+          "shinies": 0
+        },
+        "raptorwasd": {
+          "name": "RaPtOrwasd",
+          "rank": "Member",
+          "fame": 36071,
+          "active_fame": 36071,
+          "seasonal_fame": 7088,
+          "stars": 49,
+          "shinies": 0
+        },
+        "jadenching": {
+          "name": "Jadenching",
+          "rank": "Member",
+          "fame": 33276,
+          "active_fame": 33276,
+          "seasonal_fame": 30545,
+          "stars": 27,
+          "shinies": 0
+        },
+        "oryxcoral": {
+          "name": "OryxCoral",
+          "rank": "Member",
+          "fame": 31089,
+          "active_fame": 31089,
+          "seasonal_fame": 11685,
+          "stars": 50,
+          "shinies": 0
+        },
+        "shroombus": {
+          "name": "Shroombus",
+          "rank": "Member",
+          "fame": 17658,
+          "active_fame": 17658,
+          "seasonal_fame": 17117,
+          "stars": 28,
+          "shinies": 0
+        },
+        "opendl": {
+          "name": "Opendl",
+          "rank": "Member",
+          "fame": 17413,
+          "active_fame": 17413,
+          "seasonal_fame": 2377,
+          "stars": 23,
+          "shinies": 0
+        },
+        "xbabydaddy": {
+          "name": "XBabyDaddy",
+          "rank": "Member",
+          "fame": 11125,
+          "active_fame": 11125,
+          "seasonal_fame": 7013,
+          "stars": 51,
+          "shinies": 0
+        },
+        "jayfeat": {
+          "name": "Jayfeat",
+          "rank": "Member",
+          "fame": 6463,
+          "active_fame": 6463,
+          "seasonal_fame": 4834,
+          "stars": 22,
+          "shinies": 0
+        },
+        "silip": {
+          "name": "Silip",
+          "rank": "Member",
+          "fame": 5493,
+          "active_fame": 5493,
+          "seasonal_fame": 4042,
+          "stars": 20,
+          "shinies": 0
+        },
+        "mekkros": {
+          "name": "Mekkros",
+          "rank": "Member",
+          "fame": 2097,
+          "active_fame": 2097,
+          "seasonal_fame": 0,
+          "stars": 40,
+          "shinies": 0
+        },
+        "crazyriver": {
+          "name": "Crazyriver",
+          "rank": "Initiate",
+          "fame": 178033,
+          "active_fame": 178033,
+          "seasonal_fame": 0,
+          "stars": 79,
+          "shinies": 0
+        },
+        "swordkil": {
+          "name": "Swordkil",
+          "rank": "Initiate",
+          "fame": 47318,
+          "active_fame": 47318,
+          "seasonal_fame": 0,
+          "stars": 68,
+          "shinies": 0
+        },
+        "oriojdl": {
+          "name": "Oriojdl",
+          "rank": "Initiate",
+          "fame": 45972,
+          "active_fame": 45972,
+          "seasonal_fame": 0,
+          "stars": 57,
+          "shinies": 0
+        },
+        "starcannon": {
+          "name": "StarCannon",
+          "rank": "Initiate",
+          "fame": 45706,
+          "active_fame": 45706,
+          "seasonal_fame": 7794,
+          "stars": 41,
+          "shinies": 0
+        },
+        "tutators": {
+          "name": "TUTATORS",
+          "rank": "Initiate",
+          "fame": 41746,
+          "active_fame": 41746,
+          "seasonal_fame": 760,
+          "stars": 46,
+          "shinies": 0
+        },
+        "lacewire": {
+          "name": "LaceWire",
+          "rank": "Initiate",
+          "fame": 37787,
+          "active_fame": 37787,
+          "seasonal_fame": 9792,
+          "stars": 52,
+          "shinies": 0
+        },
+        "popccjack": {
+          "name": "Popccjack",
+          "rank": "Initiate",
+          "fame": 29616,
+          "active_fame": 29616,
+          "seasonal_fame": 304,
+          "stars": 55,
+          "shinies": 0
+        },
+        "aquafyg": {
+          "name": "AquafyG",
+          "rank": "Initiate",
+          "fame": 25492,
+          "active_fame": 25492,
+          "seasonal_fame": 23830,
+          "stars": 39,
+          "shinies": 0
+        },
+        "auriiana": {
+          "name": "Auriiana",
+          "rank": "Initiate",
+          "fame": 20412,
+          "active_fame": 20412,
+          "seasonal_fame": 19393,
+          "stars": 13,
+          "shinies": 0
+        },
+        "dapigspjs": {
+          "name": "Dapigspjs",
+          "rank": "Initiate",
+          "fame": 16370,
+          "active_fame": 16370,
+          "seasonal_fame": 6730,
+          "stars": 60,
+          "shinies": 0
+        },
+        "motorufka": {
+          "name": "Motorufka",
+          "rank": "Initiate",
+          "fame": 15622,
+          "active_fame": 15622,
+          "seasonal_fame": 0,
+          "stars": 26,
+          "shinies": 0
+        },
+        "rarehp": {
+          "name": "Rarehp",
+          "rank": "Initiate",
+          "fame": 12980,
+          "active_fame": 12980,
+          "seasonal_fame": 10698,
+          "stars": 33,
+          "shinies": 0
+        },
+        "xavierqpqp": {
+          "name": "Xavierqpqp",
+          "rank": "Initiate",
+          "fame": 12728,
+          "active_fame": 12728,
+          "seasonal_fame": 5453,
+          "stars": 38,
+          "shinies": 0
+        },
+        "keffyss": {
+          "name": "Keffyss",
+          "rank": "Initiate",
+          "fame": 12363,
+          "active_fame": 12363,
+          "seasonal_fame": 8184,
+          "stars": 28,
+          "shinies": 0
+        },
+        "neurontggb": {
+          "name": "NEUROnTGGB",
+          "rank": "Initiate",
+          "fame": 7581,
+          "active_fame": 7581,
+          "seasonal_fame": 7581,
+          "stars": 25,
+          "shinies": 0
+        },
+        "myrtletheturtle": {
+          "name": "MyrtleTheTurtle",
+          "rank": "Initiate",
+          "fame": 7185,
+          "active_fame": 7185,
+          "seasonal_fame": 7185,
+          "stars": 14,
+          "shinies": 0
+        },
+        "paisakidel": {
+          "name": "Paisakidel",
+          "rank": "Initiate",
+          "fame": 5716,
+          "active_fame": 5716,
+          "seasonal_fame": 3,
+          "stars": 51,
+          "shinies": 0
+        },
+        "manoberg": {
+          "name": "Manoberg",
+          "rank": "Initiate",
+          "fame": 5601,
+          "active_fame": 5601,
+          "seasonal_fame": 19,
+          "stars": 12,
+          "shinies": 0
+        },
+        "robiix": {
+          "name": "Robiix",
+          "rank": "Initiate",
+          "fame": 5091,
+          "active_fame": 5091,
+          "seasonal_fame": 5091,
+          "stars": 24,
+          "shinies": 0
+        },
+        "badliar": {
+          "name": "BadLiar",
+          "rank": "Initiate",
+          "fame": 4919,
+          "active_fame": 4919,
+          "seasonal_fame": 0,
+          "stars": 24,
+          "shinies": 0
+        },
+        "noobchaosss": {
+          "name": "Noobchaosss",
+          "rank": "Initiate",
+          "fame": 3991,
+          "active_fame": 3991,
+          "seasonal_fame": 3991,
+          "stars": 24,
+          "shinies": 0
+        },
+        "masterflux": {
+          "name": "MasterFlux",
+          "rank": "Initiate",
+          "fame": 3891,
+          "active_fame": 3891,
+          "seasonal_fame": 0,
+          "stars": 22,
+          "shinies": 0
+        },
+        "jimborocks": {
+          "name": "Jimborocks",
+          "rank": "Initiate",
+          "fame": 3871,
+          "active_fame": 3871,
+          "seasonal_fame": 0,
+          "stars": 14,
+          "shinies": 0
+        },
+        "saitones": {
+          "name": "Saitones",
+          "rank": "Initiate",
+          "fame": 3389,
+          "active_fame": 3389,
+          "seasonal_fame": 0,
+          "stars": 38,
+          "shinies": 0
+        },
+        "imortals": {
+          "name": "Imortals",
+          "rank": "Initiate",
+          "fame": 2337,
+          "active_fame": 2337,
+          "seasonal_fame": 2337,
+          "stars": 5,
+          "shinies": 0
+        },
+        "matiegzekucyjny": {
+          "name": "MatiEgzekucyjny",
+          "rank": "Initiate",
+          "fame": 1867,
+          "active_fame": 1867,
+          "seasonal_fame": 102,
+          "stars": 20,
+          "shinies": 0
+        },
+        "iiseleniium": {
+          "name": "IiSeleniium",
+          "rank": "Initiate",
+          "fame": 1855,
+          "active_fame": 1855,
+          "seasonal_fame": 1855,
+          "stars": 11,
+          "shinies": 0
+        },
+        "warkiny": {
+          "name": "Warkiny",
+          "rank": "Initiate",
+          "fame": 1518,
+          "active_fame": 1518,
+          "seasonal_fame": 1518,
+          "stars": 11,
+          "shinies": 0
+        },
+        "canadapet": {
+          "name": "Canadapet",
+          "rank": "Initiate",
+          "fame": 1070,
+          "active_fame": 1070,
+          "seasonal_fame": 1070,
+          "stars": 6,
+          "shinies": 0
+        },
+        "juncalib": {
+          "name": "JunCaliB",
+          "rank": "Initiate",
+          "fame": 766,
+          "active_fame": 766,
+          "seasonal_fame": 84,
+          "stars": 16,
+          "shinies": 0
+        },
+        "redwrm": {
+          "name": "Redwrm",
+          "rank": "Initiate",
+          "fame": 590,
+          "active_fame": 590,
+          "seasonal_fame": 577,
+          "stars": 13,
+          "shinies": 0
+        }
+      }
+    }
+  ],
+  "season_start": null
+}

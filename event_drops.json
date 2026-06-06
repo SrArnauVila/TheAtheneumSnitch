@@ -1,0 +1,1447 @@
+{
+  "Avatar of the Forgotten King": {
+    "whites": [
+      {
+        "name": "Corruption Tether",
+        "src": "/s/a/img/wiki/i/WzJqBbb.png"
+      },
+      {
+        "name": "Tablet of the King",
+        "src": "/s/a/img/wiki/i/aK1DMOZ.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "The Shatters",
+        "src": "/s/a/img/wiki/i/KtOxGpW.png"
+      }
+    ]
+  },
+  "Cube God": {
+    "whites": [
+      {
+        "name": "Tarot Card Pack",
+        "src": "/s/a/img/wiki/i/TP9EzCf.png"
+      },
+      {
+        "name": "Dirk of Cronus",
+        "src": "/s/a/img/wiki/i/6J66iJi.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "The Third Dimension",
+        "src": "/s/a/img/wiki/i/Z5CG76m.png"
+      }
+    ]
+  },
+  "Cyclops God": {
+    "whites": [
+      {
+        "name": "Kiritsukeru",
+        "src": "/s/a/img/wiki/i/jRwpGTP.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Spider Den",
+        "src": "/s/a/img/wiki/i/up93OlG.png"
+      }
+    ]
+  },
+  "Ghost Ship": {
+    "whites": [
+      {
+        "name": "Trap of the Vile Spirit",
+        "src": "/s/a/img/wiki/i/Nk2hdYA.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Davy Jones' Locker",
+        "src": "/s/a/img/wiki/i/Hqmoe5U.gif"
+      }
+    ]
+  },
+  "Grand Sphinx": {
+    "whites": [
+      {
+        "name": "Tarot Card Pack",
+        "src": "/s/a/img/wiki/i/TP9EzCf.png"
+      },
+      {
+        "name": "Mini Sphinx Pet Skin",
+        "src": "/s/a/img/wiki/i/FXvbi8g.png"
+      },
+      {
+        "name": "Helm of the Juggernaut",
+        "src": "/s/a/img/wiki/i/mTjGgI5.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Tomb of the Ancients",
+        "src": "/s/a/img/wiki/i/E6a3nHx.png"
+      }
+    ]
+  },
+  "Hermit God": {
+    "whites": [
+      {
+        "name": "Hermit Wizard Skin",
+        "src": "/s/a/img/wiki/i/qso3WEG.png"
+      },
+      {
+        "name": "Barnacle Basher",
+        "src": "/s/a/img/wiki/i/iwtpaxy.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Ocean Trench",
+        "src": "/s/a/img/wiki/i/9GR3Ypw.png"
+      }
+    ]
+  },
+  "Killer Bee Nest": {
+    "whites": [],
+    "dungeon": [{
+        "name": "The Nest",
+        "src": "/s/a/img/wiki/i/KwuqAYz.png"
+      }
+    ]
+  },
+  "Lich": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Lich King": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Lord of the Lost Lands": {
+    "whites": [
+      {
+        "name": "Mini Lord Pet Skin",
+        "src": "/s/a/img/wiki/i/dM76uve.png"
+      },
+      {
+        "name": "Shield of Ogmur",
+        "src": "/s/a/img/wiki/i/zFNntHD.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Ice Citadel",
+        "src": "/s/a/img/wiki/i/WDJobOf.png"
+      }
+    ]
+  },
+  "Pentaract": {
+    "whites": [
+      {
+        "name": "Seal of Blasphemous Prayer",
+        "src": "/s/a/img/wiki/i/YxQsMy1.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Red Demon": {
+    "whites": [
+      {
+        "name": "Ring of the Inferno",
+        "src": "/s/a/img/wiki/i/cGXdu3q.png"
+      },
+      {
+        "name": "Doom's Emblem",
+        "src": "/s/a/img/wiki/i/pf0121W.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Abyss of Demons",
+        "src": "/s/a/img/wiki/i/wId2zPS.gif"
+      }
+    ]
+  },
+  "Skull Shrine": {
+    "whites": [
+      {
+        "name": "Orb of Conflict",
+        "src": "/s/a/img/wiki/i/Hm2yTCv.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Adult Baneserpent": {
+    "whites": [
+      {
+        "name": "Crystallised Fang's Venom",
+        "src": "/s/a/img/wiki/i/ACein9c.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Fungal Cavern",
+        "src": "/s/a/img/wiki/i/CLzxdEM.png"
+      }
+    ]
+  },
+  "Aerial Warship": {
+    "whites": [
+      {
+        "name": "Kogbold Multitool",
+        "src": "/s/a/img/wiki/i/Ot9Xoe5.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Kogbold Steamworks",
+        "src": "/s/a/img/wiki/i/dohicSR.gif"
+      }
+    ]
+  },
+  "Alluring Blossom": {
+    "whites": [
+      {
+        "name": "Pollen Incendiary",
+        "src": "/s/a/img/wiki/i/Aa4eL97.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Moonlight Village",
+        "src": "/s/a/img/wiki/i/CHqjDCE.png"
+      }
+    ]
+  },
+  "Alpha Werewolf": {
+    "whites": [
+      {
+        "name": "Mace of the Pumpkin Effigy",
+        "src": "/s/a/img/wiki/i/HFbMOLi.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Ancient Kaiju": {
+    "whites": [
+      {
+        "name": "Crystallised Fang's Venom",
+        "src": "/s/a/img/wiki/i/M58iIk2.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Fungal Cavern",
+        "src": "/s/a/img/wiki/i/CLzxdEM.png"
+      }
+    ]
+  },
+  "Animal Merchant": {
+    "whites": [
+      {
+        "name": "Pirate's Artillery",
+        "src": "/s/a/img/wiki/i/T3YizIo.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Artificial Sprite God": {
+    "whites": [
+      {
+        "name": "Tarot Card Pack",
+        "src": "/s/a/img/wiki/i/TP9EzCf.png"
+      },
+      {
+        "name": "Celestial Recurve",
+        "src": "/s/a/img/wiki/i/Ws9TOQI.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Mad Lab",
+        "src": "/s/a/img/wiki/i/x6dyxMp.gif"
+      }
+    ]
+  },
+  "Assembled Giant": {
+    "whites": [
+      {
+        "name": "Runes of Knowledge",
+        "src": "/s/a/img/wiki/i/1Ir95ME.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "The Third Dimension",
+        "src": "/s/a/img/wiki/i/Z5CG76m.png"
+      }
+    ]
+  },
+  "Astral Rift": {
+    "whites": [
+      {
+        "name": "Tarot Card Pack",
+        "src": "/s/a/img/wiki/i/TP9EzCf.png"
+      },
+      {
+        "name": "Dirk of Cronus",
+        "src": "/s/a/img/wiki/i/6J66iJi.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "The Third Dimension",
+        "src": "/s/a/img/wiki/i/Z5CG76m.png"
+      }
+    ]
+  },
+  "Bloodroot Heart": {
+    "whites": [
+      {
+        "name": "Cloak of Bloody Surprises",
+        "src": "/s/a/img/wiki/i/pgSngpE.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Lost Halls",
+        "src": "/s/a/img/wiki/i/uhDj0M5.png"
+      }
+    ]
+  },
+  "Blooming Flowers": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Commander Calbrik": {
+    "whites": [
+      {
+        "name": "Space Smuggler Rogue",
+        "src": "/s/a/img/wiki/i/32R6C9e.png"
+      },
+      {
+        "name": "Locked Reactor",
+        "src": "/s/a/img/wiki/i/w6uXhF2.png"
+      },
+      {
+        "name": "Alien Core: Corrosion",
+        "src": "/s/a/img/wiki/i/KIM2GLf.png"
+      },
+      {
+        "name": "Alien Core: Warp",
+        "src": "/s/a/img/wiki/i/uI9DfmG.png"
+      },
+      {
+        "name": "Alien Core: Power",
+        "src": "/s/a/img/wiki/i/Yvir40L.png"
+      },
+      {
+        "name": "Sun's Judgement",
+        "src": "/s/a/img/wiki/i/zvxEPFL.png"
+      },
+      {
+        "name": "Fire Blade",
+        "src": "/s/a/img/wiki/i/2IqQx0r.png"
+      },
+      {
+        "name": "Comet of Calamity",
+        "src": "/s/a/img/wiki/i/Zxbj1os.png"
+      },
+      {
+        "name": "Dueling Daggers",
+        "src": "/s/a/img/wiki/i/j02GzKq.png"
+      },
+      {
+        "name": "Snowblind Wand",
+        "src": "/s/a/img/wiki/i/uMVLXLF.png"
+      },
+      {
+        "name": "Gaseous Glaive",
+        "src": "/s/a/img/wiki/i/CcSICpW.png"
+      },
+      {
+        "name": "Blazon Bow",
+        "src": "/s/a/img/wiki/i/H44mRQq.png"
+      },
+      {
+        "name": "Foramite Staff",
+        "src": "/s/a/img/wiki/i/2OlTVYj.png"
+      },
+      {
+        "name": "Acidic Slasher",
+        "src": "/s/a/img/wiki/i/zy2z5qT.png"
+      },
+      {
+        "name": "Magic Protective Matrix",
+        "src": "/s/a/img/wiki/i/HvQjLza.png"
+      },
+      {
+        "name": "Heavy Protective Matrix",
+        "src": "/s/a/img/wiki/i/BpVtJAi.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Corrupted Bramblethorn": {
+    "whites": [
+      {
+        "name": "Blue Beehemoth Quiver",
+        "src": "/s/a/img/wiki/i/3yxxbS8.png"
+      },
+      {
+        "name": "Red Beehemoth Quiver",
+        "src": "/s/a/img/wiki/i/SFcMSuE.png"
+      },
+      {
+        "name": "Yellow Beehemoth Quiver",
+        "src": "/s/a/img/wiki/i/8KE90ne.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "The Nest",
+        "src": "/s/a/img/wiki/i/KwuqAYz.png"
+      }
+    ]
+  },
+  "Crab Sovereign": {
+    "whites": [
+      {
+        "name": "Helm of the Juggernaut",
+        "src": "/s/a/img/wiki/i/mTjGgI5.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Deadwater Docks",
+        "src": "/s/a/img/wiki/i/baXW11C.gif"
+      }
+    ]
+  },
+  "Critter Brood": {
+    "whites": [
+      {
+        "name": "Evolutionary Records",
+        "src": "/s/a/img/wiki/i/zuboSFq.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "The Crawling Depths",
+        "src": "/s/a/img/wiki/i/V1rfmTa.gif"
+      }
+    ]
+  },
+  "Daughter of Limon": {
+    "whites": [
+      {
+        "name": "Tarot Card Pack",
+        "src": "/s/a/img/wiki/i/TP9EzCf.png"
+      },
+      {
+        "name": "Ray Katana",
+        "src": "/s/a/img/wiki/i/dABfBfS.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Puppet Master's Encore",
+        "src": "/s/a/img/wiki/i/UhdCm8R.png"
+      }
+    ]
+  },
+  "Death Knight": {
+    "whites": [
+      {
+        "name": "Soulless Robe",
+        "src": "/s/a/img/wiki/i/luHAGXb.png"
+      },
+      {
+        "name": "Skull of Restless Souls",
+        "src": "/s/a/img/wiki/i/ctgIxCX.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Heroic Undead Lair",
+        "src": "/s/a/img/wiki/i/z4UFKSh.png"
+      }
+    ]
+  },
+  "Demonic Effigy": {
+    "whites": [
+      {
+        "name": "Doom's Emblem",
+        "src": "/s/a/img/wiki/i/pf0121W.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Dwarf Miner": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Elder Ent Ancient": {
+    "whites": [
+      {
+        "name": "Pollen Incendiary",
+        "src": "/s/a/img/wiki/i/Aa4eL97.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Sulfurous Wetlands",
+        "src": "/s/a/img/wiki/i/88fMxeA.png"
+      }
+    ]
+  },
+  "Elder Sprite Tree": {
+    "whites": [
+      {
+        "name": "Tarot Card Pack",
+        "src": "/s/a/img/wiki/i/TP9EzCf.png"
+      },
+      {
+        "name": "Celestial Recurve",
+        "src": "/s/a/img/wiki/i/Ws9TOQI.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Magic Woods",
+        "src": "/s/a/img/wiki/i/nmLtcBD.png"
+      }
+    ]
+  },
+  "Eternal Tormentor": {
+    "whites": [
+      {
+        "name": "Doom's Emblem",
+        "src": "/s/a/img/wiki/i/pf0121W.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Toxic Sewers",
+        "src": "/s/a/img/wiki/i/4Iv5apz.png"
+      }
+    ]
+  },
+  "Ethereal Shrine": {
+    "whites": [
+      {
+        "name": "Token of Warmth",
+        "src": "/s/a/img/wiki/i/yPyBQPO.png"
+      },
+      {
+        "name": "Token of Happiness",
+        "src": "/s/a/img/wiki/i/gBmxoBU.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Moonlight Village",
+        "src": "/s/a/img/wiki/i/CHqjDCE.png"
+      }
+    ]
+  },
+  "Eye of the Storm": {
+    "whites": [
+      {
+        "name": "Quiver of Thunder",
+        "src": "/s/a/img/wiki/i/Hcvifaa.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Ocean Trench",
+        "src": "/s/a/img/wiki/i/9GR3Ypw.png"
+      }
+    ]
+  },
+  "Flesh Golem": {
+    "whites": [
+      {
+        "name": "Memento Mori",
+        "src": "/s/a/img/wiki/i/sI7HjoW.png"
+      },
+      {
+        "name": "Mace of the Pumpkin Effigy",
+        "src": "/s/a/img/wiki/i/HFbMOLi.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Undead Lair",
+        "src": "/s/a/img/wiki/i/pR8Dgth.gif"
+      }
+    ]
+  },
+  "Flying Behemoth": {
+    "whites": [
+      {
+        "name": "Tablet of the King's Avatar",
+        "src": "/s/a/img/wiki/i/aK1DMOZ.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Gates of the Nether": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Goblin Patriarch": {
+    "whites": [
+      {
+        "name": "Hama Yumi",
+        "src": "/s/a/img/wiki/i/GKt18ae.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Infernal Ironsmith": {
+    "whites": [
+      {
+        "name": "Doom's Emblem",
+        "src": "/s/a/img/wiki/i/pf0121W.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Infernal Abyss of Demons",
+        "src": "/s/a/img/wiki/i/waeR46M.png"
+      }
+    ]
+  },
+  "Insurgent Rebel Commander": {
+    "whites": [
+      {
+        "name": "Reinforced Root Armor",
+        "src": "/s/a/img/wiki/i/N4SygV2.png"
+      },
+      {
+        "name": "Cavalry Lance",
+        "src": "/s/a/img/wiki/i/me0BdyD.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Snake Pit",
+        "src": "/s/a/img/wiki/i/Mhtm0aR.png"
+      }
+    ]
+  },
+  "Interregnum": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Keyper": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Kogbold Expedition Engine": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Legion Excavator": {
+    "whites": [],
+    "dungeon": [
+      {
+        "name": "Cursed Library",
+        "src": "/s/a/img/wiki/i/9nQ7nSz.png"
+      }
+    ]
+  },
+  "Legion General": {
+    "whites": [
+      {
+        "name": "Hama Yumi",
+        "src": "/s/a/img/wiki/i/GKt18ae.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Tomb of the Ancients",
+        "src": "/s/a/img/wiki/i/E6a3nHx.png"
+      }
+    ]
+  },
+  "Legion Guard Captain": {
+    "whites": [],
+    "dungeon": [
+      {
+        "name": "Abyss of Demons",
+        "src": "/s/a/img/wiki/i/wId2zPS.png"
+      }
+    ]
+  },
+  "Legion Head Researcher": {
+    "whites": [],
+    "dungeon": [
+      {
+        "name": "Woodland Labyrinth",
+        "src": "/s/a/img/wiki/i/jyKYlZg.png"
+      }
+    ]
+  },
+  "Legion Lead Strategist": {
+    "whites": [],
+    "dungeon": [
+      {
+        "name": "The Crawling Depths",
+        "src": "/s/a/img/wiki/i/V1rfmTa.png"
+      }
+    ]
+  },
+  "Legion Scout Master": {
+    "whites": [],
+    "dungeon": [
+      {
+        "name": "Magic Woods",
+        "src": "/s/a/img/wiki/i/nmLtcBD.png"
+      }
+    ]
+  },
+  "Legion Surveyor": {
+    "whites": [],
+    "dungeon": [
+      {
+        "name": "The Hive",
+        "src": "/s/a/img/wiki/i/6WiS9zQ.png"
+      }
+    ]
+  },
+  "Legion Watchmaster": {
+    "whites": [],
+    "dungeon": [
+      {
+        "name": "Deadwater Docks",
+        "src": "/s/a/img/wiki/i/baXW11C.png"
+      }
+    ]
+  },
+  "Lost Sentry": {
+    "whites": [
+      {
+        "name": "Cloak of Bloody Surprises",
+        "src": "/s/a/img/wiki/i/pgSngpE.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Lost Halls",
+        "src": "/s/a/img/wiki/i/uhDj0M5.png"
+      }
+    ]
+  },
+  "Mad God Mayhem": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Maiden of the Sea": {
+    "whites": [
+      {
+        "name": "Torrential Staff",
+        "src": "/s/a/img/wiki/i/GwByOIZ.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Maze Minotaur": {
+    "whites": [
+      {
+        "name": "Tablet of the King's Avatar",
+        "src": "/s/a/img/wiki/i/aK1DMOZ.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Puppet Master's Encore",
+        "src": "/s/a/img/wiki/i/UhdCm8R.png"
+      }
+    ]
+  },
+  "Mercenary": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Monstrous Grizzly": {
+    "whites": [
+      {
+        "name": "Runes of Knowledge",
+        "src": "/s/a/img/wiki/i/1Ir95ME.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Ice Citadel",
+        "src": "/s/a/img/wiki/i/WDJobOf.png"
+      }
+    ]
+  },
+  "Mysterious Crystal": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Oasis Giant": {
+    "whites": [
+      {
+        "name": "Watarimono",
+        "src": "/s/a/img/wiki/i/3l7Wxz8.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Organ Harvester": {
+    "whites": [
+      {
+        "name": "Bloodbath Blade",
+        "src": "/s/a/img/wiki/i/ymH0sAF.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Puppet Master's Encore",
+        "src": "/s/a/img/wiki/i/UhdCm8R.png"
+      }
+    ]
+  },
+  "Oryx Horde": {
+    "whites": [
+      {
+        "name": "Moss Token",
+        "src": "/s/a/img/wiki/i/AITdZJp.png"
+      },
+      {
+        "name": "Stone Token",
+        "src": "/s/a/img/wiki/i/AQDSOsF.png"
+      },
+      {
+        "name": "Mad God Token",
+        "src": "/s/a/img/wiki/i/UkLjzJ7.png"
+      },
+      {
+        "name": "Moss Bag",
+        "src": "/s/a/img/wiki/i/q2Phyfm.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Phoenix Lord": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Plague Doctor": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Ravenous Rot": {
+    "whites": [
+      {
+        "name": "Cloak of Bloody Surprises",
+        "src": "/s/a/img/wiki/i/pgSngpE.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Lost Halls",
+        "src": "/s/a/img/wiki/i/uhDj0M5.png"
+      }
+    ]
+  },
+  "Rock Dragon": {
+    "whites": [
+      {
+        "name": "Ray Katana",
+        "src": "/s/a/img/wiki/i/dABfBfS.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Lair of Draconis",
+        "src": "/s/a/img/wiki/i/QjX8g5O.png"
+      }
+    ]
+  },
+  "Sentient Monolith": {
+    "whites": [
+      {
+        "name": "Crystallised Fang's Venom",
+        "src": "/s/a/img/wiki/i/ACein9c.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Fungal Cavern",
+        "src": "/s/a/img/wiki/i/CLzxdEM.png"
+      }
+    ]
+  },
+  "Shady Sect Leader": {
+    "whites": [
+      {
+        "name": "The Phylactery",
+        "src": "/s/a/img/wiki/i/hFV5MVt.png"
+      },
+      {
+        "name": "Skull of Restless Souls",
+        "src": "/s/a/img/wiki/i/ctgIxCX.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Cursed Library",
+        "src": "/s/a/img/wiki/i/9nQ7nSz.png"
+      }
+    ]
+  },
+  "Sigma Werewolf": {
+    "whites": [
+      {
+        "name": "Helm of the Juggernaut",
+        "src": "/s/a/img/wiki/i/mTjGgI5.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "The Tavern",
+        "src": "/s/a/img/wiki/i/DwtjA17.png"
+      }
+    ]
+  },
+  "Skeletal Centipede": {
+    "whites": [
+      {
+        "name": "Shield of Ogmur",
+        "src": "/s/a/img/wiki/i/zFNntHD.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Spectral Penitentiary",
+        "src": "/s/a/img/wiki/i/o9yNqBT.png"
+      }
+    ]
+  },
+  "Skull Knight": {
+    "whites": [
+      {
+        "name": "Kageboshi",
+        "src": "/s/a/img/wiki/i/8PCD0np.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Mountain Temple",
+        "src": "/s/a/img/wiki/i/fGgckZI.png"
+      }
+    ]
+  },
+  "Sword in the Stone": {
+    "whites": [
+      {
+        "name": "Kiritsukeru",
+        "src": "/s/a/img/wiki/i/jRwpGTP.png"
+      },
+      {
+        "name": "Cavalry Lance",
+        "src": "/s/a/img/wiki/i/me0BdyD.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Ancient Ruins",
+        "src": "/s/a/img/wiki/i/4gtP9OQ.png"
+      }
+    ]
+  },
+  "Totalia": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Void Prison": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Washed-Up Captain": {
+    "whites": [
+      {
+        "name": "Pirate's Artillery",
+        "src": "/s/a/img/wiki/i/T3YizIo.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Cave of a Thousand Treasures",
+        "src": "/s/a/img/wiki/i/6lgodhZ.png"
+      }
+    ]
+  },
+  "Water Bubbles": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Well of Souls": {
+    "whites": [
+      {
+        "name": "Trap of the Vile Spirit",
+        "src": "/s/a/img/wiki/i/Nk2hdYA.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Davy Jones' Locker",
+        "src": "/s/a/img/wiki/i/Hqmoe5U.gif"
+      }
+    ]
+  },
+  "World's Oyster": {
+    "whites": [
+      {
+        "name": "Barnacle Basher",
+        "src": "/s/a/img/wiki/i/iwtpaxy.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Cnidarian Reef",
+        "src": "/s/a/img/wiki/i/pXFqErd.png"
+      }
+    ]
+  },
+  "Celestial Sprite": {
+    "whites": [
+      {
+        "name": "Tarot Card Pack",
+        "src": "/s/a/img/wiki/i/TP9EzCf.png"
+      },
+      {
+        "name": "Celestial Recurve",
+        "src": "/s/a/img/wiki/i/Ws9TOQI.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Sprite World",
+        "src": "/s/a/img/wiki/i/LO1AmVL.png"
+      }
+    ]
+  },
+  "Cosmic Sprite": {
+    "whites": [
+      {
+        "name": "Tarot Card Pack",
+        "src": "/s/a/img/wiki/i/TP9EzCf.png"
+      },
+      {
+        "name": "Celestial Recurve",
+        "src": "/s/a/img/wiki/i/Ws9TOQI.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Sprite World",
+        "src": "/s/a/img/wiki/i/LO1AmVL.png"
+      }
+    ]
+  },
+  "Daeva Prison": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Beach Bum": {
+    "whites": [
+      {
+        "name": "Davy's Key",
+        "src": "/s/a/img/wiki/i/rIS43Pi.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Beachzone",
+        "src": "/s/a/img/wiki/i/Ns31EKU.png"
+      }
+    ]
+  },
+  "Beer God": {
+    "whites": [
+      {
+        "name": "Deadly Keg",
+        "src": "/s/a/img/wiki/i/mQpLQWw.png"
+      },
+      {
+        "name": "Mighty Stein",
+        "src": "/s/a/img/wiki/i/LuZ3Fls.png"
+      },
+      {
+        "name": "Greaterhosen",
+        "src": "/s/a/img/wiki/i/Y341Xyh.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "The Tavern",
+        "src": "/s/a/img/wiki/i/DwtjA17.png"
+      }
+    ]
+  },
+  "Candy Gnome": {
+    "whites": [],
+    "dungeon": [
+      {
+        "name": "Candyland Hunting Grounds",
+        "src": "/s/a/img/wiki/i/BKoSv6j.png"
+      }
+    ]
+  },
+  "Carnival Effigy": {
+    "whites": [
+      {
+        "name": "Lucky Clover",
+        "src": "/s/a/img/wiki/i/ohALDtm.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Gobble God": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Jack Frost": {
+    "whites": [
+      {
+        "name": "Evergreen Dagger",
+        "src": "/s/a/img/wiki/i/iZ8gUF2.png"
+      },
+      {
+        "name": "Garland Bow",
+        "src": "/s/a/img/wiki/i/0GrIr2c.png"
+      },
+      {
+        "name": "Sleigh Bell Staff",
+        "src": "/s/a/img/wiki/i/5sZxjSW.png"
+      },
+      {
+        "name": "Cheerful Chipper",
+        "src": "/s/a/img/wiki/i/2Mf0o2d.png"
+      },
+      {
+        "name": "Candy Katana",
+        "src": "/s/a/img/wiki/i/D3dgOCZ.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Leprechaun": {
+    "whites": [],
+    "dungeon": [
+      {
+        "name": "Rainbow Road",
+        "src": "/s/a/img/wiki/i/MDVaDzN.png"
+      }
+    ]
+  },
+  "Oryxmas Elf Event": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Permafrost Lord": {
+    "whites": [
+      {
+        "name": "Ice Shard",
+        "src": "/s/a/img/wiki/i/LBTGY9w.png"
+      },
+      {
+        "name": "Primal Ice",
+        "src": "/s/a/img/wiki/i/NicX8Fa.png"
+      },
+      {
+        "name": "Bell",
+        "src": "/s/a/img/wiki/i/g2wovmA.png"
+      },
+      {
+        "name": "Staff of Iceblast",
+        "src": "/s/a/img/wiki/i/GqcV9up.png"
+      },
+      {
+        "name": "Eternal Snowflake Wand",
+        "src": "/s/a/img/wiki/i/lB8q9r3.png"
+      },
+      {
+        "name": "Tome of Frigid Protection",
+        "src": "/s/a/img/wiki/i/O4ImD4j.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Ice Tomb",
+        "src": "/s/a/img/wiki/i/zhWVACc.png"
+      }
+    ]
+  },
+  "Possessed Pumpkin": {
+    "whites": [
+      {
+        "name": "Orb of Conflict",
+        "src": "/s/a/img/wiki/i/Hm2yTCv.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Woodland Labyrinth",
+        "src": "/s/a/img/wiki/i/jyKYlZg.gif"
+      }
+    ]
+  },
+  "Present": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Sinister Scarecrow": {
+    "whites": [
+      {
+        "name": "Interregnum",
+        "src": "/s/a/img/wiki/i/KJY3DNR.png"
+      },
+      {
+        "name": "Mace of the Pumpkin Effigy",
+        "src": "/s/a/img/wiki/i/HFbMOLi.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Puppet Master's Theatre",
+        "src": "/s/a/img/wiki/i/6diBou4.png"
+      }
+    ]
+  },
+  "Snowball Stash": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Snowy Frost God": {
+    "whites": [],
+    "dungeon": []
+  },
+  "St Patrick's Shamrock": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Thanksgiving Banquet": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Turkey God": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Valentine's Heart": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Wood Totems": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Zombie Horde": {
+    "whites": [
+      {
+        "name": "Infected Assassin",
+        "src": "/s/a/img/wiki/i/5iF1onN.png"
+      },
+      {
+        "name": "Magic Pumpkin",
+        "src": "/s/a/img/wiki/i/Kg5T0Od.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Alien UFO": {
+    "whites": [
+      {
+        "name": "Space Smuggler Rogue",
+        "src": "/s/a/img/wiki/i/32R6C9e.png"
+      },
+      {
+        "name": "Locked Reactor",
+        "src": "/s/a/img/wiki/i/w6uXhF2.png"
+      },
+      {
+        "name": "Fitted Protective Matrix",
+        "src": "/s/a/img/wiki/i/oMNFUKj.png"
+      },
+      {
+        "name": "Magic Protective Matrix",
+        "src": "/s/a/img/wiki/i/HvQjLza.png"
+      },
+      {
+        "name": "Heavy Protective Matrix",
+        "src": "/s/a/img/wiki/i/BpVtJAi.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Bilgewater's Galleon": {
+    "whites": [
+      {
+        "name": "Shield of Ogmur",
+        "src": "/s/a/img/wiki/i/zFNntHD.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Deadwater Docks",
+        "src": "/s/a/img/wiki/i/CjceJZ1.png"
+      }
+    ]
+  },
+  "Blood Bomb": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Decaract": {
+    "whites": [
+      {
+        "name": "Silex's Hammer",
+        "src": "/s/a/img/wiki/i/82YnIw9.png"
+      },
+      {
+        "name": "Krathana",
+        "src": "/s/a/img/wiki/i/yNxBRSN.png"
+      },
+      {
+        "name": "Random Spell Extraction Device",
+        "src": "/s/a/img/wiki/i/fX71HDH.png"
+      },
+      {
+        "name": "Shield of Flowing Clarity",
+        "src": "/s/a/img/wiki/i/VEfU78C.png"
+      },
+      {
+        "name": "Cloak of the Mad God",
+        "src": "/s/a/img/wiki/i/4oTnMCc.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Dread Viper": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Eye of the Underworld": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Ghost King": {
+    "whites": [
+      {
+        "name": "Memento Mori",
+        "src": "/s/a/img/wiki/i/sI7HjoW.png"
+      },
+      {
+        "name": "Interregnum",
+        "src": "/s/a/img/wiki/i/KJY3DNR.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Hemomancer": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Hornet's Nest": {
+    "whites": [
+      {
+        "name": "Pollen Incendiary",
+        "src": "/s/a/img/wiki/i/Aa4eL97.png"
+      }
+    ],
+    "dungeon": [
+      {
+        "name": "Woodland Labyrinth",
+        "src": "/s/a/img/wiki/i/jyKYlZg.gif"
+      }
+    ]
+  },
+  "Jotunn": {
+    "whites": [
+      {
+        "name": "Frostfall Rod",
+        "src": "/s/a/img/wiki/i/G6pw2UH.png"
+      },
+      {
+        "name": "Frozen Whisper",
+        "src": "/s/a/img/wiki/i/g9qe1Xi.png"
+      },
+      {
+        "name": "Icebreaker Maul",
+        "src": "/s/a/img/wiki/i/HBDmVJ4.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Mammoth Rat": {
+    "whites": [
+      {
+        "name": "Cheese",
+        "src": "/s/a/img/wiki/i/7a4fSx2.png"
+      },
+      {
+        "name": "Pocket Rat",
+        "src": "/s/a/img/wiki/i/r1zcHeX.png"
+      },
+      {
+        "name": "Giant Pocket Rat",
+        "src": "/s/a/img/wiki/i/Q3RLMlo.png"
+      },
+      {
+        "name": "Cavalry Lance",
+        "src": "/s/a/img/wiki/i/me0BdyD.png"
+      },
+      {
+        "name": "Mouse Trap",
+        "src": "/s/a/img/wiki/i/zi0Gc8a.png"
+      },
+      {
+        "name": "Piper's Pan Flute",
+        "src": "/s/a/img/wiki/i/AeJWMu4.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "Mutant Overgrowth": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Piranha Shoal": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Sunken Treasure": {
+    "whites": [
+      {
+        "name": "Spirit Dagger",
+        "src": "/s/a/img/wiki/i/VKZyp0S.png"
+      },
+      {
+        "name": "Ghostly Prism",
+        "src": "/s/a/img/wiki/i/u21w5cE.png"
+      },
+      {
+        "name": "Spectral Cloth Armor",
+        "src": "/s/a/img/wiki/i/uJhfN6g.png"
+      }
+    ],
+    "dungeon": []
+  },
+  "White Snake": {
+    "whites": [],
+    "dungeon": []
+  },
+  "Yokai Realm Event": {
+    "whites": [],
+    "dungeon": []
+  }
+}

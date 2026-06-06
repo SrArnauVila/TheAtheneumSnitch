@@ -1,0 +1,1474 @@
+[
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What is the maximum number of players that can be in a realm?",
+    "a": ["85"],
+    "hint": "It's between 80 and 90"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What color is the rarest loot bag in RotMG?",
+    "a": ["white", "white bag"],
+    "hint": "It contains untiered items"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What does UT stand for in RotMG?",
+    "a": ["untiered"],
+    "hint": "It means the item has no tier number"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What is the name of the safe hub where heroes live between realm runs?",
+    "a": ["nexus"],
+    "hint": "It exists in a space between realms"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What is the maximum stat level a character can reach in RotMG?",
+    "a": ["8/8", "8"],
+    "hint": "There are 8 stats that can be maxed"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What is the name of the main boss of RotMG?",
+    "a": ["oryx", "oryx the mad god"],
+    "hint": "He calls himself the Mad God"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What does perma-death mean in RotMG?",
+    "a": ["permanent death", "character is lost forever", "you lose your character"],
+    "hint": "When you die, your character is..."
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What is the name of the mechanic that lets you power up characters beyond max stats?",
+    "a": ["exaltation", "exaltations"],
+    "hint": "You earn it by completing specific dungeons multiple times"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What class uses a Staff and a Spell?",
+    "a": ["wizard"],
+    "hint": "They wear robes and deal massive burst damage"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What class uses a Sword and a Shield?",
+    "a": ["knight"],
+    "hint": "They are the tankiest class"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What class uses a Bow and a Quiver?",
+    "a": ["archer"],
+    "hint": "They shoot multiple piercing arrows"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What class uses a Dagger and a Cloak?",
+    "a": ["rogue"],
+    "hint": "They can turn invisible"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Events",
+    "q": "What dungeon does the Avatar of the Forgotten King drop?",
+    "a": ["shatters", "the shatters"],
+    "hint": "It's a castle-themed endgame dungeon"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Events",
+    "q": "What dungeon does the Hermit God drop?",
+    "a": ["ocean trench"],
+    "hint": "It's an underwater dungeon"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Events",
+    "q": "What dungeon does the Killer Bee Nest event boss drop?",
+    "a": ["the nest", "nest"],
+    "hint": "It's full of bees"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Events",
+    "q": "What dungeon does the Ghost Ship drop?",
+    "a": ["davy jones locker", "davy jones' locker"],
+    "hint": "Named after a famous pirate legend"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Events",
+    "q": "What dungeon does the Cyclops God drop?",
+    "a": ["Spider Den"],
+    "hint": "It's full of arachnids"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Events",
+    "q": "What event boss drops the Lost Halls dungeon?",
+    "a": ["Bloodroot heart", "heart", "Ravenous Rot", "rot", "Sentinel", "Lost Sentinel"],
+    "hint": "One of them shares a name with the dungeon he drops"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What is the name of the final boss of The Shatters?",
+    "a": ["the forgotten king", "forgotten king"],
+    "hint": "He was once the king of the Shattered Kingdom"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What is the name of the boss of the Ocean Trench?",
+    "a": ["thessal", "thessal the mermaid goddess"],
+    "hint": "She is a mermaid goddess"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What dungeon is known for dropping the Omnipotence Ring?",
+    "a": ["the void", "void"],
+    "hint": "It's the darkest endgame dungeon"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What dungeon drops the Crown ring?",
+    "a": ["Shatters"],
+    "hint": "It's one of the hardest dungeons in the game"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What dungeon does Dr. Terrible appear in?",
+    "a": ["mad lab", "the mad lab"],
+    "hint": "It's a laboratory dungeon"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What is the name of the enchanting resource dropped by enemies?",
+    "a": ["dust"],
+    "hint": "It comes in green, red, and purple"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What are the three colors of enchanting dust?",
+    "a": ["green red purple", "green, red, purple", "purple red green"],
+    "hint": "One for each tier of enchant strength"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What is the name of the crafting system in RotMG?",
+    "a": ["forge"],
+    "hint": "The Blacksmith runs it"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What is the name of the item used to enhance enchantments with special boss-themed mods?",
+    "a": ["artifact"],
+    "hint": "The Amber Honeycomb is one example"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What is a Shiny item in RotMG?",
+    "a": ["special visual variant of an item", "reskin of a regular item", "cosmetic variant"],
+    "hint": "It looks different but has the same stats"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What class is known as the support healer and uses a Wand and a Tome?",
+    "a": ["priest"],
+    "hint": "They heal teammates with their ability"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What class uses a Sword and a Helm to buff attack speed?",
+    "a": ["warrior"],
+    "hint": "They give the Berserk buff"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What class uses a Sword and a Seal to give Damaging to allies?",
+    "a": ["paladin"],
+    "hint": "They are holy knights"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What class uses a Staff and an Orb to stop enemies with Stasis?",
+    "a": ["mystic"],
+    "hint": "They can freeze enemies in time"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What is the name of the stat that determines how fast your ability recharges?",
+    "a": ["wisdom", "wis"],
+    "hint": "Abbreviated as WIS"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Events",
+    "q": "What is the name of the UT weapon dropped by the Cube God?",
+    "a": ["dirk of cronus","dirk"],
+    "hint": "It's a dagger with one of the best sprites in game"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Events",
+    "q": "What UT item is dropped by Thessal alongside the Coral Bow?",
+    "a": ["coral silk armor", "coral ring"],
+    "hint": "There are two other coral items besides the bow"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Events",
+    "q": "What is the orange bag UT dropped by the Avatar of the Forgotten King?",
+    "a": ["corruption tether", "tether"],
+    "hint": "Its name has something to do with corruption"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Events",
+    "q": "What event has the highest realm score value of 3000?",
+    "a": ["avatar of the forgotten king", "avatar"],
+    "hint": "It drops The Shatters portal"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What is the name of the boss of the Lost Halls?",
+    "a": ["marble colossus"],
+    "hint": "It is made of marble and is enormous"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What event boss is the source of the Fungal Cavern and Crystal Cavern?",
+    "a": ["Kaiju","Worm Father", "Monolith", "Baneserpent"],
+    "hint": "They are Veteran Event Bosses"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What dungeon is required to get the key to access The Void?",
+    "a": ["the cultist hideout", "cultist hideout"],
+    "hint": "It involves cultists and leads deeper into darkness"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What is the name of the boss of the Tomb of the Ancients?",
+    "a": ["nut", "geb", "bes"],
+    "hint": "There are three bosses — name any one"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What dungeon is home to the Killer Bee Queen?",
+    "a": ["the nest", "nest"],
+    "hint": "It's the endgame version of The Hive"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What class of dungeon is The Shatters categorised as?",
+    "a": ["endgame", "endgame dungeon"],
+    "hint": "It's one of the hardest dungeons in the game"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "Which dungeon drops the Hivemaster Helm?",
+    "a": ["the nest", "nest"],
+    "hint": "Bees are involved"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What is the name of the boss at the end of Oryx's Castle?",
+    "a": ["oryx the mad god", "oryx 1", "oryx"],
+    "hint": "The dungeon is named after him"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Lore",
+    "q": "What is the name of the mother of all sprites in RotMG lore?",
+    "a": ["limon"],
+    "hint": "She sacrificed most of her power to stabilize the Sprite World"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Lore",
+    "q": "What is the name of Oryx's loyal assistant who handles bureaucracy?",
+    "a": ["craig"],
+    "hint": "He was originally a sprite who left the Sprite World"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Lore",
+    "q": "Who was the Pirate King that befriended Oryx over their love of alcohol?",
+    "a": ["dreadstump"],
+    "hint": "He later became Oryx's tax collector"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Lore",
+    "q": "What is the name of Oryx's gladiator friend from the Shattered Kingdom?",
+    "a": ["beisa"],
+    "hint": "She became the chief of Oryx's military forces"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Lore",
+    "q": "What is the original name of the great library destroyed by Oryx and Lord Ruthven?",
+    "a": ["atheneum", "the atheneum"],
+    "hint": "It became the Cursed Library after the attack"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Lore",
+    "q": "What did Oryx do to the Atheneum that turned it into the Cursed Library?",
+    "a": ["activated the corruption phantom", "used the corruption phantom"],
+    "hint": "Lord Ruthven prepared a powerful curse for it"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Lore",
+    "q": "Who is the director of the Atheneum appointed by the sages?",
+    "a": ["avalon", "avalon the archivist"],
+    "hint": "His title is the Archivist"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Lore",
+    "q": "What is the name of the mermaid goddess who rules the underwater realm?",
+    "a": ["thessal", "thessal the mermaid goddess"],
+    "hint": "She was tricked by Oryx into helping control the seas"
+  },
+  {
+    "difficulty": "hard",
+    "category": "General",
+    "q": "What is the name of the currency used for forging items in RotMG?",
+    "a": ["forgefire"],
+    "hint": "It's a fire-based resource used at the forge"
+  },
+  {
+    "difficulty": "hard",
+    "category": "General",
+    "q": "What is the name of the item type used to boost enchantment weightings?",
+    "a": ["artifact"],
+    "hint": "The Amber Honeycomb and Tarot Cards are examples"
+  },
+  {
+    "difficulty": "hard",
+    "category": "General",
+    "q": "What stat does completing The Nest exalt?",
+    "a": ["dexterity", "dex"],
+    "hint": "It increases your rate of fire"
+  },
+  {
+    "difficulty": "hard",
+    "category": "General",
+    "q": "What is the name of the system that lets you track daily game objectives each season?",
+    "a": ["missions", "season missions"],
+    "hint": "They reward seasonal currency and items"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Events",
+    "q": "What is the realm score value of most common realm events like the Dwarf Miner?",
+    "a": ["50"],
+    "hint": "It's a round number between 10 and 100"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Events",
+    "q": "What realm score percentage does a realm need to reach for O3 to spawn?",
+    "a": ["100", "100%"],
+    "hint": "It requires the realm to be completely cleared"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Events",
+    "q": "What is the name of the boss that drops The Void dungeon?",
+    "a": ["Marble Colossus"],
+    "hint": "It's a final boss of an end game dungeon"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What is the name of the treasure room boss in The Nest?",
+    "a": ["the beekeeper", "beekeeper"],
+    "hint": "He keeps bees — literally"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "How many rooms are always between the start and boss room in The Nest?",
+    "a": ["5"],
+    "hint": "It's a single digit number"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What type of hazard in The Nest slows players the longer they stand in it?",
+    "a": ["killer honey", "honey"],
+    "hint": "It also deals armor-piercing damage"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What is the name of the boss of the Cursed Library?",
+    "a": ["avalon", "avalon the archivist"],
+    "hint": "He was once the director of the Athenum"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What dungeon is the source of the Crystal Cavern?",
+    "a": ["Fungal Cavern"],
+    "hint": "It's hidden inside one of the hardest dungeons"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What dungeon did Oryx build specifically to scheme with his dark allies?",
+    "a": ["sanctuary", "oryx's sanctuary"],
+    "hint": "It's where O3 takes place"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What dungeon was accidentally created when magic built up under the Realm?",
+    "a": ["sewers", "the sewers", "toxic sewers"],
+    "hint": "A drainage system that became infested with magic"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What is the name of the entity born in the Void dimension whose only purpose is destruction?",
+    "a": ["the void entity", "void entity"],
+    "hint": "It later takes control of the Marble Colossus"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What was the name of the failed project meant to destroy Oryx using pure souls?",
+    "a": ["white titan project", "the white titan project"],
+    "hint": "It ended up creating the Marble Colossus"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "Who was the necromancer that led the White Titan project?",
+    "a": ["malus", "malus the necromancer"],
+    "hint": "He was the one who sealed the Marble Colossus inside the Lost Halls"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What is the name of the first boss Oryx defeated that later pledged loyalty to him?",
+    "a": ["shaitan"],
+    "hint": "He is a fire djinn and king of his kind"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What did Oryx use to create the Hermit God?",
+    "a": ["combined magic with thessal", "thessal's magic"],
+    "hint": "He made a deal with a mermaid goddess to fight Davy Jones"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "Who became Oryx's chancellor after convincing him of his political value?",
+    "a": ["dammah"],
+    "hint": "He was previously a powerful politician"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What infamous creation by Lord Ruthven killed countless heroes in the Manor of the Immortals?",
+    "a": ["lag"],
+    "hint": "It's a gaming term as well as a lore curse"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What did Oryx do to Arachna for challenging him to a weaving contest?",
+    "a": ["transformed her into a spider", "turned her into a spider monster"],
+    "hint": "She was a weaving maiden who beat him"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What is the name of the shaman who unknowingly opened himself to the Void Entity's influence?",
+    "a": ["esben"],
+    "hint": "He got lost in the Ice Cave during the Great Ice Age"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What item did a divine entity give to the Eastern land tribes as a gift?",
+    "a": ["kusanagi"],
+    "hint": "It became an icon for many civilizations"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What is the name of the mysterious figure who runs the forge and helped the heroes?",
+    "a": ["the blacksmith", "blacksmith"],
+    "hint": "She arrived at the Nexus with a portal and missing papers"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "Who is the master of the afterlife that roams the Realm judging the souls of the dead?",
+    "a": ["skuld", "Skuld"],
+    "hint": "She judges souls and sends them to either Malphas or Septavius"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "Who is the archdemon that was exiled for imbuing impure charms and later built the Abyss of Demons?",
+    "a": ["malphas"],
+    "hint": "He was originally a stonemason of the angelic realms"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What creature did Oryx accidentally create while trying to infuse a fifth elemental into a live dragon?",
+    "a": ["ivory wyvern"],
+    "hint": "It broke free from his control"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What is the name of the alien commander who tried to turn the Realm into a galactic outpost?",
+    "a": ["commander calbrik", "calbrik"],
+    "hint": "He is a kogbold commander"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What is the most fundamental unit of nature in the RotMG universe?",
+    "a": ["cubes"],
+    "hint": "They make up all of reality itself"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What is the name of the device that set the universe into operation?",
+    "a": ["the machine"],
+    "hint": "It's also the name of a dungeon in the game"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What was the original name of the Cursed Library before Oryx corrupted it?",
+    "a": ["atheneum", "the atheneum"],
+    "hint": "It was the greatest library in the Realm"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What event caused Craig to accidentally damage the Sanctuary Statues?",
+    "a": ["spilled wine", "spilled oryx's wine", "knocked over wine"],
+    "hint": "He spilled something very precious to Oryx"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What curse can transform Oryx into a chicken and can only be cast once a year?",
+    "a": ["chicken curse", "the chicken curse"],
+    "hint": "It exploits Oryx's mysterious phobia of chickens"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What tribe first discovered and began worshipping the Crystal Entity deep in the Realm's mantle?",
+    "a": ["mushroom tribe", "the mushroom tribe"],
+    "hint": "They maintained a pacifistic existence for centuries because of it"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What is the name of the dungeon described as Oryx's failed attempt to manipulate cubes into titans?",
+    "a": ["the third dimension", "third dimension"],
+    "hint": "It's guarded by the Tesseract Goddess"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What is the name of the sentient creation born when Dr. Terrible spilled a substance in his lab?",
+    "a": ["belladonna"],
+    "hint": "She escaped and her garden is now a dungeon"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What entity became conscious in the Toxic Sewers due to the huge accumulation of unclean magic?",
+    "a": ["gulpord"],
+    "hint": "He manifested from magic that was never cleaned up"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "Who is the Keyper and how did he get his role?",
+    "a": ["a dwarf miner who made a deal with the crystal entity", "steamhammer's miner who dealt with crystal entity", "steamhammer miner"],
+    "hint": "He was a talented digger from Steamhammer's Mining Co."
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What happened to the Puppet Master after he died?",
+    "a": ["bargained with a shadowy figure to reincarnate", "made a deal to come back stronger", "made a deal"],
+    "hint": "He traded something to return with greater power"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What civilization built the artifact statue known as El Dorado that was later discovered in the Secluded Thicket?",
+    "a": ["unknown", "a strange civilization", "an unknown civilization"],
+    "hint": "Their identity is never revealed in the lore"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Dungeons",
+    "q": "What is the password asked for in The Nest's treasure room after defeating The Beekeeper?",
+    "a": ["dr terrible", "dr. terrible"],
+    "hint": "It's the name of a scientist who meddled with the bees"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Dungeons",
+    "q": "What is the name of the entity sealed within the Third Dimension dungeon?",
+    "a": ["tesseract goddess"],
+    "hint": "She guards Oryx's failed cube experiment"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What is the name of the Realm Eye's sanctuary built by sages to store knowledge?",
+    "a": ["atheneum", "the atheneum"],
+    "hint": "It later became the Cursed Library"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What is the name of the NPC who gives you daily quests?",
+    "a": ["the tinkerer", "tinkerer"],
+    "hint": "He likes to tinker with things"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What item do you need to enter a dungeon portal in RotMG?",
+    "a": ["nothing", "no item", "just walk in", "walk into it"],
+    "hint": "You don't need any item — just step on it"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What color star do you get at the highest rank in RotMG?",
+    "a": ["white", "white star"],
+    "hint": "It's the brightest color"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What does ST stand for in RotMG?",
+    "a": ["set tiered", "set tier"],
+    "hint": "These items form matching sets"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What class can turn invisible using its ability?",
+    "a": ["rogue"],
+    "hint": "They use a Cloak"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What class uses a Staff and Necromantic Skull?",
+    "a": ["necromancer"],
+    "hint": "They drain life from enemies"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What class uses a Katana and a Wakizashi?",
+    "a": ["samurai"],
+    "hint": "A Japanese warrior class"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What class uses a Dagger and a Poison?",
+    "a": ["assassin"],
+    "hint": "They throw poison clouds"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What class uses a Bow and a Trap?",
+    "a": ["huntress"],
+    "hint": "They set traps on the ground"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What class uses a Wand and an Orb?",
+    "a": ["sorcerer"],
+    "hint": "Their ability fires a ball that bounces"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What is the name of the stat that determines your maximum health?",
+    "a": ["life", "hp", "health"],
+    "hint": "Abbreviated as HP or LIFE"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What is the name of the stat that reduces damage taken?",
+    "a": ["defense", "def"],
+    "hint": "Abbreviated as DEF"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What is the name of the stat that increases damage dealt?",
+    "a": ["attack", "atk"],
+    "hint": "Abbreviated as ATK"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What is the name of the stat that increases movement speed?",
+    "a": ["speed", "spd"],
+    "hint": "Abbreviated as SPD"
+  },
+  {
+    "difficulty": "easy",
+    "category": "General",
+    "q": "What is the name of the stat that increases rate of fire?",
+    "a": ["dexterity", "dex"],
+    "hint": "Abbreviated as DEX"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What is the first dungeon most new players encounter?",
+    "a": ["pirate cave"],
+    "hint": "It has pirates and is very easy"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What dungeon is dropped by the Red Demon event?",
+    "a": ["abyss of demons"],
+    "hint": "Malphas lives here"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What event drops the Tablet of the King's Avatar as a white bag item?",
+    "a": ["Avatar", "Avatar of The Forgotten King"],
+    "hint": "The Forgotten King rules the dungeon he drops"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What dungeon is the home of Septavius the Ghost God?",
+    "a": ["undead lair"],
+    "hint": "It is full of undead creatures"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What dungeon is the home of Stheno the Snake Queen?",
+    "a": ["snake pit"],
+    "hint": "It is full of snakes"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Events",
+    "q": "What event boss is shaped like a giant cube?",
+    "a": ["cube god"],
+    "hint": "Its name describes its shape"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Events",
+    "q": "What event boss has five towers arranged in a pentagon shape?",
+    "a": ["pentaract"],
+    "hint": "Penta means five"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Events",
+    "q": "What event boss is a giant skull surrounded by fire?",
+    "a": ["skull shrine"],
+    "hint": "It's made from the skull of a mystic"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Events",
+    "q": "What event boss looks like a large ghost ship sailing the realm?",
+    "a": ["ghost ship"],
+    "hint": "Pirates and ghosts combined"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What is the name of the ability used by the Paladin?",
+    "a": ["seal", "holy seal"],
+    "hint": "It gives the Damaging buff to nearby players"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What buff does the Warrior's Helm ability give?",
+    "a": ["berserk"],
+    "hint": "It increases rate of fire significantly"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What buff does the Paladin's Seal ability give?",
+    "a": ["damaging"],
+    "hint": "It increases damage dealt by all nearby players"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What does the Mystic's Orb ability do to enemies?",
+    "a": ["stasis", "puts them in stasis", "freezes them"],
+    "hint": "Enemies cannot move or be damaged in this state"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What class is known for using the Lute ability to support teammates?",
+    "a": ["bard"],
+    "hint": "They play music to buff allies"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What class uses a Staff and summons minions with its ability?",
+    "a": ["summoner"],
+    "hint": "Their ability card summons creatures to fight for them"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What is the name of the limited variant of characters in RotMG?",
+    "a": ["seasonal", "seasonal character"],
+    "hint": "These characters only exist for one season"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What is Feed Power used for in RotMG?",
+    "a": ["feeding pets", "leveling up pets", "pet fusion"],
+    "hint": "It relates to the pet system"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What is the name of the NPC in the Nexus who accepts Mark quests?",
+    "a": ["the tinkerer", "tinkerer"],
+    "hint": "He gives daily and weekly quests"
+  },
+  {
+    "difficulty": "medium",
+    "category": "General",
+    "q": "What are Marks used for in RotMG?",
+    "a": ["tinkerer quests", "daily quests", "quest chests", "quests"],
+    "hint": "You bring them to the Tinkerer"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What is the name of the boss in the Abyss of Demons?",
+    "a": ["malphas", "malphas the archdemon"],
+    "hint": "He was once a stonemason exiled to volcanic mountains"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What is the name of the boss in the Manor of the Immortals?",
+    "a": ["lord ruthven"],
+    "hint": "He created the infamous curse known as Lag"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What is the name of the boss in the Sprite World?",
+    "a": ["limon", "limon the sprite goddess"],
+    "hint": "She is the mother of all sprites"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What dungeon is the source of the Coral Bow white bag?",
+    "a": ["ocean trench"],
+    "hint": "It is an underwater dungeon"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What dungeon drops the Demon Blade?",
+    "a": ["abyss of demons"],
+    "hint": "Malphas the Archdemon lives there"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What is the name of the advanced version of The Nest?",
+    "a": ["plagued nest"],
+    "hint": "It's more dangerous than the original"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What exaltation stat does completing The Shatters give?",
+    "a": ["attack", "atk"],
+    "hint": "It increases damage output"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What exaltation stat does completing The Void give?",
+    "a": ["speed", "spd"],
+    "hint": "It makes you move faster"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What exaltation stat does completing Lost Halls give?",
+    "a": ["defense", "def"],
+    "hint": "It reduces damage taken"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Events",
+    "q": "What is the name of the UT dropped by the Pentaract?",
+    "a": ["Blasphemous", "oreo"],
+    "hint": "It's nickname is based on a famous cookie"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Events",
+    "q": "What dungeon does the Grand Sphinx drop?",
+    "a": ["tomb of the ancients"],
+    "hint": "It's an Egyptian-themed dungeon"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Lore",
+    "q": "What is the name of Oryx's head chef?",
+    "a": ["bonegrind"],
+    "hint": "He's proud to have met everyone in the Realm at least once"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Lore",
+    "q": "What is the name of the advisor who became Oryx's new treasurer?",
+    "a": ["gemsbok"],
+    "hint": "He betrayed his own empire to join Oryx"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Lore",
+    "q": "What famous pirate defied Oryx's rule and had his fleet sunk by the Hermit God?",
+    "a": ["davy jones"],
+    "hint": "His name is associated with a famous nautical legend"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Lore",
+    "q": "What strange animal is Oryx inexplicably afraid of?",
+    "a": ["chickens", "chicken"],
+    "hint": "Heroes can exploit this phobia once a year"
+  },
+
+  {
+    "difficulty": "hard",
+    "category": "General",
+    "q": "What is the name of the stat that affects how powerful your ability heals are?",
+    "a": ["wisdom", "wis"],
+    "hint": "It also affects ability duration and MP regen"
+  },
+  {
+    "difficulty": "hard",
+    "category": "General",
+    "q": "What is the name of the stat that affects HP regeneration?",
+    "a": ["vitality", "vit"],
+    "hint": "Abbreviated as VIT"
+  },
+  {
+    "difficulty": "hard",
+    "category": "General",
+    "q": "What is the name of the stat that affects MP regeneration?",
+    "a": ["wisdom", "wis"],
+    "hint": "The same stat that affects ability power"
+  },
+  {
+    "difficulty": "hard",
+    "category": "General",
+    "q": "What class uses a Katana and a Shuriken?",
+    "a": ["ninja"],
+    "hint": "They throw spinning projectiles"
+  },
+  {
+    "difficulty": "hard",
+    "category": "General",
+    "q": "What class uses a Dagger and a Prism?",
+    "a": ["trickster"],
+    "hint": "They create decoys to distract enemies"
+  },
+  {
+    "difficulty": "hard",
+    "category": "General",
+    "q": "What class uses a Sword and a shield for high defense?",
+    "a": ["knight"],
+    "hint": "Melee class"
+  },
+  {
+    "difficulty": "hard",
+    "category": "General",
+    "q": "What is the XP bonus percentage of the Tablet of the King's Avatar?",
+    "a": ["8%", "8"],
+    "hint": "It's a single digit percentage"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What dungeon is home to Stheno the Snake Queen?",
+    "a": ["snake pit"],
+    "hint": "It is full of snakes"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What is the name of the dungeon that contains the Tesseract Goddess?",
+    "a": ["the third dimension", "third dimension"],
+    "hint": "It was created from Oryx's failed cube experiments"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What dungeon is ruled by Gulpord?",
+    "a": ["toxic sewers"],
+    "hint": "It formed when magical waste built up underground"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What is the name of the boss in Ice Citadel?",
+    "a": ["esben the unwilling", "esben"],
+    "hint": "He was a shaman possessed by the Void Entity during the Great Ice Age"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What dungeon does the Beer God event drop?",
+    "a": ["Tavern", "The Tavern"],
+    "hint": "Oryx drinks here"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Events",
+    "q": "What UT item does the Grand Sphinx drop in the white bag?",
+    "a": ["jugg", "helm of the juggernaut","juggernaut"],
+    "hint": "It's a powerful helm piece"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What is the name of the pirate king who became Oryx's tax collector?",
+    "a": ["dreadstump"],
+    "hint": "He was demoted after his crew drank all of Oryx's alcohol"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What did Craig and Guillermo have in common before the Nexus was created?",
+    "a": ["they were friends", "they met before emigrating to the nexus", "homies"],
+    "hint": "Craig left the Sprite World and met him just before the Nexus was formed"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What type of creature is Leucoryx, and what is his role with Oryx?",
+    "a": ["cult leader", "leader of a demon worship cult"],
+    "hint": "He killed his own demon and took it as a sign to serve Oryx"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What magical structure was built under the Realm to drain excess magic from spells?",
+    "a": ["sewers", "the sewers", "magic drainage system"],
+    "hint": "It later became the Toxic Sewers dungeon"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What was the occupation of Malphas before he was exiled?",
+    "a": ["stonemason"],
+    "hint": "He worked in the angelic realms building things with stone"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Lore",
+    "q": "What was the name of the only mortal who ever unified all civilized lands under his rule?",
+    "a": ["carosburg", "commander-lord carosburg"],
+    "hint": "He even controlled demonic territories briefly"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Dungeons",
+    "q": "What exaltation stat does completing the Manor of the Immortals give?",
+    "a": ["mana", "mp"],
+    "hint": "It increases your maximum mana"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Dungeons",
+    "q": "What is the name of the boss in the Lair of Shaitan?",
+    "a": ["shaitan"],
+    "hint": "He is the king of the fire djinn"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Dungeons",
+    "q": "What is the name of the boss in the Secluded Thicket?",
+    "a": ["xolotl", "xolotl the god of lightning"],
+    "hint": "He is the son of Mixcoatl and god of lightning"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Dungeons",
+    "q": "What dungeon is home to Mixcoatl the Masked God?",
+    "a": ["forbidden jungle"],
+    "hint": "Tribesmen called him the God of the Hunt"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Events",
+    "q": "What is the name of the UT weapon dropped by the Hermit God specifically?",
+    "a": ["coral bow"],
+    "hint": "It's a bow made of coral"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Events",
+    "q": "What is the feed power of the Tablet of the King's Avatar?",
+    "a": ["1100", "1,100"],
+    "hint": "It's a four digit number above 1000"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What ancient civilization built a shrine that collapsed killing all its inhabitants due to crude spirit magic?",
+    "a": ["unknown", "an unnamed civilization", "a human tribe"],
+    "hint": "Their identity is never revealed in the lore"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What is the name of the chancellor Oryx appointed who destroyed all remaining socioeconomic structures in the Realm?",
+    "a": ["gemsbok"],
+    "hint": "He was appointed as treasurer after Dreadstump was demoted"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What type of creatures did Oryx threaten to force into producing honey for his mead?",
+    "a": ["bee folk", "bees", "the bee folk"],
+    "hint": "Their queen is the final boss of The Nest"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What happened to the former Queen of the Shattered Kingdom after Oryx captured her?",
+    "a": ["put in a crystal prison", "trapped in a crystal prison", "crystal"],
+    "hint": "Oryx kept her as a political prisoner"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What magical beings protected the Angelic Realms from invasion for a long time?",
+    "a": ["guardian seraphs", "seraphs"],
+    "hint": "They were powerful angelic guardians"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "Who was appointed as Oryx's intern to handle general bureaucracy?",
+    "a": ["craig"],
+    "hint": "He was originally a sprite who left the Sprite World"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Lore",
+    "q": "What is the name of the dimension where intense concentrations of Corruption awakened a consciousness?",
+    "a": ["the void", "void dimension"],
+    "hint": "The entity born here seeks only destruction"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What event boss drops The Nest portal at a guaranteed rate?",
+    "a": ["killer bee nest", "corrupted bramblethorn"],
+    "hint": "Either the bee nest event boss or a plant-based realm enemy — name one"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What is the difficulty rating of The Shatters out of 10?",
+    "a": ["10"],
+    "hint": "It's the maximum possible difficulty"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What two event bosses drop The Shatters portal at a guaranteed rate?",
+    "a": ["avatar and behemoths egg", "avatar of the forgotten king and behemoths egg", "behemoths egg and avatar"],
+    "hint": "One is a giant multi-phase boss, the other is an egg"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What enemy drops the Beachzone dungeon?",
+    "a": ["beach bum"],
+    "hint": "It shares a theme with the dungeon name"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What is the difficulty rating of the Lost Halls out of 10?",
+    "a": ["8"],
+    "hint": "It's a high difficulty number but not the maximum"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What dungeon has a difficulty rating of 0 and is dropped by the Beach Bum?",
+    "a": ["beachzone"],
+    "hint": "It sounds like a relaxing place"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What is the difficulty rating of The Nest out of 10?",
+    "a": ["7"],
+    "hint": "It's the same as the Cultist Hideout"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What enemy must be defeated for the Cultist Hideout portal to open?",
+    "a": ["agonized titan"],
+    "hint": "Its name suggests it is in great pain"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What item must be used to open The Void portal after the Marble Colossus drops it?",
+    "a": ["vial of pure darkness"],
+    "hint": "It is made of pure darkness"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What dungeon drops from the Crystal Worm Mother at a guaranteed rate?",
+    "a": ["crystal cavern"],
+    "hint": "It shares a name with the enemy that drops it"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What two realm enemies drop the Kogbold Steamworks portal?",
+    "a": ["aerial warship and kogbold expedition engine", "kogbold expedition engine and aerial warship"],
+    "hint": "One is a flying ship, the other is a kogbold machine"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What three enemies drop the Lost Halls portal?",
+    "a": ["bloodroot heart ravenous rot lost sentry", "bloodroot heart and ravenous rot and lost sentry"],
+    "hint": "One is a plant heart, one is a rotting creature, one is a sentry"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What is the difficulty rating of the Cultist Hideout out of 10?",
+    "a": ["7"],
+    "hint": "Same difficulty as The Nest"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What is the difficulty rating of The Void out of 10?",
+    "a": ["8.5"],
+    "hint": "It's between 8 and 9"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What is the difficulty rating of the Fungal Cavern out of 10?",
+    "a": ["7.5"],
+    "hint": "It's between The Nest and Lost Halls in difficulty"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What is the difficulty rating of the Crystal Cavern out of 10?",
+    "a": ["7.5"],
+    "hint": "Same difficulty as the Fungal Cavern"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "Does the Cultist Hideout have a purchasable key?",
+    "a": ["no", "it has no key"],
+    "hint": "Look at the Key column — there is a dash instead of an image"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "Does The Void have a purchasable key?",
+    "a": ["no", "it has no key"],
+    "hint": "You need a special item to open the portal instead"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "Which dungeon has a higher difficulty rating — The Void or The Shatters?",
+    "a": ["the shatters", "shatters"],
+    "hint": "One is rated 8.5 and the other is rated 10"
+  },
+
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What two enemies drop the Spectral Penitentiary portal?",
+    "a": ["spectral jailer and skeletal centipede", "skeletal centipede and spectral jailer", "jailer and centipede", "centipede and jailer"],
+    "hint": "One is a ghost jailer, the other is a skeletal arthropod"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What is the difficulty rating of the Spectral Penitentiary out of 10?",
+    "a": ["8"],
+    "hint": "Same as Lost Halls and Kogbold Steamworks"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What is the difficulty rating of the Kogbold Steamworks out of 10?",
+    "a": ["8"],
+    "hint": "Same as the Spectral Penitentiary and Lost Halls"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "Of The Nest, Cultist Hideout, Fungal Cavern, and Crystal Cavern — which two share the same difficulty rating?",
+    "a": ["fungal cavern and crystal cavern"],
+    "hint": "They are both rated 7.5"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What enemy drops the Crystal Cavern portal at a guaranteed rate?",
+    "a": ["crystal worm mother"],
+    "hint": "She is the mother counterpart to the Crystal Worm Father who drops Fungal Cavern"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Dungeons",
+    "q": "What is the only event dungeon with a difficulty rating of 0?",
+    "a": ["beachzone"],
+    "hint": "It's the most relaxing dungeon in the game"
+  },
+  {
+    "difficulty": "expert",
+    "category": "Dungeons",
+    "q": "What two event bosses can drop the Kogbold Steamworks portal?",
+    "a": ["aerial warship and kogbold expedition engine", "warship and expedition"],
+    "hint": "Both are kogbold war machines found in the realm"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What dungeon does the Marble Colossus drop?",
+    "a": ["the void", "void"],
+    "hint": "It requires a Vial of Pure Darkness to open"
+  },
+  {
+    "difficulty": "easy",
+    "category": "Dungeons",
+    "q": "What dungeon is dropped by the Avatar of the Forgotten King?",
+    "a": ["the shatters", "shatters"],
+    "hint": "It's the hardest dungeon in the game with difficulty 10"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What is the name of the plant-based event boss that drops The Nest portal?",
+    "a": ["corrupted bramblethorn", "bramblethorn"],
+    "hint": "It's a corrupted thorny plant"
+  },
+  {
+    "difficulty": "medium",
+    "category": "Dungeons",
+    "q": "What is the name of the bee-related event boss that drops The Nest portal?",
+    "a": ["killer bee nest", "killer bee nest event boss", "bee nest"],
+    "hint": "Its name describes exactly what it is — a nest of killer bees"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "What event boss drops The Shatters AND is egg-shaped?",
+    "a": ["behemoth's egg", "behemoths egg"],
+    "hint": "It's the egg form of a giant flying creature"
+  },
+  {
+    "difficulty": "hard",
+    "category": "Dungeons",
+    "q": "How many realm event dungeons on the wiki list have no purchasable key at all?",
+    "a": ["2", "two"],
+    "hint": "The Void is one of them"
+  }
+]

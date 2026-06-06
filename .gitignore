@@ -1,0 +1,12 @@
+keys.env
+__pycache__/
+*.pyc
+*.log
+guild_fame_snapshots.json
+trivia_scores.json
+images/output.png
+images/alive_output.png
+images/shinies_output.png
+itempics/
+skinpics/
+venv/
