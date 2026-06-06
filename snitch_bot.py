@@ -92,9 +92,6 @@ COMMAND_USAGE = {
     "gstats":     "!gstats <player_name>",
     "item":       "!item <item name>",
     "find":       "!find <event / dungeon / item>",
-    "event":      "!event <event_id>",
-    "eventadd":   "!eventadd name | description | end_date | prize | stat_key",
-    "eventend":   "!eventend <event_id>",
     "build":      "!build <class> [stat]",
     "gtop":       "!gtop [number]",
     "gseason":    "!gseason [top_n]",
@@ -1422,62 +1419,9 @@ async def seasonrace(ctx):
     await ctx.send(_leaderboard_msg(
         "~ Season Fame Race ~", entries, "Seasonal Fame", show_delta=True
     ))
-# ── Daily event leaderboard broadcaster ─────────────────────────────
-async def run_event_leaderboards():
-    """Posts daily leaderboard updates for all active events."""
-    while True:
-        now = datetime.now(timezone.utc)
-        # Fire at noon UTC daily
-        seconds_until_noon = (
-            ((12 - now.hour) % 24) * 3600 +
-            (0  - now.minute) * 60 +
-            (0  - now.second)
-        )
-        if seconds_until_noon <= 0:
-            seconds_until_noon += 86400
-        await asyncio.sleep(seconds_until_noon)
-
-        try:
-            active = ge.get_active_events()
-            if not active:
-                await asyncio.sleep(60)
-                continue
-
-            channel = bot.get_channel(int(channel_id))
-            for event in active:
-                board = ge.get_event_leaderboard(event)
-                if not board:
-                    continue
-
-                W = 48
-                def top():  return f"  ╔{'═' * W}╗"
-                def bot_():  return f"  ╚{'═' * W}╝"
-                def mid():  return f"  ╠{'═' * W}╣"
-                def row(t): return f"  ║ {t:<{W-2}} ║"
-                def ctr(t): return f"  ║{t:^{W}}║"
-
-                medals = ["(1)", "(2)", "(3)"]
-                lines  = []
-                lines.append(top())
-                lines.append(ctr(f"~ {event['name']} ~"))
-                lines.append(ctr(f"Tracking: {event['stat_label']}  |  Ends: {event['end_date']}"))
-                lines.append(mid())
-                lines.append(row(f"{'Player':<18} {'Gained':>10}   {'Total':>12}"))
-                lines.append(mid())
-
-                for i, (name, base, current, delta) in enumerate(board[:10]):
-                    medal = medals[i] if i < 3 else f"({i+1})"
-                    lines.append(row(
-                        f"{medal} {name[:15]:<15} {f'+{delta:,}':>10}   {current:>12,}"
-                    ))
-
-                lines.append(bot_())
-                await channel.send("```\n" + "\n".join(lines) + "\n```")
-
-        except Exception as e:
-            print(f"Event leaderboard error: {e}")
-
-        await asyncio.sleep(60)
+# ── Guild event competition commands (disabled — not in use) ──────────
+# Uncomment this block + import guild_events as ge to re-enable.
+# async def run_event_leaderboards(): ...
 
 
 
@@ -1500,208 +1444,9 @@ async def testdeath(ctx):
         raise
 
 
-# ── Event commands ───────────────────────────────────────────────────
-
-@bot.command(name="trackable")
-async def trackable(ctx):
-    """Shows all stats that can be automatically tracked for events."""
-    W = 44
-    def top():  return f"  ╔{'═' * W}╗"
-    def bot_():  return f"  ╚{'═' * W}╝"
-    def mid():  return f"  ╠{'═' * W}╣"
-    def row(t): return f"  ║ {t:<{W-2}} ║"
-    def ctr(t): return f"  ║{t:^{W}}║"
-
-    lines = []
-    lines.append(top())
-    lines.append(ctr("~ Auto-Trackable Event Stats ~"))
-    lines.append(mid())
-    lines.append(row(f"{'Stat Key':<18}  {'Description'}"))
-    lines.append(mid())
-    for key, label in ge.VALID_STATS.items():
-        lines.append(row(f"{key:<18}  {label}"))
-    lines.append(mid())
-    lines.append(row("Usage: !eventadd name|desc|end|prize|stat_key"))
-    lines.append(bot_())
-    await ctx.send("```\n" + "\n".join(lines) + "\n```")
-
-
-@bot.command(name="eventadd")
-async def eventadd(ctx, *, args: str):
-    """
-    Create an auto-tracked event.
-    Usage: !eventadd name | description | end_date | prize | stat_key
-    Example: !eventadd Shatter Madness | Most fame gained wins | 2026-06-01 | Custom role | fame
-    Run !trackable to see valid stat keys.
-    """
-    parts = [p.strip() for p in args.split("|")]
-    if len(parts) < 5:
-        await ctx.send(
-            "Hmm, that doesn't look quite right! Here's how to use it:\n"
-            "`!eventadd name | description | end_date | prize | stat_key`\n"
-            "Example: `!eventadd Shatters Race | Most shatters fame wins | 2026-07-01 | Officer rank | fame`\n"
-            "Run `!trackable` to see all valid stat keys! 📋"
-        )
-        return
-
-    stat = parts[4].lower().strip()
-    if stat not in ge.VALID_STATS:
-        valid = ", ".join(f"`{k}`" for k in ge.VALID_STATS)
-        await ctx.send(f"Hmm... `{stat}` isn't a valid stat key! Valid options are: {valid}\n*(Run `!trackable` for the full list with descriptions)*")
-        return
-
-    snap = gs.get_latest_snapshot()
-    if not snap:
-        await ctx.send(
-            "No snapshot exists yet — I'll take one real quick before creating the event! Give me a moment..."
-        )
-        async with selenium_lock:
-            members = await asyncio.get_event_loop().run_in_executor(
-                None, rs.get_guild_roster, "TheAtheneum"
-            )
-        if members:
-            snap = gs.take_snapshot(members)
-            gs.store_snapshot(snap)
-
-    event = ge.add_event(parts[0], parts[1], parts[2], parts[3], stat)
-    if not event:
-        await ctx.send("Oof... something went wrong creating the event. Try again? 😓")
-        return
-
-    member_count = len(event.get("baseline", {}))
-    await ctx.send(
-        f"🎉 Event **{event['name']}** is live!! ID: `#{event['id']}`\n"
-        f"Tracking **{event['stat_label']}** across **{member_count}** members.\n"
-        f"I'll post leaderboard updates daily at noon UTC! Check standings anytime with `!event {event['id']}` 📊"
-    )
-
-
-@bot.command(name="events")
-async def events(ctx):
-    """Shows all active events."""
-    active = ge.get_active_events()
-    W = 46
-    def top():  return f"  ╔{'═' * W}╗"
-    def bot_():  return f"  ╚{'═' * W}╝"
-    def mid():  return f"  ╠{'═' * W}╣"
-    def div():  return f"  ╟{'─' * W}╢"
-    def row(t): return f"  ║ {t:<{W-2}} ║"
-    def ctr(t): return f"  ║{t:^{W}}║"
-
-    lines = [top(), ctr("~ ACTIVE GUILD EVENTS ~"), mid()]
-
-    if not active:
-        lines.append(ctr("No active events... someone start one!! (!eventadd)"))
-    else:
-        for i, e in enumerate(active):
-            if i > 0:
-                lines.append(div())
-            board = ge.get_event_leaderboard(e)
-            leader = board[0][0] if board else "No data yet"
-            lines.append(row(f"#{e['id']}  {e['name'][:30]}"))
-            lines.append(row(f"     Tracks: {e['stat_label']:<20} Ends: {e['end_date']}"))
-            lines.append(row(f"     Prize:  {e['prize'][:30]}"))
-            lines.append(row(f"     Leader: {leader}"))
-
-    lines.append(bot_())
-    await ctx.send("```\n" + "\n".join(lines) + "\n```")
-
-
-@bot.command(name="event")
-async def event_detail(ctx, event_id: int):
-    """Shows full leaderboard for an event. Usage: !event 1"""
-    e = ge.get_event_by_id(event_id)
-    if not e:
-        await ctx.send(f"Hmm... I couldn't find an event with ID `#{event_id}`. Try `!events` to see active ones!")
-        return
-
-    board = ge.get_event_leaderboard(e)
-    W     = 48
-    def top():   return f"  ╔{'═' * W}╗"
-    def bot_():   return f"  ╚{'═' * W}╝"
-    def mid():   return f"  ╠{'═' * W}╣"
-    def row(t):  return f"  ║ {t:<{W-2}} ║"
-    def ctr(t):  return f"  ║{t:^{W}}║"
-
-    status  = "(!) ACTIVE" if e["active"] else f"(x) ENDED — Winner: {e['winner']}"
-    medals  = ["(1)", "(2)", "(3)"]
-
-    lines   = []
-    lines.append(top())
-    lines.append(ctr(f"~ {e['name']} ~"))
-    lines.append(ctr(status))
-    lines.append(mid())
-    lines.append(row(f"Tracks:  {e['stat_label']}"))
-    lines.append(row(f"Ends:    {e['end_date']}"))
-    lines.append(row(f"Prize:   {e['prize']}"))
-    lines.append(row(f"Desc:    {e['description'][:40]}"))
-    lines.append(mid())
-
-    if not board:
-        lines.append(ctr("No data yet — run !snapshot to get things started!"))
-    else:
-        lines.append(row(f"{'Player':<18} {'Gained':>10}   {'Total':>12}"))
-        lines.append(mid())
-        for i, (name, base, current, delta) in enumerate(board[:15]):
-            medal = medals[i] if i < 3 else f"({i+1})"
-            lines.append(row(
-                f"{medal} {name[:15]:<15} {f'+{delta:,}':>10}   {current:>12,}"
-            ))
-
-    lines.append(bot_())
-    await ctx.send("```\n" + "\n".join(lines) + "\n```")
-
-
-@bot.command(name="eventend")
-async def eventend(ctx, event_id: int):
-    """
-    End an event. Winner is determined automatically from the leaderboard.
-    Usage: !eventend 1
-    """
-    e = ge.get_event_by_id(event_id)
-    if not e:
-        await ctx.send(f"Hmm... I couldn't find an event with ID `#{event_id}`. Try `!events` to see active ones!")
-        return
-
-    success = ge.end_event(event_id)
-    if success:
-        e = ge.get_event_by_id(event_id)
-        await ctx.send(
-            f"🏆 **{e['name']}** is officially over!!\n"
-            f"The winner is **{e['winner']}** — highest **{e['stat_label']}** gain of the competition!\n"
-            f"Congratulations on winning **{e['prize']}**!! Well deserved!! 🎉"
-        )
-    else:
-        await ctx.send(f"Hmm... something went wrong ending event `#{event_id}`. It might already be over, or there's no data yet 😅")
-
-
-@bot.command(name="eventall")
-async def eventall(ctx):
-    """Shows all events including ended ones."""
-    all_events = ge.get_all_events()
-    if not all_events:
-        await ctx.send("No events created yet! Use `!eventadd` to start a competition 🏆")
-        return
-
-    W = 46
-    def top():  return f"  ╔{'═' * W}╗"
-    def bot_():  return f"  ╚{'═' * W}╝"
-    def mid():  return f"  ╠{'═' * W}╣"
-    def div():  return f"  ╟{'─' * W}╢"
-    def row(t): return f"  ║ {t:<{W-2}} ║"
-    def ctr(t): return f"  ║{t:^{W}}║"
-
-    lines = [top(), ctr("~ ALL GUILD EVENTS ~"), mid()]
-    for i, e in enumerate(all_events):
-        if i > 0:
-            lines.append(div())
-        status = "(!) ACTIVE" if e["active"] else "(x) ENDED"
-        lines.append(row(f"#{e['id']}  {e['name'][:28]}  {status}"))
-        lines.append(row(f"     Tracks: {e['stat_label']}"))
-        if e["winner"]:
-            lines.append(row(f"     Winner: {e['winner']}"))
-    lines.append(bot_())
-    await ctx.send("```\n" + "\n".join(lines) + "\n```")
+# ── Guild event competition commands (disabled — not in use) ──────────
+# !trackable, !eventadd, !events, !event, !eventend, !eventall
+# To re-enable: uncomment this section and add "import guild_events as ge"
 
 
 @bot.command(name="build")
@@ -1858,7 +1603,8 @@ async def find_event(ctx, *, query: str = ""):
             "• `!find cube` — active Cube Gods\n"
             "• `!find shatters` — events dropping The Shatters portal\n"
             "• `!find juggernaut` — events dropping that white bag item\n"
-            "• `!find o3` — top 5 realms closest to O3"
+            "• `!find o3` — top realms closest to O3\n"
+            "• `!find alien` — Alien Invasion events"
         )
         return
 
@@ -1868,11 +1614,38 @@ async def find_event(ctx, *, query: str = ""):
         None, et.find_event, query
     )
 
-    if result.get("type") == "error":
+    rtype = result.get("type")
+
+    if rtype == "error":
         await ctx.send(f"Ugh, something went wrong: {result['message']} 😓")
         return
 
-    is_o3        = result["type"] == "o3"
+    # ── Ambiguous query (e.g. "alien" matches multiple events) ───────────────
+    if rtype == "ambiguous":
+        options = result.get("options", [])
+        opts_str = "\n".join(f"• `!find {o}`" for o in options)
+        await ctx.send(
+            f"Hmm, **{query}** could mean a few things! Which one did you mean? 🤔\n{opts_str}"
+        )
+        return
+
+    # ── No match — show suggestions ───────────────────────────────────────────
+    if rtype == "no_match":
+        suggestions = result.get("suggestions", [])
+        if suggestions:
+            sugg_str = ", ".join(f"`{s}`" for s in suggestions)
+            await ctx.send(
+                f"Couldn't find **{query}** — did you mean: {sugg_str}?\n"
+                f"Try `!find <event name>` with the full name!"
+            )
+        else:
+            await ctx.send(
+                f"Hmm... I don't know what **{query}** is 🤔\n"
+                f"Try an event name, dungeon name, or white bag item — or `!find o3` for realm scores!"
+            )
+        return
+
+    is_o3        = rtype == "o3"
     results      = result["results"]
     query_name   = "O3 Realm Scores" if is_o3 else result.get("query_name", query)
     search_mode  = result.get("search_mode", "event")
@@ -1891,10 +1664,18 @@ async def find_event(ctx, *, query: str = ""):
 
     # No results and no possible events
     if not results and not possible:
-        await ctx.send(
-            f"No active **{query_name}** found in any realm right now. 🌍\n"
-            f"Maybe check back later? Or try a different search!"
-        )
+        suggestions = et.get_suggestions(query)
+        if suggestions:
+            sugg_str = ", ".join(f"`{s}`" for s in suggestions)
+            await ctx.send(
+                f"No active **{query_name}** found right now. 🌍\n"
+                f"*(Similar events: {sugg_str})*"
+            )
+        else:
+            await ctx.send(
+                f"No active **{query_name}** found in any realm right now. 🌍\n"
+                f"Maybe it's not up yet — check back later!"
+            )
         return
 
     def make_img():
@@ -1913,7 +1694,10 @@ async def find_event(ctx, *, query: str = ""):
     img.save(buf, format="PNG")
     buf.seek(0)
     fname = f"find_{query.replace(' ', '_')}.png"
-    await ctx.send(file=discord.File(buf, filename=fname))
+    if is_o3:
+        await ctx.send("Here are the hottest realms — ranked by score **and** population! 🔥", file=discord.File(buf, filename=fname))
+    else:
+        await ctx.send(file=discord.File(buf, filename=fname))
 
 
 @bot.command(name="leaderboards")
@@ -1971,18 +1755,6 @@ async def leaderboards(ctx):
             "`!item <name>` — Item wiki lookup\n"
             "`!find <event>` — Active realm events\n"
             "`!find o3` — O3 realm scores"
-        ),
-        inline=True
-    )
-
-    embed.add_field(
-        name="📅 Guild Events",
-        value=(
-            "`!events` — Active competitions\n"
-            "`!event <id>` — Event standings\n"
-            "`!eventadd ...` — Create an event\n"
-            "`!eventend <id>` — Crown the winner\n"
-            "`!eventall` — All events"
         ),
         inline=True
     )
@@ -2362,7 +2134,7 @@ async def gdiscord(ctx):
             rank = m["rank"][:11] if m["rank"] else "—"
             lines.append(row_(f"(!) {name:<15} {rank:<12} {m['join_str']:>14}"))
     lines.append(bot_())
-
+    
     msg1 = "```\n" + "\n".join(lines) + "\n```"
 
     # ── Message 2: Full roster ────────────────────────────────────────────────
@@ -2430,14 +2202,6 @@ COMMAND_CATEGORIES = [
     ("🌍  REALM EVENTS", [
         ("!find <event>",           "Find active events"),
         ("!find o3",                "Realms close to O3"),
-    ]),
-    ("📅  GUILD EVENTS", [
-        ("!events",                 "Active competitions"),
-        ("!event <id>",             "Event leaderboard"),
-        ("!eventadd ...",           "Create tracked event"),
-        ("!eventend <id>",          "End event, pick winner"),
-        ("!eventall",               "All events incl. past"),
-        ("!trackable",              "Valid stats to track"),
     ]),
     ("🎲  TRIVIA", [
         ("!trivia start",           "5-question mixed round"),
@@ -2551,11 +2315,6 @@ async def help_cmd(ctx, *, command_name: str = ""):
                 "**Difficulties:** easy · medium · hard · expert",
                 "!trivia start hard 10\n!trivia quick expert\n!trivia scores"
             ),
-            "eventadd": (
-                "!eventadd name | description | end_date | prize | stat_key",
-                "Creates a guild competition with automatic stat tracking.\nLeaderboards update daily at noon UTC.\nRun `!trackable` to see valid stat keys.",
-                "!eventadd Shatters Race | Most shatters fame wins | 2026-07-01 | Officer rank | fame"
-            ),
             "gshinies": (
                 "!gshinies [item_name]",
                 "No item name: seasonal shiny leaderboard for the whole guild.\nWith item name: searches all members for that specific shiny.",
@@ -2658,17 +2417,6 @@ async def help_cmd(ctx, *, command_name: str = ""):
             "`!item <name>` — Item wiki lookup\n"
             "`!find <event>` — Active realm events\n"
             "`!find o3` — O3 realm scores"
-        ),
-        inline=True
-    )
-    embed.add_field(
-        name="📅 Guild Events",
-        value=(
-            "`!events` — Active competitions\n"
-            "`!event <id>` — Event standings\n"
-            "`!eventadd ...` — Create an event\n"
-            "`!eventend <id>` — Crown the winner\n"
-            "`!eventall` — All events"
         ),
         inline=True
     )

@@ -1,11 +1,10 @@
 import urllib.request
 import json
 import re
-from typing import Optional
-# At the top of event_tracker.py, after imports
 import os
-import json
 import ssl
+from difflib import get_close_matches
+from typing import Optional
 
 
 _ssl_context = ssl.create_default_context()
@@ -171,6 +170,13 @@ OBJECT_ID_MAP = {
     57107: "Blooming Flowers",
     57111: "Blooming Flowers",
     57112: "Blooming Flowers",
+    # Alien Invasion events (added 2025)
+    57200: "Alien UFO",
+    57201: "Alien UFO",
+    57210: "Alien Reactor",
+    57211: "Alien Reactor",
+    57220: "Alien Crash Site",
+    57230: "Alien Abductor",
     # Ores
     0xA440: "Ore: Stone",
     0xA442: "Ore: Iron",
@@ -394,7 +400,25 @@ EVENT_ALIASES = {
     "gatesofnether": "Gates of the Nether",
     "gates":        "Gates of the Nether",
     "nether":       "Gates of the Nether",
+    # Alien Invasion events
+    "alien":        "__ALIEN_AMBIGUOUS__",
+    "alienufo":     "Alien UFO",
+    "ufo":          "Alien UFO",
+    "alienreactor": "Alien Reactor",
+    "reactor":      "Alien Reactor",
+    "aliencrash":   "Alien Crash Site",
+    "crashsite":    "Alien Crash Site",
+    "alienabductor": "Alien Abductor",
+    "abductor":     "Alien Abductor",
 }
+
+# Group of event names that share an ambiguous alias — used for "did you mean?" suggestions
+AMBIGUOUS_ALIASES: dict[str, list[str]] = {
+    "__ALIEN_AMBIGUOUS__": ["Alien UFO", "Alien Reactor", "Alien Crash Site", "Alien Abductor"],
+}
+
+# Flat list of all known canonical event names (for fuzzy matching)
+_ALL_EVENT_NAMES: list[str] = sorted(set(OBJECT_ID_MAP.values()) - {"Realm"})
 
 
 def fetch_events() -> list[dict]:
@@ -455,16 +479,26 @@ def fetch_events() -> list[dict]:
 
 
 def resolve_event_name(query: str) -> str:
-    """Resolve a user query to an event name or special token."""
+    """Resolve a user query to an event name, special token, or best-guess title."""
     q = query.lower().strip().replace(" ", "").replace("'", "").replace("-", "")
     if q in EVENT_ALIASES:
         return EVENT_ALIASES[q]
-    # Try partial match against alias values
     q_spaced = query.lower().strip()
     for name in set(OBJECT_ID_MAP.values()):
         if q_spaced in name.lower():
             return name
     return query.title()
+
+
+def get_suggestions(query: str, limit: int = 4) -> list[str]:
+    """Return a list of known event names that are close to the query string."""
+    q_normalized = query.lower().strip()
+    # Substring matches first
+    candidates = [n for n in _ALL_EVENT_NAMES if q_normalized in n.lower()]
+    if not candidates:
+        # Fuzzy close matches as fallback
+        candidates = get_close_matches(query.title(), _ALL_EVENT_NAMES, n=limit, cutoff=0.45)
+    return candidates[:limit]
 
 
 def find_event(query: str) -> dict:
@@ -475,6 +509,15 @@ def find_event(query: str) -> dict:
     resolved = resolve_event_name(query)
     q_lower  = query.lower().strip()
 
+    # ── Ambiguous alias (e.g. "alien" → multiple events) ─────────────────────
+    if resolved in AMBIGUOUS_ALIASES:
+        options = AMBIGUOUS_ALIASES[resolved]
+        return {
+            "type":        "ambiguous",
+            "query":       query,
+            "options":     options,
+        }
+
     # ── O3 special case ───────────────────────────────────────────────────────
     if resolved == "__O3__":
         realm_scores = {}
@@ -484,8 +527,16 @@ def find_event(query: str) -> dict:
             key = (e["server"], e["realm"])
             if key not in realm_scores or e["score"] > realm_scores[key]["score"]:
                 realm_scores[key] = e
-        top5 = sorted(realm_scores.values(), key=lambda x: x["score"], reverse=True)[:5]
-        return {"type": "o3", "results": top5}
+
+        def _o3_rank(r: dict) -> float:
+            # Composite: score * population weight. Realms with <15 players heavily penalized.
+            # Full weight at 40+ players, zero weight below 10.
+            pop = r["population"]
+            pop_weight = max(0.0, min(1.0, (pop - 10) / 30))
+            return r["score"] * pop_weight
+
+        top = sorted(realm_scores.values(), key=_o3_rank, reverse=True)[:7]
+        return {"type": "o3", "results": top}
 
     # ── Mode 2 FIRST: dungeon portal match ────────────────────────────────────
     # Check this BEFORE event name match so "!find nest" hits the dungeon
@@ -573,11 +624,10 @@ def find_event(query: str) -> dict:
             },
         }
 
-    # ── No match ──────────────────────────────────────────────────────────────
+    # ── No match — compute suggestions ───────────────────────────────────────
+    suggestions = get_suggestions(query)
     return {
-        "type":        "event",
-        "results":     [],
-        "query_name":  resolved,
-        "search_mode": "event",
-        "drops":       {},
+        "type":        "no_match",
+        "query":       query,
+        "suggestions": suggestions,
     }

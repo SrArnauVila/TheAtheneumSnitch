@@ -1,6 +1,7 @@
 import urllib.request
 import urllib.parse
 import io
+import os
 from typing import Optional
 from PIL import Image, ImageDraw, ImageFont
 from bs4 import BeautifulSoup
@@ -155,6 +156,8 @@ def fetch_portal_sprite(dungeon_name: str, drops_data: dict, size: int = 32) -> 
                 return _fetch_realmeye_cdn(src, size)
     return None
 
+_O3_BANNER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images", "o3.png")
+
 def build_event_image(results: list[dict], title: str,
                       is_o3: bool = False,
                       drops: Optional[dict] = None,
@@ -172,7 +175,21 @@ def build_event_image(results: list[dict], title: str,
     DROPS_W = 200 if has_drops else 0
     IMG_W   = LEFT_W + DROPS_W
 
-    display = results[:3] if not is_o3 else results[:5]
+    display = results[:3] if not is_o3 else results[:7]
+
+    # ── O3 banner ─────────────────────────────────────────────────────────────
+    o3_banner: Optional[Image.Image] = None
+    BANNER_H = 0
+    if is_o3:
+        try:
+            raw = Image.open(_O3_BANNER_PATH).convert("RGBA")
+            bw, bh = raw.size
+            scale    = IMG_W / bw
+            BANNER_H = int(bh * scale)
+            o3_banner = raw.resize((IMG_W, BANNER_H), Image.LANCZOS)
+        except Exception:
+            o3_banner = None
+            BANNER_H  = 0
 
     # Calculate height — drops panel may need more space than event rows
     rows_h  = PAD + len(display) * (ROW_H + 8) + PAD
@@ -190,10 +207,13 @@ def build_event_image(results: list[dict], title: str,
     if no_active:
         rows_h = PAD + 60 + PAD  # just enough for the message
 
-    IMG_H = max(rows_h, drops_h)
+    IMG_H = BANNER_H + max(rows_h, drops_h)
 
     img  = Image.new("RGBA", (IMG_W, IMG_H), (0, 0, 0, 255))
     draw = ImageDraw.Draw(img)
+
+    if o3_banner:
+        img.paste(o3_banner, (0, 0), o3_banner)
 
     try:
         font_name  = ImageFont.truetype("arialbd.ttf", 15)
@@ -227,19 +247,18 @@ def build_event_image(results: list[dict], title: str,
             portal_sprites[dung] = fetch_portal_sprite(dung, drops, size=SPRITE)
 
     # ── Event rows ────────────────────────────────────────────────────────────
+    BASE_Y = BANNER_H  # all content drawn below the banner
     if no_active:
-        # Show "no active events" message with list of events that can drop it
-        draw.text((PAD, PAD), f"No active events dropping this right now.",
+        draw.text((PAD, BASE_Y + PAD), "No active events dropping this right now.",
                   fill=(200, 160, 100), font=font_med)
-        drop_type = "dungeon" if search_mode == "dungeon" else "item"
-        draw.text((PAD, PAD + 20), f"Events that can drop it:",
+        draw.text((PAD, BASE_Y + PAD + 20), "Events that can drop it:",
                   fill=(140, 160, 180), font=font_sm)
         for j, ev_name in enumerate(possible_events[:5]):
-            draw.text((PAD + 8, PAD + 36 + j * 13), f"• {ev_name}",
+            draw.text((PAD + 8, BASE_Y + PAD + 36 + j * 13), f"• {ev_name}",
                       fill=(180, 180, 200), font=font_tiny)
     else:
         for i, ev in enumerate(display):
-            row_y    = PAD + i * (ROW_H + 8)
+            row_y    = BASE_Y + PAD + i * (ROW_H + 8)
             card_col = (14, 14, 14) if i % 2 == 0 else (20, 20, 20)
             draw.rounded_rectangle([0, row_y, LEFT_W - 4, row_y + ROW_H],
                                    radius=6, fill=card_col)
@@ -273,22 +292,23 @@ def build_event_image(results: list[dict], title: str,
                 draw.text((score_x, row_y + 34),
                           f"{min(pop, 85)}/85", fill=pop_col, font=font_sm)
             else:
-                mid_y   = row_y + (ROW_H - 16) // 2
-                pop_col = (100, 220, 100) if pop < 50 else (220, 200, 80) if pop < 70 else (200, 100, 100)
-                draw.text((PAD,       mid_y), server_short(ev["server"]), fill=(160, 200, 255), font=font_med)
-                draw.text((PAD + 140, mid_y), ev["realm"],                fill=(200, 200, 200), font=font_med)
-                sc_col2 = score_color(sc) if sc >= 0 else (120, 120, 120)
-                draw.text((PAD + 280, mid_y),
-                          f"{sc}%" if sc >= 0 else "?%", fill=sc_col2, font=font_score)
-                draw.text((PAD + 380, mid_y),
-                          f"{min(pop, 85)}/85", fill=pop_col, font=font_med)
+                # O3 row: rank | server | realm | score | population
+                rank_label = f"#{i+1}"
+                mid_y      = row_y + ROW_H // 2 - 8
+                pop_col    = (100, 220, 100) if pop < 50 else (220, 200, 80) if pop < 70 else (200, 100, 100)
+                sc_col2    = score_color(sc) if sc >= 0 else (120, 120, 120)
+                draw.text((PAD,       mid_y), rank_label,                   fill=(160, 160, 160), font=font_sm)
+                draw.text((PAD + 36,  mid_y), server_short(ev["server"]),   fill=(160, 200, 255), font=font_med)
+                draw.text((PAD + 160, mid_y), ev["realm"],                  fill=(200, 200, 200), font=font_med)
+                draw.text((PAD + 300, mid_y), f"{sc}%" if sc >= 0 else "?%", fill=sc_col2,        font=font_score)
+                draw.text((PAD + 390, mid_y), f"{min(pop, 85)}/85",         fill=pop_col,          font=font_med)
 
     # ── Drops panel ───────────────────────────────────────────────────────────
     if has_drops:
         DX = LEFT_W + 8
-        DY = PAD
+        DY = BASE_Y + PAD
 
-        draw.line([(LEFT_W + 4, PAD), (LEFT_W + 4, IMG_H - PAD)],
+        draw.line([(LEFT_W + 4, BASE_Y + PAD), (LEFT_W + 4, IMG_H - PAD)],
                   fill=(35, 35, 35), width=1)
 
         # Header label depends on search mode
