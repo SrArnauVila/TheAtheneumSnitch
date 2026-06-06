@@ -170,11 +170,10 @@ OBJECT_ID_MAP = {
     57107: "Blooming Flowers",
     57111: "Blooming Flowers",
     57112: "Blooming Flowers",
-    # Alien Invasion events — placeholder IDs; update from live API response when seen
-    57200: "Alien UFO",
-    57201: "Alien UFO",
-    57210: "Alien Reactor",
-    57211: "Alien Reactor",
+    # Alien Invasion events (confirmed from realmstock HTML, 2025)
+    45863: "Alien UFO",
+    56341: "Alien Reactor",
+    56342: "Alien Reactor",
     # Ores
     0xA440: "Ore: Stone",
     0xA442: "Ore: Iron",
@@ -613,13 +612,36 @@ def resolve_event_name(query: str) -> str:
 
 
 def get_suggestions(query: str, limit: int = 4) -> list[str]:
-    """Return a list of known event names that are close to the query string."""
+    """Return a list of known event/dungeon/item names close to the query string."""
     q_normalized = query.lower().strip()
-    # Substring matches first
-    candidates = [n for n in _ALL_EVENT_NAMES if q_normalized in n.lower()]
+
+    # 1. Event name substring match
+    candidates: list[str] = [n for n in _ALL_EVENT_NAMES if q_normalized in n.lower()]
+
+    # 2. Dungeon portal name match (e.g. "shatters" → "The Shatters")
     if not candidates:
-        # Fuzzy close matches as fallback
+        seen: set[str] = set()
+        for drop_data in EVENT_DROPS.values():
+            for d in drop_data.get("dungeon", []):
+                name = d["name"] if isinstance(d, dict) else d
+                if q_normalized in name.lower() and name not in seen:
+                    candidates.append(name)
+                    seen.add(name)
+
+    # 3. White bag item name match
+    if not candidates:
+        seen2: set[str] = set()
+        for drop_data in EVENT_DROPS.values():
+            for w in drop_data.get("whites", []):
+                name = w["name"] if isinstance(w, dict) else w
+                if q_normalized in name.lower() and name not in seen2:
+                    candidates.append(name)
+                    seen2.add(name)
+
+    # 4. Fuzzy fallback against event names
+    if not candidates:
         candidates = get_close_matches(query.title(), _ALL_EVENT_NAMES, n=limit, cutoff=0.45)
+
     return candidates[:limit]
 
 

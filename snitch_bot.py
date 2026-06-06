@@ -1662,20 +1662,32 @@ async def find_event(ctx, *, query: str = ""):
     else:
         title = f"~ {query_name} — Active Events ~"
 
-    # No results and no possible events
-    if not results and not possible:
-        suggestions = et.get_suggestions(query)
-        if suggestions:
-            sugg_str = ", ".join(f"`{s}`" for s in suggestions)
+    # ── No active results ─────────────────────────────────────────────────────
+    if not results:
+        if possible and search_mode == "dungeon":
+            evts = "\n".join(f"• **{e}** — `!find {e.lower().replace(' ', '')}`" for e in possible[:6])
             await ctx.send(
-                f"No active **{query_name}** found right now. 🌍\n"
-                f"*(Similar events: {sugg_str})*"
+                f"**{query_name}** portal isn't active right now! 🌀\n"
+                f"These events can drop it — check back when one's up:\n{evts}"
+            )
+        elif possible and search_mode == "item":
+            evts = "\n".join(f"• **{e}** — `!find {e.lower().replace(' ', '')}`" for e in possible[:6])
+            await ctx.send(
+                f"No active events dropping **{query_name}** right now! 🎒\n"
+                f"Events that can drop it:\n{evts}"
             )
         else:
-            await ctx.send(
-                f"No active **{query_name}** found in any realm right now. 🌍\n"
-                f"Maybe it's not up yet — check back later!"
-            )
+            suggestions = et.get_suggestions(query)
+            if suggestions:
+                sugg_str = ", ".join(f"`{s}`" for s in suggestions)
+                await ctx.send(
+                    f"No active **{query_name}** found right now. 🌍\n"
+                    f"*(Similar events: {sugg_str})*"
+                )
+            else:
+                await ctx.send(
+                    f"No active **{query_name}** found right now. 🌍 Maybe check back later!"
+                )
         return
 
     def make_img():

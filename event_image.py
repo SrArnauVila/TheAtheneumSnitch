@@ -177,15 +177,13 @@ def build_event_image(results: list[dict], title: str,
 
     display = results[:3] if not is_o3 else results[:7]
 
-    # ── O3 banner ─────────────────────────────────────────────────────────────
+    # ── O3 banner (decorative strip — max 90px tall) ──────────────────────────
     o3_banner: Optional[Image.Image] = None
     BANNER_H = 0
     if is_o3:
         try:
             raw = Image.open(_O3_BANNER_PATH).convert("RGBA")
-            bw, bh = raw.size
-            scale    = IMG_W / bw
-            BANNER_H = int(bh * scale)
+            BANNER_H  = 90          # fixed height — keeps it decorative, not dominant
             o3_banner = raw.resize((IMG_W, BANNER_H), Image.LANCZOS)
         except Exception:
             o3_banner = None
