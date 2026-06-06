@@ -2,11 +2,28 @@ keys.env
 __pycache__/
 *.pyc
 *.log
+
+# Runtime data (generated locally, not part of the repo)
+guild_snapshots.json
 guild_fame_snapshots.json
+guild_events.json
+tracked_players.json
+last_death.json
 trivia_scores.json
+
+# Image outputs
 images/output.png
 images/alive_output.png
 images/shinies_output.png
+
+# Caches
 itempics/
 skinpics/
+shiny_cache/
+
+# Debug files produced by scrapers
+death.html
+table.html
+debug_avatar.html
+
 venv/

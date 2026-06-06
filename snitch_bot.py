@@ -4,7 +4,7 @@ import image_downloader as imd
 import guild_graveyard as gg
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from dotenv import load_dotenv
 from pathlib import Path
 import Realm_image_parser as RIP
@@ -12,15 +12,16 @@ from discord.ext import commands
 from discord.ext import tasks
 import player_characters
 import realmscope_scraper as rs
-from datetime import datetime, timezone
+import shiny_image_builder as sib
+import guild_stats as gs
 import time as time_module
 from player_tracker import get_online_status
 import build_scraper as bs
-import build_image  as bi
+import build_image as bi
 import io
 import re
 import event_tracker as et
-import event_image  as ei
+import event_image as ei
 import pytz
 import trivia_system as ts
 import random
@@ -77,21 +78,56 @@ intents = discord.Intents.default()
 # in environments where that intent is not enabled in the Discord developer portal.
 intents.message_content = os.getenv("ENABLE_MESSAGE_CONTENT", "false").lower() == "true"
 bot = commands.Bot(command_prefix='!', intents=intents)
+bot.remove_command("help")  # We have our own !help with Guill flair
 channel_id = int(os.getenv("CHANNEL_ID"))
 channel = None
 guild = os.getenv("GUILD_NAME")
 
-#imd.Download_Images()
-#with open('last death.json', 'w') as f:
- #   last_death = gg.guild_graveyard(guild, 0)
-  #  i = 1
-   # while last_death['player-name'] == "Private":
-    #    print("private death")
-     #   last_death = gg.guild_graveyard(guild, i)
-      #  i += 1
-    #json.dump(last_death, f)
-#f.close()
+# ── Per-command usage strings (shown in error messages) ───────────────────────
+COMMAND_USAGE = {
+    "player":     "!player <player_name>",
+    "search":     "!search <player_name>",
+    "characters": "!characters <player_name>",
+    "shinies":    "!shinies <player_name>",
+    "gstats":     "!gstats <player_name>",
+    "item":       "!item <item name>",
+    "find":       "!find <event / dungeon / item>",
+    "event":      "!event <event_id>",
+    "eventadd":   "!eventadd name | description | end_date | prize | stat_key",
+    "eventend":   "!eventend <event_id>",
+    "build":      "!build <class> [stat]",
+    "gtop":       "!gtop [number]",
+    "gseason":    "!gseason [top_n]",
+    "trivia":     "!trivia <start|quick|stop|scores|stats|add|list>",
+    "snapshot":   "!snapshot [--shinies]",
+    "gshinies":   "!gshinies [item_name]",
+}
 
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        usage = COMMAND_USAGE.get(ctx.command.name, f"!{ctx.command.name}")
+        await ctx.send(
+            f"Whoops!! Looks like you forgot something there 😅\n"
+            f"**Usage:** `{usage}`\n"
+            f"*(Try `!help {ctx.command.name}` for more details!)*"
+        )
+    elif isinstance(error, commands.CommandNotFound):
+        cmd_tried = str(error).split('"')[1] if '"' in str(error) else "that"
+        await ctx.send(
+            f"Hmm... I don't know what `!{cmd_tried}` is 🤔\n"
+            f"Type `!commands` to see everything I can do!"
+        )
+    elif isinstance(error, commands.BadArgument):
+        usage = COMMAND_USAGE.get(ctx.command.name, f"!{ctx.command.name}")
+        await ctx.send(
+            f"Oof, that argument doesn't look right 😬\n"
+            f"**Usage:** `{usage}`"
+        )
+    elif isinstance(error, commands.CheckFailure):
+        await ctx.send("You don't have permission for that one! 🚫")
+    else:
+        raise error
 
 _guild_online_state = {}  # player_lower -> "Online" | "Offline"
 
@@ -120,7 +156,7 @@ async def run_guild_online_tracker():
             channel = bot.get_channel(int(channel_id))
 
             for name in just_came_online:
-                await channel.send(f"(+) **{name}** just came Online!")
+                await channel.send(f"👀 Psst — **{name}** just logged on! I spotted them first!!")
 
             last_seen_online = currently_online
 
@@ -178,7 +214,7 @@ async def run_guild_graveyard():
                     continue
 
                 msg = (
-                    f"**☠ {latest['player-name']}** just died!\n"
+                    f"☠️ **{latest['player-name']}** has fallen... I watched from my desk and I'm not okay\n"
                     f"**Killed by:** {latest['killed_by']}\n"
                     f"**Stats:** {latest['stats']}  "
                     f"**Base Fame:** {latest['base_fame']}  "
@@ -221,9 +257,10 @@ async def characters(ctx, player_name: str):
     player_character_list = player_characters.get_player_characters(player_name)
 
     if not player_character_list:
-        await ctx.send(f"Could not find characters for **{player_name}**. The profile may be private or the name is incorrect.")
+        await ctx.send(f"Hmm... couldn't find any characters for **{player_name}**. Their profile might be private, or maybe a typo? I checked twice, I promise 😅")
         return
 
+    await ctx.send(f"Found **{len(player_character_list)}** character{'s' if len(player_character_list) != 1 else ''} for **{player_name}**! Here they are — I even rendered the portraits 🎨")
     for i, char in enumerate(player_character_list):
         RIP.skin_image_parser(char['skin_id'], f"{char['class']}_{i}")
         for item in char['equipment']:
@@ -240,9 +277,6 @@ async def characters(ctx, player_name: str):
 
     RIP.delete_all_files_in_folder("./itempics")
     RIP.delete_all_files_in_folder("./skinpics")
-
-import realmscope_scraper as rs
-import shiny_image_builder as sib
 
 @bot.command(name="player")
 async def player(ctx, player_name: str):
@@ -292,7 +326,7 @@ async def player(ctx, player_name: str):
 async def parties(ctx):
     data = rs.get_top_parties(5)
     if not data:
-        await ctx.send("❌ Could not fetch party data from RealmScope.")
+        await ctx.send("Ugh... RealmScope wasn't cooperating just now. Try again in a sec? 😓")
         return
 
     W = 44
@@ -326,10 +360,10 @@ async def parties(ctx):
 
 @bot.command(name="shinies")
 async def shinies(ctx, player_name: str):
-    await ctx.send(f"🔍 Fetching shiny data for **{player_name}**...")
+    await ctx.send(f"Ooh, checking **{player_name}**'s shiny collection!! Give me a moment... ✨")
     data = rs.get_shiny_data(player_name)
     if not data:
-        await ctx.send(f"❌ Could not find shiny data for **{player_name}** on RealmScope.")
+        await ctx.send(f"Hmm... couldn't find shiny data for **{player_name}**. Either their profile's private or they just haven't gotten any shinies yet (yikes) 😬")
         return
 
     W = 42
@@ -407,7 +441,7 @@ async def run_guild_party_tracker():
 
 @bot.command(name="gparty")
 async def gparty(ctx):
-    await ctx.send("Scanning parties for guild members... (this may take 30s)")
+    await ctx.send("On it!! Scanning all parties for guildmates... this might take up to 30 seconds, I'm running as fast as I can 🏃")
     
     async with selenium_lock:
         members = await asyncio.get_event_loop().run_in_executor(
@@ -451,7 +485,7 @@ async def gparty(ctx):
 
 @bot.command(name="groster")
 async def groster(ctx):
-    await ctx.send("Fetching guild roster...")
+    await ctx.send("Pulling up the roster!! Give me a sec... 📋")
 
     async with selenium_lock:
         members = await asyncio.get_event_loop().run_in_executor(
@@ -459,7 +493,7 @@ async def groster(ctx):
         )
 
     if not members:
-        await ctx.send("❌ Could not fetch guild roster.")
+        await ctx.send("Oof... couldn't load the roster. RealmScope might be having a moment. Try again? 😬")
         return
 
     W = 46
@@ -510,7 +544,7 @@ async def groster(ctx):
 async def search(ctx, player_name: str):
     info = rs.get_player_recruitment_info(player_name)
     if not info:
-        await ctx.send(f"❌ Could not find **{player_name}** on RealmScope.")
+        await ctx.send(f"Hmm... I couldn't find **{player_name}** anywhere. Private profile, or maybe a typo? I looked everywhere!! 🔍")
         return
 
     W = 32  # Fixed inner width — everything must fit within this
@@ -587,7 +621,7 @@ async def search(ctx, player_name: str):
 
 @bot.command(name="afk")
 async def afk(ctx):
-    await ctx.send("Checking for AFK guild members...")
+    await ctx.send("Checking who's been slacking off... don't tell them I said that 🤫")
 
     async with selenium_lock:
         afk_members = await asyncio.get_event_loop().run_in_executor(
@@ -595,7 +629,7 @@ async def afk(ctx):
         )
 
     if afk_members is None:
-        await ctx.send("❌ Could not fetch guild data.")
+        await ctx.send("Uh oh... couldn't grab guild data right now. RealmScope might be struggling 😅")
         return
 
     W = 46
@@ -615,7 +649,7 @@ async def afk(ctx):
     lines.append(mid())
 
     if not afk_members:
-        lines.append(ctr("No members AFK for 30+ days!"))
+        lines.append(ctr("Everyone's been logging in — nice!! 🎉"))
     else:
         lines.append(row(f"{'Name':<18} {'Away':>8}   {'Fame':>12}"))
         lines.append(mid())
@@ -632,13 +666,13 @@ async def afk(ctx):
 @bot.command(name="item")
 async def item(ctx, *, item_name: str):
     slug = item_name.lower().strip().replace(" ", "-")
-    await ctx.send(f"Looking up **{item_name}**...")
+    await ctx.send(f"Looking up **{item_name}** on the wiki! One sec... 📖")
 
     info = rs.get_wiki_item(slug)
     if not info:
         await ctx.send(
-            f"❌ Could not find **{item_name}** on the RealmEye wiki.\n"
-            f"Try the exact item name, e.g. `!item legion-elite-staff`"
+            f"Hmm... couldn't find **{item_name}** on the RealmEye wiki 😅\n"
+            f"Try the exact item name — like `!item void blade` or `!item helm of the juggernaut`!"
         )
         return
 
@@ -791,13 +825,13 @@ async def item(ctx, *, item_name: str):
     if files:
         await ctx.send(msg, file=files[0])
         if len(files) > 1:
-            await ctx.send("Shiny version:", file=files[1])
+            await ctx.send("✨ And here's the shiny version!! *sparkle sparkle*", file=files[1])
     else:
         await ctx.send(msg)
 
 @bot.command(name="online")
 async def online(ctx):
-    await ctx.send("Checking who is online...")
+    await ctx.send("Eyes open!! Checking who's online... 👀")
 
     async with selenium_lock:
         results = await asyncio.get_event_loop().run_in_executor(
@@ -805,7 +839,7 @@ async def online(ctx):
         )
 
     if not results:
-        await ctx.send("❌ Could not fetch guild status.")
+        await ctx.send("Couldn't get the guild status right now... RealmScope's being weird 😓")
         return
 
     online_members = [m for m in results if m["status"] == "Online"]
@@ -827,7 +861,7 @@ async def online(ctx):
     lines.append(mid())
 
     if not online_members:
-        lines.append(ctr("No members currently online"))
+        lines.append(ctr("Nobody online... the realm is quiet 👻"))
     else:
         for m in online_members:
             lines.append(row(f"(+)  {m['name']}"))
@@ -836,8 +870,6 @@ async def online(ctx):
 
 
     await ctx.send("```\n" + "\n".join(lines) + "\n```")
-
-import guild_stats as gs
 
 # ── Background: daily snapshot at midnight UTC ──────────────────────
 async def run_daily_snapshot():
@@ -900,9 +932,9 @@ def _leaderboard_msg(title: str, entries: list, failed: list = None) -> str:
 @bot.command(name="snapshot")
 async def snapshot_cmd(ctx, *, flags: str = ""):
     fetch_shinies = "--shinies" in flags
-    msg = "Taking guild snapshot"
+    msg = "Taking a guild snapshot!! Hold on... 📸"
     if fetch_shinies:
-        msg += " (including shinies — this will take 2-3 minutes)..."
+        msg += " (Full shiny scan included — this takes 2-3 mins, I'm not slacking I promise)"
     await ctx.send(msg)
 
     async with selenium_lock:
@@ -910,52 +942,26 @@ async def snapshot_cmd(ctx, *, flags: str = ""):
             None, rs.get_guild_roster, "TheAtheneum"
         )
     if not members:
-        await ctx.send("❌ Could not fetch guild data.")
+        await ctx.send("Oof... couldn't grab guild data for the snapshot. RealmScope might be down 😓")
         return
 
     snap = gs.take_snapshot(members, fetch_shinies=fetch_shinies)
     gs.store_snapshot(snap)
     await ctx.send(
-        f"Snapshot saved — **{len(members)}** members at `{snap['date']}`."
-        + (" Shinies included." if fetch_shinies else "")
+        f"Snapshot saved!! **{len(members)}** members recorded at `{snap['date']}`. Good data, good data! 📋"
+        + (" Shinies included too!! That one took a while, you're welcome." if fetch_shinies else "")
     )
-
-async def _fetch_guild_fame_board(period: str) -> tuple:
-    """Returns (board, failed_names) where board is sorted list of (name, value)."""
-    snap = gs.get_latest_snapshot()
-    if not snap:
-        return [], []
-
-    member_names = [v["name"] for v in snap["members"].values()]
-
-    results = await asyncio.get_event_loop().run_in_executor(
-        None, rs.get_guild_seasonal_fame, member_names
-    )
-
-    board  = []
-    failed = []
-    for r in results:
-        if r.get("failed"):
-            failed.append(r["name"])
-        else:
-            val = r[period]
-            if val > 0:
-                board.append((r["name"], val))
-
-    board.sort(key=lambda x: x[1], reverse=True)
-    return board, failed
-
 
 # ── !gseason ──────────────────────────────────────────────────────────────────
 @bot.command(name="gseason")
 async def gseason(ctx, top: int = 15):
     """Seasonal fame leaderboard — pulls live from guild roster page."""
-    await ctx.send("📊 Fetching seasonal fame leaderboard...")
+    await ctx.send("Pulling up the seasonal leaderboard!! Let's see who's been grinding... 📊")
 
     members = await _get_roster()
 
     if not members:
-        await ctx.send("❌ Could not fetch guild roster.")
+        await ctx.send("Oof... couldn't load the roster. RealmScope might be having a moment. Try again? 😬")
         return
 
     members.sort(key=lambda m: m["seasonal_fame"], reverse=True)
@@ -990,17 +996,13 @@ async def gseason(ctx, top: int = 15):
 @bot.command(name="gdaily")
 async def gdaily(ctx):
     """Today's and 24h seasonal fame gains per member."""
-    await ctx.send("📊 Fetching daily fame gains...")
+    await ctx.send("Checking today's fame gains!! Who's been a good little realmie today? 📊")
 
-    snap = gs.get_latest_snapshot()
-    member_names = list(_guild_members_cache) if _guild_members_cache else []
-
-    if not member_names and snap:
-        member_names = [v["name"] for v in snap["members"].values()]
-
-    if not member_names:
-        await ctx.send("❌ No member data available. Try `!snapshot` first.")
+    members = await _get_roster()
+    if not members:
+        await ctx.send("Oof... couldn't load the roster. RealmScope might be having a moment. Try again? 😬")
         return
+    member_names = [m["name"] for m in members]
 
     results = await _get_fame(member_names)
 
@@ -1020,7 +1022,7 @@ async def gdaily(ctx):
     lines = [top_(), ctr_("~ Daily Fame Gains (24h) ~"), mid_()]
 
     if not board:
-        lines.append(ctr_("No fame gained in the last 24h"))
+        lines.append(ctr_("Nobody gained fame today... get off Discord and play!! 😤"))
     else:
         lines.append(row_(f"{'Player':<18} {'24h Gained':>14}"))
         lines.append(mid_())
@@ -1037,16 +1039,13 @@ async def gdaily(ctx):
 @bot.command(name="gweekly")
 async def gweekly(ctx):
     """Last 7 days seasonal fame gains per member."""
-    await ctx.send("📊 Fetching weekly fame gains...")
+    await ctx.send("Checking this week's fame! Let's see who's been putting in the hours... 📊")
 
-    member_names = list(_guild_members_cache) if _guild_members_cache else []
-    snap = gs.get_latest_snapshot()
-    if not member_names and snap:
-        member_names = [v["name"] for v in snap["members"].values()]
-
-    if not member_names:
-        await ctx.send("❌ No member data available. Try `!snapshot` first.")
+    members = await _get_roster()
+    if not members:
+        await ctx.send("Oof... couldn't load the roster. RealmScope might be having a moment. Try again? 😬")
         return
+    member_names = [m["name"] for m in members]
 
     results = await asyncio.get_event_loop().run_in_executor(
         None, rs.get_guild_seasonal_fame, member_names
@@ -1089,17 +1088,13 @@ async def gshinies(ctx, *, item_name: str = ""):
     """
     if item_name:
         # Specific shiny search — need to check individual shiny pages
-        await ctx.send(f"✨ Searching for **{item_name}** across guild members...")
+        await ctx.send(f"Ooh, hunting for **{item_name}** shiny across the whole guild!! Give me a bit... ✨")
 
-        member_names = list(_guild_members_cache) if _guild_members_cache else []
-        if not member_names:
-            snap = gs.get_latest_snapshot()
-            if snap:
-                member_names = [v["name"] for v in snap["members"].values()]
-
-        if not member_names:
-            await ctx.send("❌ No member data available.")
+        members = await _get_roster()
+        if not members:
+            await ctx.send("Oof... couldn't load the roster. RealmScope might be having a moment. Try again? 😬")
             return
+        member_names = [m["name"] for m in members]
 
         # Fetch shiny pages concurrently
         import concurrent.futures
@@ -1143,7 +1138,7 @@ async def gshinies(ctx, *, item_name: str = ""):
         lines = [top_(), ctr_(f"~ Shiny: {item_name.title()} ~"), mid_()]
 
         if not found:
-            lines.append(ctr_(f"No members have this shiny yet"))
+            lines.append(ctr_(f"Nobody has it yet... it's still out there waiting 👀"))
         else:
             lines.append(row_(f"{'Player':<18} {'Item':<22} {'Date':>8}"))
             lines.append(mid_())
@@ -1157,7 +1152,7 @@ async def gshinies(ctx, *, item_name: str = ""):
 
     else:
         # General seasonal shiny leaderboard — from guild roster (fast)
-        await ctx.send("✨ Fetching seasonal shiny leaderboard...")
+        await ctx.send("Compiling the shiny leaderboard!! Who's been the luckiest this season? ✨")
 
         async with selenium_lock:
             members = await asyncio.get_event_loop().run_in_executor(
@@ -1165,7 +1160,7 @@ async def gshinies(ctx, *, item_name: str = ""):
             )
 
         if not members:
-            await ctx.send("❌ Could not fetch guild roster.")
+            await ctx.send("Oof... couldn't load the roster. RealmScope might be having a moment. Try again? 😬")
             return
 
         # seasonal_shinies comes from get_player_info, not roster
@@ -1202,7 +1197,7 @@ async def gshinies(ctx, *, item_name: str = ""):
         lines = [top_(), ctr_("~ Seasonal Shiny Leaderboard ~"), mid_()]
 
         if not board:
-            lines.append(ctr_("No seasonal shinies yet!"))
+            lines.append(ctr_("No seasonal shinies yet!! Season just started?? 👀"))
         else:
             lines.append(row_(f"{'Player':<18} {'Seasonal Shinies':>16}"))
             lines.append(mid_())
@@ -1219,12 +1214,12 @@ async def gshinies(ctx, *, item_name: str = ""):
 async def gtop(ctx, n: int = 10):
     """Top N guild members by seasonal fame."""
     n = min(max(n, 3), 25)
-    await ctx.send(f"📊 Fetching top {n}...")
+    await ctx.send(f"Getting the top {n}!! One sec... 🏆")
 
     members = await _get_roster()
 
     if not members:
-        await ctx.send("❌ Could not fetch guild roster.")
+        await ctx.send("Oof... couldn't load the roster. RealmScope might be having a moment. Try again? 😬")
         return
 
     members.sort(key=lambda m: m["seasonal_fame"], reverse=True)
@@ -1259,7 +1254,7 @@ async def refresh(ctx):
     """Force refresh the roster and fame cache."""
     _roster_cache["timestamp"] = 0
     _fame_cache["timestamp"]   = 0
-    await ctx.send("🔄 Cache cleared — next command will fetch fresh data.")
+    await ctx.send("Cache wiped!! 🔄 I'll grab fresh data on the next command — nice and clean! You're welcome btw")
 
 
 
@@ -1299,7 +1294,7 @@ async def post_daily_announcement():
     )
 
     PST     = pytz.timezone("America/New_York")
-    now_str = dt_module.datetime.now(PST).strftime("%B %d, %Y")
+    now_str = datetime.now(PST).strftime("%B %d, %Y")
 
     W      = 46
     medals = ["(1)", "(2)", "(3)"]
@@ -1341,47 +1336,26 @@ async def post_daily_announcement():
 
     await lb_channel.send("```\n" + "\n".join(lines) + "\n```")
 
-    # Save snapshot for daily comparison
-    gl.save_daily_snapshot([
-        {"name": m["name"], "seasonal_fame": m["seasonal_fame"],
-         "seasonal_shinies": 0, "shiny_items": {}}
-        for m in members
-    ])
     print(f"Daily announcement posted for {now_str}")
 
 @bot.command(name="gstats")
 async def gstats(ctx, player_name: str):
-    snap = gs.get_latest_snapshot()
-    if not snap:
-        await ctx.send("No snapshot data yet. Run `!snapshot` first.")
-        return
+    await ctx.send(f"Looking up **{player_name}**'s stats!! Give me a moment... 📊")
 
-    key     = player_name.lower()
-    current = snap["members"].get(key)
-    if not current:
-        await ctx.send(f"**{player_name}** not found in latest snapshot.")
-        return
-
-    # Fetch live fame history from realmscope
-    await ctx.send(f"Fetching stats for **{player_name}**...")
-    fame_history = await asyncio.get_event_loop().run_in_executor(
-        None, rs.get_player_seasonal_fame_history, player_name, 2
+    info, fame_history = await asyncio.gather(
+        asyncio.get_event_loop().run_in_executor(None, rs.get_player_info, player_name),
+        asyncio.get_event_loop().run_in_executor(
+            None, rs.get_player_seasonal_fame_history, player_name, 2
+        ),
     )
 
-    daily_seasonal   = fame_history["daily"]         if fame_history else 0
-    weekly_seasonal  = fame_history["weekly"]        if fame_history else 0
-    total_seasonal   = fame_history["current_total"] if fame_history else current.get("seasonal_fame", 0)
+    if not info:
+        await ctx.send(f"Hmm... couldn't find **{player_name}** on RealmScope. Private profile or typo? 😅")
+        return
 
-    # For regular fame, use snapshot deltas
-    snap_24h = gs.get_snapshot_before(24)
-    snap_7d  = gs.get_snapshot_before(168)
-
-    def snap_delta(old_snap, stat):
-        if not old_snap:
-            return "N/A"
-        old = old_snap["members"].get(key, {}).get(stat, 0)
-        d   = current.get(stat, 0) - old
-        return f"+{d:,}" if d >= 0 else f"{d:,}"
+    daily_seasonal  = fame_history["daily"]         if fame_history else 0
+    weekly_seasonal = fame_history["weekly"]        if fame_history else 0
+    total_seasonal  = fame_history["current_total"] if fame_history else info.get("seasonal_fame", 0)
 
     W = 36
     def line(text=""): return f"    |{text:^{W}}|."
@@ -1395,28 +1369,30 @@ async def gstats(ctx, player_name: str):
         return [f"    |{content:<{W}}|."]
     def div(): return f"    |{'~' * W}|."
 
+    guild_rank = info.get("guild_rank") or "Member"
+
     scroll = []
     scroll.append(f"   {'_' * W}")
     scroll.append(f" / \\{' ' * W}\\.")
     scroll.append(f"|   |{' ' * W}|.")
     scroll.append(line("~ GUILD STATS ~"))
-    scroll.append(f" \\_ |{current['name']:^{W}}|.")
-    scroll.append(line(current["rank"]))
+    scroll.append(f" \\_ |{info['name']:^{W}}|.")
+    scroll.append(line(guild_rank))
     scroll.append(line())
     scroll.append(div())
     scroll.append(line())
-    scroll += sline("Fame",             f"{current.get('fame', 0):,}")
-    scroll += sline("  24h",            snap_delta(snap_24h, 'fame'))
-    scroll += sline("  7d",             snap_delta(snap_7d, 'fame'))
+    scroll += sline("Fame",          f"{info.get('total_fame', 0):,}")
     scroll.append(line())
-    scroll += sline("Seasonal Fame",    f"{total_seasonal:,}")
-    scroll += sline("  Today",          f"+{daily_seasonal:,}")
-    scroll += sline("  This Week",      f"+{weekly_seasonal:,}")
+    scroll += sline("Seasonal Fame", f"{total_seasonal:,}")
+    scroll += sline("  Today",       f"+{daily_seasonal:,}")
+    scroll += sline("  This Week",   f"+{weekly_seasonal:,}")
     scroll.append(line())
     scroll.append(div())
     scroll.append(line())
-    scroll += sline("Stars",            current.get('stars', 0))
-    scroll += sline("Shinies",          current.get('shinies', 0))
+    scroll += sline("Stars",         info.get("stars", 0))
+    scroll += sline("Exaltations",   info.get("exaltations", 0))
+    scroll += sline("Skins",         info.get("skins", 0))
+    scroll += sline("Shinies",       info.get("total_shinies", 0))
     scroll.append(line())
     scroll.append(f"    |   {'_' * W}|___")
     scroll.append(f"    |  /{' ' * W}/.")
@@ -1428,7 +1404,7 @@ async def gstats(ctx, player_name: str):
 async def newseason(ctx):
     """Marks the start of a new season for tracking."""
     gs.set_season_start()
-    await ctx.send("New season started! Seasonal delta tracking reset from this point.")
+    await ctx.send("New season marked!! 🎉 Delta tracking resets from right now — let the grind begin!! May the best realmie win and all that 🏆")
 
 
 @bot.command(name="seasonrace")
@@ -1437,10 +1413,10 @@ async def seasonrace(ctx):
     snap_new    = gs.get_latest_snapshot()
     snap_season = gs.get_season_start_snapshot()
     if not snap_new:
-        await ctx.send("No snapshot data yet.")
+        await ctx.send("No snapshot data yet... run `!snapshot` first! 📊")
         return
     if not snap_season:
-        await ctx.send("No season start set. Use `!newseason` to mark the start.")
+        await ctx.send("No season start recorded yet! Use `!newseason` to mark when the race begins 🏁")
         return
     entries = gs.delta_leaderboard(snap_season, snap_new, "seasonal_fame")
     await ctx.send(_leaderboard_msg(
@@ -1509,14 +1485,14 @@ async def run_event_leaderboards():
 async def testdeath(ctx):
     """Fetch the latest death and post it as a card to test the death announcer."""
     import death_card as dc
-    await ctx.send("🔍 Fetching latest death...")
+    await ctx.send("Testing the death card... spooky 💀 Give me a sec...")
     try:
         deaths = dc.fetch_latest_deaths(guild)
         if not deaths:
-            await ctx.send("❌ No deaths found.")
+            await ctx.send("No recent deaths found... the guild is alive!! For now 😬")
             return
         latest = deaths[0]
-        await ctx.send(f"Found: **{latest['player-name']}** (class_id: {latest.get('class_id', '?')}) killed by **{latest['killed_by']}**")
+        await ctx.send(f"*(debug)* Found: **{latest['player-name']}** (class_id: `{latest.get('class_id', '?')}`) killed by **{latest['killed_by']}**")
         img_path = dc.build_death_card(latest)
         await ctx.send(file=discord.File(img_path))
     except Exception as e:
@@ -1561,21 +1537,23 @@ async def eventadd(ctx, *, args: str):
     parts = [p.strip() for p in args.split("|")]
     if len(parts) < 5:
         await ctx.send(
-            "Usage: `!eventadd name | description | end_date | prize | stat_key`\n"
-            "Run `!trackable` to see valid stat keys."
+            "Hmm, that doesn't look quite right! Here's how to use it:\n"
+            "`!eventadd name | description | end_date | prize | stat_key`\n"
+            "Example: `!eventadd Shatters Race | Most shatters fame wins | 2026-07-01 | Officer rank | fame`\n"
+            "Run `!trackable` to see all valid stat keys! 📋"
         )
         return
 
     stat = parts[4].lower().strip()
     if stat not in ge.VALID_STATS:
         valid = ", ".join(f"`{k}`" for k in ge.VALID_STATS)
-        await ctx.send(f"Invalid stat. Valid options: {valid}")
+        await ctx.send(f"Hmm... `{stat}` isn't a valid stat key! Valid options are: {valid}\n*(Run `!trackable` for the full list with descriptions)*")
         return
 
     snap = gs.get_latest_snapshot()
     if not snap:
         await ctx.send(
-            "No snapshot exists yet — taking one now before creating the event..."
+            "No snapshot exists yet — I'll take one real quick before creating the event! Give me a moment..."
         )
         async with selenium_lock:
             members = await asyncio.get_event_loop().run_in_executor(
@@ -1587,14 +1565,14 @@ async def eventadd(ctx, *, args: str):
 
     event = ge.add_event(parts[0], parts[1], parts[2], parts[3], stat)
     if not event:
-        await ctx.send("Failed to create event.")
+        await ctx.send("Oof... something went wrong creating the event. Try again? 😓")
         return
 
     member_count = len(event.get("baseline", {}))
     await ctx.send(
-        f"Event **{event['name']}** created! ID: `#{event['id']}`\n"
-        f"Tracking: **{event['stat_label']}** for **{member_count}** members.\n"
-        f"Leaderboard updates daily at noon UTC. Use `!event {event['id']}` to check standings."
+        f"🎉 Event **{event['name']}** is live!! ID: `#{event['id']}`\n"
+        f"Tracking **{event['stat_label']}** across **{member_count}** members.\n"
+        f"I'll post leaderboard updates daily at noon UTC! Check standings anytime with `!event {event['id']}` 📊"
     )
 
 
@@ -1613,7 +1591,7 @@ async def events(ctx):
     lines = [top(), ctr("~ ACTIVE GUILD EVENTS ~"), mid()]
 
     if not active:
-        lines.append(ctr("No active events right now"))
+        lines.append(ctr("No active events... someone start one!! (!eventadd)"))
     else:
         for i, e in enumerate(active):
             if i > 0:
@@ -1634,7 +1612,7 @@ async def event_detail(ctx, event_id: int):
     """Shows full leaderboard for an event. Usage: !event 1"""
     e = ge.get_event_by_id(event_id)
     if not e:
-        await ctx.send(f"No event found with ID `#{event_id}`.")
+        await ctx.send(f"Hmm... I couldn't find an event with ID `#{event_id}`. Try `!events` to see active ones!")
         return
 
     board = ge.get_event_leaderboard(e)
@@ -1660,7 +1638,7 @@ async def event_detail(ctx, event_id: int):
     lines.append(mid())
 
     if not board:
-        lines.append(ctr("No snapshot data available yet"))
+        lines.append(ctr("No data yet — run !snapshot to get things started!"))
     else:
         lines.append(row(f"{'Player':<18} {'Gained':>10}   {'Total':>12}"))
         lines.append(mid())
@@ -1682,19 +1660,19 @@ async def eventend(ctx, event_id: int):
     """
     e = ge.get_event_by_id(event_id)
     if not e:
-        await ctx.send(f"No event found with ID `#{event_id}`.")
+        await ctx.send(f"Hmm... I couldn't find an event with ID `#{event_id}`. Try `!events` to see active ones!")
         return
 
     success = ge.end_event(event_id)
     if success:
         e = ge.get_event_by_id(event_id)
         await ctx.send(
-            f"Event **{e['name']}** has ended!\n"
-            f"The winner is **{e['winner']}** with the highest **{e['stat_label']}** gain!\n"
-            f"Congratulations on winning **{e['prize']}**!"
+            f"🏆 **{e['name']}** is officially over!!\n"
+            f"The winner is **{e['winner']}** — highest **{e['stat_label']}** gain of the competition!\n"
+            f"Congratulations on winning **{e['prize']}**!! Well deserved!! 🎉"
         )
     else:
-        await ctx.send(f"Could not end event `#{event_id}`.")
+        await ctx.send(f"Hmm... something went wrong ending event `#{event_id}`. It might already be over, or there's no data yet 😅")
 
 
 @bot.command(name="eventall")
@@ -1702,7 +1680,7 @@ async def eventall(ctx):
     """Shows all events including ended ones."""
     all_events = ge.get_all_events()
     if not all_events:
-        await ctx.send("No events have been created yet.")
+        await ctx.send("No events created yet! Use `!eventadd` to start a competition 🏆")
         return
 
     W = 46
@@ -1737,23 +1715,24 @@ async def build(ctx, class_name: str = "", stat: str = ""):
             list(bs.CLASS_BUILDS.keys()) + list(bs.SSNL_ONLY_CLASSES)
         )
         await ctx.send(
-            "Usage: `!build <class> <stat>`\n"
-            "Example: `!build archer attack`\n"
-            f"Classes: `{'`, `'.join(all_classes)}`"
+            "Oops! Tell me which class (and optionally a stat) 😅\n"
+            "**Usage:** `!build <class> [stat]`\n"
+            "**Example:** `!build archer attack` · `!build wizard` · `!build knight defense`\n"
+            f"**Classes:** `{'`, `'.join(all_classes)}`"
         )
         return
 
     if class_name in bs.SSNL_ONLY_CLASSES:
         await ctx.send(
-            f"**{class_name.title()}** is not on the DPS leaderboard. "
-            f"SSNL build support coming soon!"
+            f"**{class_name.title()}** isn't on the DPS leaderboard — they're SSNL only right now.\n"
+            f"I'm working on it!! (Not really, nobody told me to, but maybe someday) 🛠️"
         )
         return
 
     if class_name not in bs.CLASS_BUILDS:
         close = [c for c in bs.CLASS_BUILDS if class_name in c]
         hint  = f" Did you mean: `{'`, `'.join(close)}`?" if close else ""
-        await ctx.send(f"Unknown class `{class_name}`.{hint}")
+        await ctx.send(f"Hmm... `{class_name}` doesn't ring a bell!{hint}\nCheck `!build` for the full class list 📋")
         return
 
     available = bs.CLASS_BUILDS[class_name]
@@ -1783,13 +1762,13 @@ async def build(ctx, class_name: str = "", stat: str = ""):
     is_support     = class_name in bs.SUPPORT_CLASSES
     display_stat   = "" if stat == "general" else f" {stat.title()}"
 
-    await ctx.send(f"Fetching **{class_name.title()}{display_stat}** build data...")
+    await ctx.send(f"Pulling up **{class_name.title()}{display_stat}** builds from the leaderboard!! One moment... ⚔️")
 
     data = await asyncio.get_event_loop().run_in_executor(
         None, bs.fetch_build_data, build_key_data, 15
     )
     if not data or not data.get("rows"):
-        await ctx.send("Could not fetch build data. Try again later.")
+        await ctx.send("Hmm... couldn't grab the build data right now. RealmShark might be down. Try again in a bit? 😓")
         return
 
     rows     = data["rows"]
@@ -1874,22 +1853,23 @@ async def build(ctx, class_name: str = "", stat: str = ""):
 async def find_event(ctx, *, query: str = ""):
     if not query:
         await ctx.send(
-            "Usage: `!find <event/dungeon/item>`\n"
+            "Tell me what to search for!! 🔍\n"
+            "**Usage:** `!find <event / dungeon / item>`\n"
             "• `!find cube` — active Cube Gods\n"
-            "• `!find shatters` — active events dropping The Shatters portal\n"
-            "• `!find juggernaut` — active events dropping that item\n"
+            "• `!find shatters` — events dropping The Shatters portal\n"
+            "• `!find juggernaut` — events dropping that white bag item\n"
             "• `!find o3` — top 5 realms closest to O3"
         )
         return
 
-    await ctx.send(f"Searching for **{query}**...")
+    await ctx.send(f"On it!! Scanning the realms for **{query}**... 🔍")
 
     result = await asyncio.get_event_loop().run_in_executor(
         None, et.find_event, query
     )
 
     if result.get("type") == "error":
-        await ctx.send(f"Error: {result['message']}")
+        await ctx.send(f"Ugh, something went wrong: {result['message']} 😓")
         return
 
     is_o3        = result["type"] == "o3"
@@ -1912,8 +1892,8 @@ async def find_event(ctx, *, query: str = ""):
     # No results and no possible events
     if not results and not possible:
         await ctx.send(
-            f"No active events found for **{query_name}**. "
-            f"Try `!findevents` to browse all searchable events."
+            f"No active **{query_name}** found in any realm right now. 🌍\n"
+            f"Maybe check back later? Or try a different search!"
         )
         return
 
@@ -1940,77 +1920,85 @@ async def find_event(ctx, *, query: str = ""):
 async def leaderboards(ctx):
     """Send a pinnable overview of all leaderboard and stat commands."""
     embed = discord.Embed(
-        title="📊 The Atheneum — Commands Guide",
-        color=0x2b2d42
-    )
-
-    embed.add_field(
-        name="👤 Player Stats",
-        value=(
-            "`!player <name>` — Full player profile (chars, fame, exalts)\n"
-            "`!characters <name>` — List all characters\n"
-            "`!shinies <name>` — Shiny item collection\n"
-            "`!search <name>` — Search for a player"
+        title="📋 The Atheneum — Command Guide",
+        description=(
+            "*Hi!! I'm Guill, your friendly (and honestly quite underappreciated) guild intern.*\n"
+            "*Here's a quick overview — use `!commands` for the full list, or `!help <command>` for details on any specific one!*"
         ),
-        inline=False
+        color=0x8e44ad
     )
 
     embed.add_field(
-        name="🏆 Guild Leaderboards",
+        name="👤 Player Lookup",
         value=(
-            "`!gtop` — Top guild members by fame\n"
-            "`!gdaily` — Today's fame gains\n"
-            "`!gweekly` — This week's fame gains\n"
-            "`!gseason` — Season leaderboard\n"
-            "`!gstats` — Guild overall statistics"
+            "`!player <name>` — Full profile scroll\n"
+            "`!search <name>` — Recruitment card\n"
+            "`!characters <name>` — Characters & gear\n"
+            "`!shinies <name>` — Shiny collection\n"
+            "`!gstats <name>` — Stat deltas"
         ),
-        inline=False
+        inline=True
     )
 
     embed.add_field(
-        name="⚔️ Build Leaderboards",
+        name="🏰 Guild Roster",
         value=(
-            "`!build <class>` — Top DPS builds for a class\n"
-            "`!build <class> <type>` — Specific build type (attack / defense / speed / etc)\n"
-            "Example: `!build wizard attack` · `!build knight defense`"
-        ),
-        inline=False
-    )
-
-    embed.add_field(
-        name="🌍 Event Finder",
-        value=(
-            "`!find <event>` — Find active realm events (top 3 shown)\n"
-            "`!find o3` — Top 5 realms closest to spawning O3\n"
-            "Examples: `!find cube` · `!find avatar` · `!find monolith` · `!find rift`"
-        ),
-        inline=False
-    )
-
-    embed.add_field(
-        name="📋 Guild Events & Parties",
-        value=(
-            "`!events` — Active guild events\n"
-            "`!eventadd <name>` — Start a guild event\n"
-            "`!eventend <name>` — End a guild event\n"
-            "`!parties` — Active party listings\n"
-            "`!gparty` — Start a guild party"
-        ),
-        inline=False
-    )
-
-    embed.add_field(
-        name="🔍 Online & Roster",
-        value=(
-            "`!online` — Who's currently online\n"
             "`!groster` — Full guild roster\n"
-            "`!afk` — AFK members"
+            "`!online` — Who's online\n"
+            "`!afk` — Offline 30+ days\n"
+            "`!gdiscord` — Roster vs Discord\n"
+            "`!gparty` / `!parties` — Party info"
         ),
-        inline=False
+        inline=True
     )
 
-    embed.set_footer(text="The Atheneum · Use !commands for the full command list")
+    embed.add_field(
+        name="📊 Fame & Leaderboards",
+        value=(
+            "`!gseason [n]` — Season fame board\n"
+            "`!gtop [n]` — Top N members\n"
+            "`!gdaily` — Today's gains\n"
+            "`!gweekly` — This week's gains\n"
+            "`!gshinies [item]` — Shiny board"
+        ),
+        inline=True
+    )
 
+    embed.add_field(
+        name="⚔️ Build & Items",
+        value=(
+            "`!build <class> [stat]` — DPS builds\n"
+            "`!item <name>` — Item wiki lookup\n"
+            "`!find <event>` — Active realm events\n"
+            "`!find o3` — O3 realm scores"
+        ),
+        inline=True
+    )
+
+    embed.add_field(
+        name="📅 Guild Events",
+        value=(
+            "`!events` — Active competitions\n"
+            "`!event <id>` — Event standings\n"
+            "`!eventadd ...` — Create an event\n"
+            "`!eventend <id>` — Crown the winner\n"
+            "`!eventall` — All events"
+        ),
+        inline=True
+    )
+
+    embed.add_field(
+        name="🎲 Trivia",
+        value=(
+            "`!trivia start [diff] [n]` — Start a round\n"
+            "`!trivia quick` — Single question\n"
+            "`!trivia scores` — Leaderboard\n"
+            "`!trivia add ...` — Submit a question"
+        ),
+        inline=True
+    )
+
+    embed.set_footer(text="The Atheneum · Guill the Intern™ · !commands for the full list · !help <command> for details")
     await ctx.send(embed=embed)
 
 
@@ -2042,9 +2030,9 @@ async def auto_trivia_task():
         hint       = q.get("hint", "")
 
         await channel.send(
-            f"🎲 **Auto Trivia!** {diff_emoji} — worth **{points}** pt{'s' if points != 1 else ''}\n"
+            f"🎲 **Auto Trivia time!!** {diff_emoji} — worth **{points}** pt{'s' if points != 1 else ''} — I picked this one myself!\n"
             f"**{q['q']}**\n"
-            f"⏳ Open until answered or 1 hour passes!"
+            f"⏳ Open until someone gets it or 1 hour passes!"
         )
 
         # Send hint after 30 minutes
@@ -2064,8 +2052,8 @@ async def auto_trivia_task():
 
             if remaining <= 0:
                 await channel.send(
-                    f"⏰ Auto trivia expired! Nobody got it.\n"
-                    f"The answer was **{q['a'][0]}**"
+                    f"⏰ Auto trivia expired!! Nobody got it... disappointing tbh.\n"
+                    f"The answer was **{q['a'][0]}** — come on guys!!"
                 )
                 break
 
@@ -2078,8 +2066,8 @@ async def auto_trivia_task():
                 msg = await bot.wait_for("message", check=check, timeout=60.0)
                 winner = msg.author.display_name
                 await channel.send(
-                    f"✅ **{winner}** got the auto trivia question!\n"
-                    f"The answer was **{q['a'][0]}** (+{points} pt{'s' if points != 1 else ''})"
+                    f"✅ **{winner}** got it!! Great job!!\n"
+                    f"The answer was **{q['a'][0]}** (+{points} pt{'s' if points != 1 else ''}) 🎉"
                 )
                 ts.add_score(winner, points, diff)
                 break
@@ -2096,7 +2084,7 @@ async def trivia(ctx, subcommand: str = "start", *, args: str = ""):
     # ── start ─────────────────────────────────────────────────────────────────
     if subcommand == "start":
         if _trivia_active:
-            await ctx.send("A trivia round is already running! Use `!trivia stop` to end it.")
+            await ctx.send("A trivia round is already running!! Use `!trivia stop` to end it first 🛑")
             return
 
         # Parse: !trivia start [difficulty] [num_questions]
@@ -2135,7 +2123,7 @@ async def trivia(ctx, subcommand: str = "start", *, args: str = ""):
         diff  = args.strip().lower() if args.strip() in ts.DIFFICULTY_CONFIG else "all"
         questions = ts.load_questions(diff)
         if not questions:
-            await ctx.send("No questions found.")
+            await ctx.send("No questions found for that difficulty... I'll add more soon!! Maybe. 😅")
             return
         q = random.choice(questions)
         await ts.ask_question(bot, ctx.channel, q, 1, 1)
@@ -2143,13 +2131,13 @@ async def trivia(ctx, subcommand: str = "start", *, args: str = ""):
     # ── stop ──────────────────────────────────────────────────────────────────
     elif subcommand == "stop":
         if not _trivia_active:
-            await ctx.send("No trivia round is currently running.")
+            await ctx.send("No trivia round is running right now! Nothing to stop 🤷")
             return
         _trivia_stop[0] = True
         if _trivia_task:
             _trivia_task.cancel()
         _trivia_active = False
-        await ctx.send("⛔ Trivia round stopped.")
+        await ctx.send("Trivia stopped!! 🛑 Alright, quiz time is over. For now...")
 
     # ── scores ────────────────────────────────────────────────────────────────
     elif subcommand == "scores":
@@ -2200,7 +2188,7 @@ async def trivia(ctx, subcommand: str = "start", *, args: str = ""):
         ts.save_custom_question(new_q)
         all_q = ts.load_questions("all")
         await ctx.send(
-            f"✅ Question added! Total questions: **{len(all_q)}**\n"
+            f"Question added!! Thanks for contributing!! 🎉 Total questions: **{len(all_q)}**\n"
             f"Preview: *{question}* → `{answer_parts[0]}`"
         )
 
@@ -2282,7 +2270,7 @@ async def gdiscord(ctx):
     Shows guild roster with join date and Discord membership status.
     Highlights members not in the Discord server.
     """
-    await ctx.send("🔍 Fetching guild roster and Discord status...")
+    await ctx.send("Cross-referencing the guild roster against our Discord members... I'm very thorough 🔍 This might take a moment!")
 
     # Get current roster
     async with selenium_lock:
@@ -2290,11 +2278,11 @@ async def gdiscord(ctx):
             None, rs.get_guild_roster, "TheAtheneum"
         )
     if not members:
-        await ctx.send("❌ Could not fetch guild roster.")
+        await ctx.send("Oof... couldn't load the roster. RealmScope might be having a moment. Try again? 😬")
         return
 
     # Get join dates from history page
-    await ctx.send("📅 Fetching join dates...")
+    await ctx.send("Now grabbing join dates... almost done! 📅")
     async with selenium_lock:
         join_dates = await asyncio.get_event_loop().run_in_executor(
             None, rs.get_guild_member_history, "TheAtheneum"
@@ -2367,7 +2355,7 @@ async def gdiscord(ctx):
         mid_(),
     ]
     if not missing:
-        lines.append(ctr_("✅ All members are in Discord!"))
+        lines.append(ctr_("Everyone's in the Discord!! Great work, guild!! 🎉"))
     else:
         for m in missing:
             name = m["name"][:17]
@@ -2410,54 +2398,292 @@ async def gdiscord(ctx):
         chunk_lines.append(lines2[-1])  # footer
         await ctx.send("```\n" + "\n".join(chunk_lines) + "\n```")
 
-COMMAND_LIST = [
-    ("!commands",   "Shows all bot commands"),
-    ("!player",     "Player stats scroll"),
-    ("!search",     "Recruitment card for any player"),
-    ("!characters", "Player's characters & equipment"),
-    ("!shinies",    "Player's shiny collection"),
-    ("!item",       "Item lookup on RealmEye wiki"),
-    ("!parties",    "Top 5 most active parties"),
-    ("!gparty",     "Guild members in parties"),
-    ("!online",     "Guild members online now"),
-    ("!groster",    "Full guild roster with ranks"),
-    ("!afk",        "Members offline 30+ days"),
-    ("!snapshot",   "Save a guild snapshot"),
-    ("!gdaily",     "Seasonal fame gained today"),
-    ("!gweekly",    "Seasonal fame this week"),
-    ("!gseason",    "Season fame leaderboard"),
-    ("!gtop",       "Leaderboard: !gtop fame/stars/etc"),
-    ("!gstats",     "A player's stat progression"),
-    ("!trackable",  "All auto-trackable event stats"),
-    ("!events",     "Active guild events"),
-    ("!event",      "Event leaderboard: !event 1"),
-    ("!eventadd",   "Create auto-tracked event"),
-    ("!eventend",   "End event, auto-pick winner"),
-    ("!eventall",   "All events including ended"),
-    ("!build",      "Class builds: !build archer attack"),
+COMMAND_CATEGORIES = [
+    ("👤  PLAYER LOOKUP", [
+        ("!player <name>",          "Full profile scroll"),
+        ("!search <name>",          "Recruitment card"),
+        ("!characters <name>",      "Characters & gear"),
+        ("!shinies <name>",         "Shiny collection"),
+        ("!gstats <name>",          "Stat deltas & history"),
+    ]),
+    ("🏰  GUILD ROSTER", [
+        ("!groster",                "Full guild roster"),
+        ("!online",                 "Who's online right now"),
+        ("!afk",                    "Offline 30+ days"),
+        ("!gdiscord",               "Roster vs Discord members"),
+        ("!gparty",                 "Members in parties"),
+        ("!parties",                "Top 5 public parties"),
+    ]),
+    ("📊  FAME & LEADERBOARDS", [
+        ("!gseason [n]",            "Season fame board"),
+        ("!gtop [n]",               "Top N by seasonal fame"),
+        ("!gdaily",                 "Fame gained today"),
+        ("!gweekly",                "Fame gained this week"),
+        ("!gshinies [item]",        "Guild shiny leaderboard"),
+        ("!seasonrace",             "Race since season start"),
+    ]),
+    ("⚔️   BUILD & ITEMS", [
+        ("!build <class>",          "Show stat options"),
+        ("!build <class> <stat>",   "Top DPS builds"),
+        ("!item <name>",            "Item stats from wiki"),
+    ]),
+    ("🌍  REALM EVENTS", [
+        ("!find <event>",           "Find active events"),
+        ("!find o3",                "Realms close to O3"),
+    ]),
+    ("📅  GUILD EVENTS", [
+        ("!events",                 "Active competitions"),
+        ("!event <id>",             "Event leaderboard"),
+        ("!eventadd ...",           "Create tracked event"),
+        ("!eventend <id>",          "End event, pick winner"),
+        ("!eventall",               "All events incl. past"),
+        ("!trackable",              "Valid stats to track"),
+    ]),
+    ("🎲  TRIVIA", [
+        ("!trivia start",           "5-question mixed round"),
+        ("!trivia start <d> <n>",   "Custom difficulty/count"),
+        ("!trivia quick [diff]",    "One random question"),
+        ("!trivia scores",          "All-time leaderboard"),
+        ("!trivia stats <name>",    "Player trivia stats"),
+        ("!trivia add ...",         "Submit a question"),
+        ("!trivia list",            "Browse question bank"),
+        ("!trivia stop",            "Stop active round"),
+    ]),
+    ("🔧  ADMIN & UTILS", [
+        ("!snapshot [--shinies]",   "Save baseline (for events/seasonrace)"),
+        ("!newseason",              "Mark season start"),
+        ("!refresh",                "Clear data cache"),
+        ("!leaderboards",           "Pinnable guide embed"),
+        ("!gannounce",              "Post daily report"),
+        ("!testdeath",              "Test death card"),
+    ]),
 ]
+
 
 @bot.command(name="commands")
 async def commands_list(ctx):
-    W = 44
-    CMD_W = 14
-    DESC_W = W - CMD_W - 4
+    W   = 48
+    CW  = 22
+    DW  = W - CW - 4
 
-    def top():  return f"  ╔{'═' * W}╗"
-    def bot():  return f"  ╚{'═' * W}╝"
-    def mid():  return f"  ╠{'═' * W}╣"
-    def row(t): return f"  ║ {t:<{W-2}} ║"
-    def ctr(t): return f"  ║{t:^{W}}║"
+    def top():    return f"  ╔{'═' * W}╗"
+    def bottom(): return f"  ╚{'═' * W}╝"
+    def mid():    return f"  ╠{'═' * W}╣"
+    def div():    return f"  ╟{'─' * W}╢"
+    def row(t):   return f"  ║ {t:<{W-2}} ║"
+    def ctr(t):   return f"  ║{t:^{W}}║"
 
-    lines = []
-    lines.append(top())
-    lines.append(ctr("~ The Atheneum Bot Commands ~"))
-    lines.append(mid())
-    for cmd, desc in COMMAND_LIST:
-        desc = desc[:DESC_W]  # hard truncate if somehow still too long
-        lines.append(row(f"{cmd:<{CMD_W}}  {desc:<{DESC_W}}"))
-    lines.append(bot())
-    await ctx.send("```\n" + "\n".join(lines) + "\n```")
+    def build_page(cats, header):
+        lines = [top(), ctr(header), mid()]
+        for i, (cat_name, cmds) in enumerate(cats):
+            if i > 0:
+                lines.append(div())
+            lines.append(row(f"{cat_name}"))
+            lines.append(div())
+            for cmd, desc in cmds:
+                lines.append(row(f"{cmd:<{CW}}  {desc[:DW]:<{DW}}"))
+        lines.append(bottom())
+        return "```\n" + "\n".join(lines) + "\n```"
+
+    intro = "📋 **Guill's Command Manual** *(I made this myself btw, just saying)*\nUse `!help <command>` for detailed info on any command!"
+    page1 = build_page(COMMAND_CATEGORIES[:4], "~ GUILL'S COMMANDS  (1/2) ~")
+    page2 = build_page(COMMAND_CATEGORIES[4:], "~ GUILL'S COMMANDS  (2/2) ~")
+
+    await ctx.send(intro)
+    await ctx.send(page1)
+    await ctx.send(page2)
+
+
+@bot.command(name="help")
+async def help_cmd(ctx, *, command_name: str = ""):
+    if command_name:
+        command_name = command_name.lower().strip()
+        help_details = {
+            "player": (
+                "!player <name>",
+                "Full scroll-style profile for any RealmEye player.\nIncludes total fame, seasonal fame, account fame, skins, shinies, and exaltations.",
+                "!player Cupdog"
+            ),
+            "search": (
+                "!search <name>",
+                "Recruitment card — great for evaluating applicants.\nIncludes online status, fame, exaltations, skins, shinies, characters, and last seen.",
+                "!search Cupdog"
+            ),
+            "characters": (
+                "!characters <name>",
+                "Lists all characters with class sprites and equipment images.\nEach shows: class, seasonal status, level, fame, and stat progress.",
+                "!characters Cupdog"
+            ),
+            "shinies": (
+                "!shinies <name>",
+                "Full shiny item collection across all seasons.\nIncludes rank, progress, and a visual grid of obtained shinies.",
+                "!shinies Cupdog"
+            ),
+            "gstats": (
+                "!gstats <name>",
+                "Live player stats from RealmScope.\nIncludes total fame, seasonal fame with today/week deltas, stars, exaltations, skins, and shinies.\nNo snapshot required — fully live data.",
+                "!gstats Cupdog"
+            ),
+            "build": (
+                "!build <class> [stat]",
+                "Top DPS/HPS builds from the RealmShark leaderboard.\nRun `!build <class>` first to see available stat options.\nShows top player build, average build, swaps, and enchantments.",
+                "!build wizard attack\n!build knight defense\n!build archer"
+            ),
+            "item": (
+                "!item <item name>",
+                "Item stats from the RealmEye wiki.\nIncludes drop sources, blueprints, enchantments, and item images.\nUse the full item name — spaces or hyphens both work.",
+                "!item void blade\n!item helm of the juggernaut\n!item scepter of devastation"
+            ),
+            "find": (
+                "!find <event / dungeon / item>",
+                "Scans active realms for a specific event, dungeon portal, or drop.\nUse `!find o3` to see realms closest to spawning Oryx 3.\nSearches by event name, dungeon name, or white bag item name.",
+                "!find cube\n!find shatters\n!find juggernaut\n!find o3\n!find avatar"
+            ),
+            "trivia": (
+                "!trivia <subcommand>",
+                "`!trivia start [difficulty] [count]` — Start a round (default: 5 mixed)\n"
+                "`!trivia quick [difficulty]` — One quick question\n"
+                "`!trivia stop` — Stop the current round\n"
+                "`!trivia scores` — All-time leaderboard\n"
+                "`!trivia stats <name>` — One player's stats\n"
+                "`!trivia list` — Browse the question bank\n"
+                "`!trivia add diff | category | question | answer | [hint]` — Submit a question\n\n"
+                "**Difficulties:** easy · medium · hard · expert",
+                "!trivia start hard 10\n!trivia quick expert\n!trivia scores"
+            ),
+            "eventadd": (
+                "!eventadd name | description | end_date | prize | stat_key",
+                "Creates a guild competition with automatic stat tracking.\nLeaderboards update daily at noon UTC.\nRun `!trackable` to see valid stat keys.",
+                "!eventadd Shatters Race | Most shatters fame wins | 2026-07-01 | Officer rank | fame"
+            ),
+            "gshinies": (
+                "!gshinies [item_name]",
+                "No item name: seasonal shiny leaderboard for the whole guild.\nWith item name: searches all members for that specific shiny.",
+                "!gshinies\n!gshinies void blade"
+            ),
+            "gtop": (
+                "!gtop [number]",
+                "Top N guild members by seasonal fame.\nDefault is 10, maximum is 25.",
+                "!gtop\n!gtop 5\n!gtop 25"
+            ),
+            "snapshot": (
+                "!snapshot [--shinies]",
+                "Saves a snapshot of the current guild state.\nNeeded for `!seasonrace` and guild events (`!eventadd`) only.\n`!gseason`, `!gtop`, `!gdaily`, `!gweekly`, `!gstats` all fetch live data — no snapshot needed.\nAdd `--shinies` for a full shiny count scan (takes 2-3 min).",
+                "!snapshot\n!snapshot --shinies"
+            ),
+            "gseason": (
+                "!gseason [top_n]",
+                "Seasonal fame leaderboard — live from the guild roster.\nDefault shows top 15. Cached for 30 minutes.",
+                "!gseason\n!gseason 10\n!gseason 25"
+            ),
+            "gdaily": (
+                "!gdaily",
+                "Today's seasonal fame gains for all members.\nPulls live data from RealmScope (cached 30 min).",
+                "!gdaily"
+            ),
+            "gweekly": (
+                "!gweekly",
+                "Last 7 days of seasonal fame gains for all members.",
+                "!gweekly"
+            ),
+        }
+
+        if command_name in help_details:
+            usage, desc, examples = help_details[command_name]
+            embed = discord.Embed(
+                title=f"📖  `!{command_name}`",
+                description=f"**Usage:** `{usage}`\n\n{desc}",
+                color=0x8e44ad
+            )
+            embed.add_field(
+                name="Example Usage",
+                value=f"```\n{examples}\n```",
+                inline=False
+            )
+            embed.set_footer(text="Guill the Intern™  |  !commands for the full list")
+            await ctx.send(embed=embed)
+        else:
+            await ctx.send(
+                f"Hmm... I don't have specific help written up for `{command_name}` yet 😅\n"
+                f"Try `!commands` for the full list, or just give the command a shot!"
+            )
+        return
+
+    # General help embed
+    embed = discord.Embed(
+        title="📋  The Atheneum — Command Guide",
+        description=(
+            "*Hi!! I'm Guill, your friendly (and honestly quite underappreciated) guild intern.*\n"
+            "*Use `!commands` for the full list, or `!help <command>` for details on any specific one!*"
+        ),
+        color=0x8e44ad
+    )
+    embed.add_field(
+        name="👤 Player Lookup",
+        value=(
+            "`!player <name>` — Full profile scroll\n"
+            "`!search <name>` — Recruitment card\n"
+            "`!characters <name>` — Characters & gear\n"
+            "`!shinies <name>` — Shiny collection\n"
+            "`!gstats <name>` — Stat deltas"
+        ),
+        inline=True
+    )
+    embed.add_field(
+        name="🏰 Guild Roster",
+        value=(
+            "`!groster` — Full guild roster\n"
+            "`!online` — Who's online\n"
+            "`!afk` — Offline 30+ days\n"
+            "`!gdiscord` — Roster vs Discord\n"
+            "`!gparty` / `!parties` — Party info"
+        ),
+        inline=True
+    )
+    embed.add_field(
+        name="📊 Fame & Leaderboards",
+        value=(
+            "`!gseason [n]` — Season fame board\n"
+            "`!gtop [n]` — Top N members\n"
+            "`!gdaily` — Today's gains\n"
+            "`!gweekly` — This week's gains\n"
+            "`!gshinies [item]` — Shiny board"
+        ),
+        inline=True
+    )
+    embed.add_field(
+        name="⚔️ Build & Items",
+        value=(
+            "`!build <class> [stat]` — DPS builds\n"
+            "`!item <name>` — Item wiki lookup\n"
+            "`!find <event>` — Active realm events\n"
+            "`!find o3` — O3 realm scores"
+        ),
+        inline=True
+    )
+    embed.add_field(
+        name="📅 Guild Events",
+        value=(
+            "`!events` — Active competitions\n"
+            "`!event <id>` — Event standings\n"
+            "`!eventadd ...` — Create an event\n"
+            "`!eventend <id>` — Crown the winner\n"
+            "`!eventall` — All events"
+        ),
+        inline=True
+    )
+    embed.add_field(
+        name="🎲 Trivia",
+        value=(
+            "`!trivia start [diff] [n]` — Start a round\n"
+            "`!trivia quick` — Single question\n"
+            "`!trivia scores` — Leaderboard\n"
+            "`!trivia add ...` — Submit a question"
+        ),
+        inline=True
+    )
+    embed.set_footer(text="The Atheneum  ·  Guill the Intern™  ·  !commands for the full list  ·  !help <command> for details")
+    await ctx.send(embed=embed)
 
 discord_key = os.getenv("DISCORD_KEY")
 bot.run(discord_key)
