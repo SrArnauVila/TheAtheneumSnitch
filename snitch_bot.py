@@ -80,6 +80,7 @@ intents.message_content = os.getenv("ENABLE_MESSAGE_CONTENT", "false").lower() =
 bot = commands.Bot(command_prefix='!', intents=intents)
 bot.remove_command("help")  # We have our own !help with Guill flair
 channel_id = int(os.getenv("CHANNEL_ID"))
+deaths_channel_id = int(os.getenv("DEATHS_CHANNEL_ID", "0")) or None
 channel = None
 guild = os.getenv("GUILD_NAME")
 
@@ -187,28 +188,24 @@ async def run_guild_graveyard():
             current_key = f"{latest['player-name']}_{latest['time']}"
 
             if current_key != last_death_name_time:
-                last_death_name_time = current_key
+                # Find #deaths channel before doing anything irreversible
+                if deaths_channel_id:
+                    d_channel = bot.get_channel(deaths_channel_id)
+                else:
+                    d_channel = discord.utils.get(bot.get_all_channels(), name="deaths")
+                if not d_channel:
+                    print(f"Could not find #deaths channel (id={deaths_channel_id})")
+                    await asyncio.sleep(60)
+                    continue
 
-                # Save to file
-                with open("last death.json", "w") as f:
-                    json.dump(latest, f)
-
-                # Build the death card image
+                # Build the death card image off the event loop
                 try:
-                    imd.Download_Images()
-                    img_path = dc.build_death_card(latest)
+                    img_path = await asyncio.get_event_loop().run_in_executor(
+                        None, dc.build_death_card, latest
+                    )
                 except Exception as e:
                     print(f"Death card build error: {e}")
                     img_path = None
-
-                # Find #deaths channel
-                deaths_channel = discord.utils.get(
-                    bot.get_all_channels(), name="deaths"
-                )
-                if not deaths_channel:
-                    print("Could not find #deaths channel")
-                    await asyncio.sleep(60)
-                    continue
 
                 msg = (
                     f"☠️ **{latest['player-name']}** has fallen... I watched from my desk and I'm not okay\n"
@@ -220,9 +217,14 @@ async def run_guild_graveyard():
                 )
 
                 if img_path and os.path.exists(img_path):
-                    await deaths_channel.send(msg, file=discord.File(img_path))
+                    await d_channel.send(msg, file=discord.File(img_path))
                 else:
-                    await deaths_channel.send(msg)
+                    await d_channel.send(msg)
+
+                # Only mark as seen after successfully sending
+                last_death_name_time = current_key
+                with open("last death.json", "w") as f:
+                    json.dump(latest, f)
 
                 print(f"Death announced: {latest['player-name']} killed by {latest['killed_by']}")
 
