@@ -77,7 +77,15 @@ def fetch_latest_deaths(guild_name: str) -> list:
             item_name = title.split("\n")[0].strip() if title else "Unknown"
             title_first = item_name.split()[0].lower() if item_name else ""
             rarity = title_first if title_first in _RARITIES else ""
-            equipment.append({"name": item_name, "href": href, "rarity": rarity})
+            # y ≥ 96 → shiny sprite in the sheet; y < 96 → normal sprite
+            is_shiny = False
+            try:
+                bp = span.get("style", "").split("background-position:")[1].strip()
+                iy = abs(int(bp.split("px")[1].strip().split("px")[0].strip()))
+                is_shiny = iy >= 96
+            except Exception:
+                pass
+            equipment.append({"name": item_name, "href": href, "rarity": rarity, "shiny": is_shiny})
 
         # Stats — read the visible "X/8" text directly; data-stats[0] is unrelated
         stats_span = tds[6].find("span", class_="player-stats")
@@ -163,13 +171,19 @@ def _draw_class_sprite(class_id: int) -> Image.Image:
 
 ITEM_CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images", "items")
 
-def _fetch_item_image(href: str) -> Optional[Image.Image]:
-    """Download item sprite from RealmEye wiki page, cached locally by slug."""
+def _fetch_item_image(href: str, is_shiny: bool = False) -> Optional[Image.Image]:
+    """Download item sprite from RealmEye wiki page, cached locally by slug.
+
+    Shiny items are detected via background-position y ≥ 96 on the death page
+    (shiny sprites sit lower in the sprite sheet than normal sprites).
+    The wiki page shows a separate '(Shiny)' image for items that have one.
+    """
     if not href:
         return None
     slug = href.strip("/").split("/")[-1]
+    suffix = "_shiny" if is_shiny else ""
     os.makedirs(ITEM_CACHE_DIR, exist_ok=True)
-    cache_path = os.path.join(ITEM_CACHE_DIR, f"{slug}.png")
+    cache_path = os.path.join(ITEM_CACHE_DIR, f"{slug}{suffix}.png")
 
     if os.path.exists(cache_path):
         try:
@@ -188,11 +202,19 @@ def _fetch_item_image(href: str) -> Optional[Image.Image]:
         if not wiki_div:
             return None
 
-        first_img = wiki_div.find("img")
-        if not first_img:
+        target_img = None
+        if is_shiny:
+            for img in wiki_div.find_all("img"):
+                if "(Shiny)" in img.get("alt", ""):
+                    target_img = img
+                    break
+        if not target_img:
+            target_img = wiki_div.find("img")   # normal, or fallback when no shiny variant exists
+
+        if not target_img:
             return None
 
-        img_src = first_img.get("src", "")
+        img_src = target_img.get("src", "")
         if not img_src:
             return None
 
@@ -206,7 +228,7 @@ def _fetch_item_image(href: str) -> Optional[Image.Image]:
 
         return Image.open(cache_path).convert("RGBA").resize((ITEM_SIZE, ITEM_SIZE), Image.NEAREST)
     except Exception as e:
-        print(f"Item fetch error for {href}: {e}")
+        print(f"Item fetch error for {href} (shiny={is_shiny}): {e}")
         return None
 
 
@@ -280,7 +302,7 @@ def build_death_card(death: dict, out_path: str = "./images/death_output.png"):
             overlay = Image.new("RGBA", (ITEM_SIZE, ITEM_SIZE), rarity_color)
             card.paste(overlay, (ix, item_y), overlay)
         try:
-            item_img = _fetch_item_image(item.get("href", ""))
+            item_img = _fetch_item_image(item.get("href", ""), item.get("shiny", False))
             if item_img:
                 card.paste(item_img, (ix, item_y), item_img)
         except Exception as e:
