@@ -14,9 +14,17 @@ TEXT_PRIMARY    = (255, 255, 255)
 TEXT_SECONDARY  = (180, 180, 200)
 TEXT_MUTED      = (120, 120, 140)
 
-SPRITE_SIZE = 50
-ITEM_SIZE   = 40
+SPRITE_SIZE  = 50
+ITEM_SIZE    = 40
 ITEM_SPACING = 44
+
+_RARITIES = {"divine", "legendary", "rare", "uncommon"}
+RARITY_COLORS = {
+    "divine":    (255, 200,   0, 90),
+    "legendary": (180,  60, 255, 90),
+    "rare":      ( 60, 130, 255, 90),
+    "uncommon":  ( 60, 200,  80, 90),
+}
 
 
 def fetch_latest_deaths(guild_name: str) -> list:
@@ -67,7 +75,9 @@ def fetch_latest_deaths(guild_name: str) -> list:
                 continue
             title = span.get("title", "")
             item_name = title.split("\n")[0].strip() if title else "Unknown"
-            equipment.append({"name": item_name, "href": href})
+            title_first = item_name.split()[0].lower() if item_name else ""
+            rarity = title_first if title_first in _RARITIES else ""
+            equipment.append({"name": item_name, "href": href, "rarity": rarity})
 
         # Stats — read the visible "X/8" text directly; data-stats[0] is unrelated
         stats_span = tds[6].find("span", class_="player-stats")
@@ -265,6 +275,10 @@ def build_death_card(death: dict, out_path: str = "./images/death_output.png"):
             [(ix, item_y), (ix + ITEM_SIZE, item_y + ITEM_SIZE)],
             fill=(35, 35, 50), outline=(60, 60, 80)
         )
+        rarity_color = RARITY_COLORS.get(item.get("rarity", ""))
+        if rarity_color:
+            overlay = Image.new("RGBA", (ITEM_SIZE, ITEM_SIZE), rarity_color)
+            card.paste(overlay, (ix, item_y), overlay)
         try:
             item_img = _fetch_item_image(item.get("href", ""))
             if item_img:
