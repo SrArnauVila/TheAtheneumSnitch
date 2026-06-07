@@ -38,7 +38,8 @@ def fetch_item_image(item_id: int, item_name: str) -> Optional[Image.Image]:
 def build_tier_image(tier_label: str, items: dict, enchants: dict,
                      dps: float, total_dmg: float,
                      swap_items: dict = None, is_support: bool = False,
-                     alt_enchants: dict = None) -> Image.Image:
+                     alt_enchants: dict = None,
+                     stats_line: str = None) -> Image.Image:
 
     SLOT_ORDER  = ["Weapon", "Ability", "Armor", "Ring"]
     SLOT_COLORS = {
@@ -77,12 +78,15 @@ def build_tier_image(tier_label: str, items: dict, enchants: dict,
     clean_label = tier_label.replace("★", "*").replace("◈", "~")
     draw.text((PAD, 12), clean_label, fill=(220, 220, 255), font=font_hdr)
 
-    # Stats line — bold red, prefix Avg for average build
-    stat_label = "HPS" if is_support else "DPS"
-    prefix     = "Avg " if "AVERAGE" in tier_label else ""
-    stats_text = (f"{prefix}{stat_label}: {dps:,.0f}"
-                  f"     {prefix}Total Dmg: {total_dmg:,.0f}")
-    draw.text((PAD, HEADER_H + 10), stats_text, fill=(220, 60, 60), font=font_bold)
+    # Stats line — bold red
+    if stats_line is not None:
+        draw.text((PAD, HEADER_H + 10), stats_line, fill=(220, 60, 60), font=font_bold)
+    elif dps or total_dmg:
+        stat_label = "HPS" if is_support else "DPS"
+        prefix     = "Avg " if "AVERAGE" in tier_label else ""
+        stats_text = (f"{prefix}{stat_label}: {dps:,.0f}"
+                      f"     {prefix}Total Dmg: {total_dmg:,.0f}")
+        draw.text((PAD, HEADER_H + 10), stats_text, fill=(220, 60, 60), font=font_bold)
 
     # Item slots
     for i, slot in enumerate(SLOT_ORDER):

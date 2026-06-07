@@ -1570,101 +1570,83 @@ async def build(ctx, class_name: str = "", stat: str = ""):
     class_name = class_name.lower().strip()
     stat       = stat.lower().strip()
 
+    all_classes_set = set(bs.CLASS_BUILDS.keys()) | set(bs.SSNL_CLASS_MAP.keys())
+
+    # ── No class given → usage + full class list ──────────────────────────────
     if not class_name:
-        all_classes = sorted(
-            list(bs.CLASS_BUILDS.keys()) + list(bs.SSNL_ONLY_CLASSES)
-        )
+        all_classes = sorted(all_classes_set)
         await ctx.send(
             "Oops! Tell me which class (and optionally a stat) 😅\n"
             "**Usage:** `!build <class> [stat]`\n"
-            "**Example:** `!build archer attack` · `!build wizard` · `!build knight defense`\n"
-            f"**Classes:** `{'`, `'.join(all_classes)}`"
+            "**Examples:** `!build wizard attack` · `!build sorcerer hp` · `!build knight defense`\n"
+            f"**Classes:** `{'`, `'.join(all_classes)}`\n"
+            "**DPS stats:** `attack`, `defense`, `speed`, `vitality`, `wisdom`, `mana`\n"
+            "**All 8 stat builds:** `hp`, `mp`, `attack`, `defense`, `speed`, `dexterity`, `vitality`, `wisdom`"
         )
         return
 
-    if class_name in bs.SSNL_ONLY_CLASSES:
+    # ── Invalid class ─────────────────────────────────────────────────────────
+    if class_name not in all_classes_set:
+        close = sorted(c for c in all_classes_set if class_name in c or c.startswith(class_name[:3]))
+        hint  = f"\nDid you mean: `{'`, `'.join(close)}`?" if close else ""
         await ctx.send(
-            f"**{class_name.title()}** isn't on the DPS leaderboard — they're SSNL only right now.\n"
-            f"I'm working on it!! (Not really, nobody told me to, but maybe someday) 🛠️"
+            f"Hmm... `{class_name}` doesn't ring a bell!{hint}\n"
+            f"Type `!build` to see all available classes 📋"
         )
         return
 
-    if class_name not in bs.CLASS_BUILDS:
-        close = [c for c in bs.CLASS_BUILDS if class_name in c]
-        hint  = f" Did you mean: `{'`, `'.join(close)}`?" if close else ""
-        await ctx.send(f"Hmm... `{class_name}` doesn't ring a bell!{hint}\nCheck `!build` for the full class list 📋")
-        return
+    available_dps  = bs.CLASS_BUILDS.get(class_name, {})
+    is_single_dps  = available_dps and list(available_dps.keys()) == ["general"]
 
-    available = bs.CLASS_BUILDS[class_name]
-
-    # Warrior and single-build classes skip stat selection
-    if list(available.keys()) == ["general"]:
+    # Warrior special case: no stat → run general DPS build immediately
+    if is_single_dps and not stat:
         stat = "general"
 
-    if not stat or stat not in available:
+    # ── No stat given → show options table ───────────────────────────────────
+    if not stat:
         W = 50
         def top():  return f"  ╔{'═' * W}╗"
         def bot_(): return f"  ╚{'═' * W}╝"
         def mid():  return f"  ╠{'═' * W}╣"
+        def div():  return f"  ╟{'─' * W}╢"
         def row(t): return f"  ║ {t:<{W-2}} ║"
         def ctr(t): return f"  ║{t:^{W}}║"
 
         lines = [top(), ctr(f"~ {class_name.title()} Build Options ~"), mid()]
-        for stat_name in available:
-            key  = available[stat_name]["key"]
-            line = f"!build {class_name} {stat_name:<12}  [{key}]"
-            lines.append(row(line[:W-2]))
+
+        if available_dps:
+            lines.append(row("DPS Leaderboard Builds:"))
+            lines.append(div())
+            for sname, kdata in available_dps.items():
+                lines.append(row(f"  !build {class_name} {sname:<12}  [{kdata['key']}]"))
+            lines.append(mid())
+
+        covered = {bs.DPS_TO_SSNL.get(k) for k in available_dps} - {None}
+        ssnl_opts = [(inp, disp) for inp, disp in bs.SSNL_STATS_DISPLAY if disp not in covered]
+        lines.append(row("SSNL Stat Leaderboard Builds:"))
+        lines.append(div())
+        for inp, disp in ssnl_opts:
+            lines.append(row(f"  !build {class_name} {inp:<12}  ({disp})"))
+
         lines.append(bot_())
         await ctx.send("```\n" + "\n".join(lines) + "\n```")
         return
 
-    build_key_data = available[stat]
-    is_support     = class_name in bs.SUPPORT_CLASSES
-    display_stat   = "" if stat == "general" else f" {stat.title()}"
+    # ── Route: DPS or SSNL? ───────────────────────────────────────────────────
+    use_dps  = stat in available_dps
+    use_ssnl = (not use_dps) and (stat in bs.SSNL_STAT_MAP)
 
-    await ctx.send(f"Pulling up **{class_name.title()}{display_stat}** builds from the leaderboard!! One moment... ⚔️")
-
-    data = await asyncio.get_event_loop().run_in_executor(
-        None, bs.fetch_build_data, build_key_data, 15
-    )
-    if not data or not data.get("rows"):
-        await ctx.send("Hmm... couldn't grab the build data right now. RealmShark might be down. Try again in a bit? 😓")
+    if not use_dps and not use_ssnl:
+        covered  = {bs.DPS_TO_SSNL.get(k) for k in available_dps} - {None}
+        dps_list = list(available_dps.keys())
+        ssnl_list = [inp for inp, disp in bs.SSNL_STATS_DISPLAY if disp not in covered]
+        await ctx.send(
+            f"Hmm, `{stat}` isn't a valid stat for **{class_name.title()}** 🤔\n"
+            + (f"**DPS stats:** `{'`, `'.join(dps_list)}`\n" if dps_list else "")
+            + f"**Stat builds:** `{'`, `'.join(ssnl_list)}`\n"
+            f"Try `!build {class_name}` to see all options!"
+        )
         return
-
-    rows     = data["rows"]
-    meta     = data.get("meta", {})
-    analysis = bs.analyze_builds(rows)
-
-    def make_images():
-        top_row   = analysis["top"]
-        top_items = {item["slot"]: item for item in top_row.get("equipment", [])}
-
-        top_img = bi.build_tier_image(
-            tier_label   = f"* TOP BUILD -- #{top_row['rank']} {top_row['playerName']}",
-            items        = top_items,
-            enchants     = analysis["top_enchants"],
-            alt_enchants = analysis["alt_enchants"],
-            dps          = top_row.get("dps", 0),
-            total_dmg    = top_row.get("totalDamage", 0),
-            swap_items   = None,
-            is_support   = is_support,
-        )
-
-        avg_img = bi.build_tier_image(
-            tier_label   = f"~ AVERAGE BUILD  (Top 15 Consensus)",
-            items        = analysis["avg_items"],
-            enchants     = analysis["top_enchants"],
-            alt_enchants = analysis["alt_enchants"],
-            dps          = analysis["stat_avgs"].get("dps", 0),
-            total_dmg    = analysis["stat_avgs"].get("totalDamage", 0),
-            swap_items   = analysis["swap_items"],
-            is_support   = is_support,
-        )
-        return top_img, avg_img
-
-    top_img, avg_img = await asyncio.get_event_loop().run_in_executor(
-        None, make_images
-    )
 
     def img_to_file(img, filename):
         buf = io.BytesIO()
@@ -1672,11 +1654,6 @@ async def build(ctx, class_name: str = "", stat: str = ""):
         buf.seek(0)
         return discord.File(buf, filename=filename)
 
-    top_file = img_to_file(top_img, f"top_{class_name}_{stat}.png")
-    avg_file = img_to_file(avg_img, f"avg_{class_name}_{stat}.png")
-
-    # Clean info scroll
-    season_str = data.get("meta", {}).get("season", "current").upper()
     W_   = 46
     def top_():  return f"  ╔{'═' * W_}╗"
     def bot__(): return f"  ╚{'═' * W_}╝"
@@ -1684,29 +1661,108 @@ async def build(ctx, class_name: str = "", stat: str = ""):
     def row_(t): return f"  ║ {t:<{W_-2}} ║"
     def ctr_(t): return f"  ║{t:^{W_}}║"
 
-    # Get clean build description — strip technical noise
-    notes      = meta.get("notes", [])
-    build_desc = notes[0] if notes else ""
-    build_desc = re.sub(
-        r'\.\s*(Weapon DPS.*|Exalt.*|Ability activations.*)',
-        '', build_desc, flags=re.IGNORECASE
-    ).strip()
-    # Remove trailing period
-    build_desc = build_desc.rstrip(".")
+    if use_dps:
+        # ── DPS PATH ─────────────────────────────────────────────────────────
+        build_key_data = available_dps[stat]
+        is_support     = class_name in bs.SUPPORT_CLASSES
+        display_stat   = "" if stat == "general" else f" {stat.title()}"
 
-    lines = [
-        top_(),
-        ctr_(f"~ {class_name.title()}{display_stat} Build ~"),
-        ctr_(f"Top 15  |  Season {season_str}"),
-        mid_(),
-    ]
-    if build_desc:
-        lines.append(row_(build_desc[:W_-2]))
-    lines.append(bot__())
+        await ctx.send(f"Pulling up **{class_name.title()}{display_stat}** builds from the DPS leaderboard!! One moment... ⚔️")
 
-    await ctx.send("```\n" + "\n".join(lines) + "\n```")
-    await ctx.send(file=top_file)
-    await ctx.send(file=avg_file)
+        data = await asyncio.get_event_loop().run_in_executor(
+            None, bs.fetch_build_data, build_key_data, 15
+        )
+        if not data or not data.get("rows"):
+            await ctx.send(
+                "Hmm... couldn't grab the DPS build data right now 😓\n"
+                "RealmShark might be down — try again in a bit!"
+            )
+            return
+
+        rows     = data["rows"]
+        meta     = data.get("meta", {})
+        analysis = bs.analyze_builds(rows)
+
+        def make_avg_dps():
+            return bi.build_tier_image(
+                tier_label   = f"~ AVERAGE BUILD  (Top {len(rows)} Consensus)",
+                items        = analysis["avg_items"],
+                enchants     = analysis["top_enchants"],
+                alt_enchants = analysis["alt_enchants"],
+                dps          = analysis["stat_avgs"].get("dps", 0),
+                total_dmg    = analysis["stat_avgs"].get("totalDamage", 0),
+                swap_items   = analysis["swap_items"],
+                is_support   = is_support,
+            )
+
+        avg_img    = await asyncio.get_event_loop().run_in_executor(None, make_avg_dps)
+        season_str = meta.get("season", bs.get_current_season()).upper()
+
+        notes      = meta.get("notes", [])
+        build_desc = notes[0] if notes else ""
+        build_desc = re.sub(
+            r'\.\s*(Weapon DPS.*|Exalt.*|Ability activations.*)',
+            '', build_desc, flags=re.IGNORECASE
+        ).strip().rstrip(".")
+
+        lines = [top_(), ctr_(f"~ {class_name.title()}{display_stat} Build ~"),
+                 ctr_(f"Top {len(rows)}  |  Season {season_str}  |  DPS Leaderboard"), mid_()]
+        if build_desc:
+            lines.append(row_(build_desc[:W_-2]))
+        lines.append(bot__())
+
+        await ctx.send("```\n" + "\n".join(lines) + "\n```")
+        await ctx.send(file=img_to_file(avg_img, f"avg_{class_name}_{stat}.png"))
+
+    else:
+        # ── SSNL PATH ─────────────────────────────────────────────────────────
+        ssnl_stat  = bs.SSNL_STAT_MAP[stat]
+        ssnl_class = bs.SSNL_CLASS_MAP[class_name]
+
+        await ctx.send(
+            f"Pulling up **{class_name.title()} {ssnl_stat}** builds from the SSNL leaderboard!! "
+            f"One moment... 📊"
+        )
+
+        data = await asyncio.get_event_loop().run_in_executor(
+            None, bs.fetch_ssnl_data, ssnl_class, ssnl_stat
+        )
+        if not data or not data.get("rows"):
+            await ctx.send(
+                f"Couldn't find any data for **{class_name.title()} {ssnl_stat}** right now 😓\n"
+                "The leaderboard might be empty or the tracker might be down — try again in a bit!"
+            )
+            return
+
+        rows     = data["rows"]
+        analysis = bs.analyze_builds(rows)
+
+        top_val    = rows[0].get("statValue", 0) if rows else 0
+        stats_line = f"Best {ssnl_stat}: {top_val:,}  (Top {len(rows)} {ssnl_class}s  |  SSNL)"
+
+        def make_avg_ssnl():
+            return bi.build_tier_image(
+                tier_label   = f"~ AVERAGE BUILD  (Top {len(rows)} {ssnl_stat})",
+                items        = analysis["avg_items"],
+                enchants     = analysis["top_enchants"],
+                alt_enchants = analysis["alt_enchants"],
+                dps          = 0,
+                total_dmg    = 0,
+                swap_items   = analysis["swap_items"],
+                is_support   = False,
+                stats_line   = stats_line,
+            )
+
+        avg_img    = await asyncio.get_event_loop().run_in_executor(None, make_avg_ssnl)
+        season_str = bs.get_current_season().upper()
+
+        lines = [top_(), ctr_(f"~ {class_name.title()} {ssnl_stat} Build ~"),
+                 ctr_(f"Top {len(rows)}  |  Season {season_str}  |  SSNL Leaderboard"), mid_(),
+                 row_(f"Avg build from top {len(rows)} {ssnl_class}s by {ssnl_stat}"),
+                 bot__()]
+
+        await ctx.send("```\n" + "\n".join(lines) + "\n```")
+        await ctx.send(file=img_to_file(avg_img, f"avg_{class_name}_{stat}.png"))
 
 
 @bot.command(name="find")

@@ -77,6 +77,106 @@ SSNL_ONLY_CLASSES = {
 # Support classes display HPS instead of DPS
 SUPPORT_CLASSES = {"priest", "paladin"}
 
+# ── SSNL Stats Leaderboard ────────────────────────────────────────────────────
+SSNL_API = "https://tracker.realmshark.cc/api/v1/leaderboard"
+
+# Normalize user input → SSNL API stat key
+SSNL_STAT_MAP = {
+    "hp":         "HP",
+    "life":       "HP",
+    "mp":         "Mana",
+    "mana":       "Mana",
+    "atk":        "Attack",
+    "attack":     "Attack",
+    "def":        "Defense",
+    "defense":    "Defense",
+    "defence":    "Defense",
+    "spd":        "Speed",
+    "speed":      "Speed",
+    "dex":        "Dexterity",
+    "dexterity":  "Dexterity",
+    "vit":        "Vitality",
+    "vitality":   "Vitality",
+    "wis":        "Wisdom",
+    "wisdom":     "Wisdom",
+}
+
+# (input keyword, API/display label) — order shown in options
+SSNL_STATS_DISPLAY = [
+    ("hp",        "HP"),
+    ("mp",        "Mana"),
+    ("attack",    "Attack"),
+    ("defense",   "Defense"),
+    ("speed",     "Speed"),
+    ("dexterity", "Dexterity"),
+    ("vitality",  "Vitality"),
+    ("wisdom",    "Wisdom"),
+]
+
+# DPS stat key → SSNL stat key (for deduplication in options display)
+DPS_TO_SSNL = {
+    "attack":   "Attack",
+    "defense":  "Defense",
+    "speed":    "Speed",
+    "vitality": "Vitality",
+    "wisdom":   "Wisdom",
+    "mana":     "Mana",
+}
+
+# All valid classes for SSNL (title-case = API class name)
+SSNL_CLASS_MAP = {
+    "archer":      "Archer",
+    "assassin":    "Assassin",
+    "bard":        "Bard",
+    "druid":       "Druid",
+    "huntress":    "Huntress",
+    "kensei":      "Kensei",
+    "knight":      "Knight",
+    "mystic":      "Mystic",
+    "necromancer": "Necromancer",
+    "ninja":       "Ninja",
+    "paladin":     "Paladin",
+    "priest":      "Priest",
+    "rogue":       "Rogue",
+    "samurai":     "Samurai",
+    "sorcerer":    "Sorcerer",
+    "summoner":    "Summoner",
+    "trickster":   "Trickster",
+    "warrior":     "Warrior",
+    "wizard":      "Wizard",
+}
+
+
+def fetch_ssnl_data(class_name: str, stat_key: str, limit: int = 5) -> Optional[dict]:
+    """
+    Fetch SSNL stat leaderboard rows for a class+stat.
+    class_name: title-case API name (e.g. "Sorcerer")
+    stat_key:   API stat key (e.g. "HP", "Attack") — value from SSNL_STAT_MAP
+    Returns {"rows": [...], "meta": {...}} or None on failure.
+    """
+    season = get_current_season()
+    url = (
+        f"{SSNL_API}?overview=1&limitPerStat={limit}&hydrate=equipment"
+        f"&force=0&season={season}&seasonal=1&class={class_name}"
+    )
+    req = urllib.request.Request(url, headers={
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/120.0.0.0 Safari/537.36"
+        ),
+        "Accept": "application/json",
+        "Referer": "https://tracker.realmshark.cc/ssnl-stats-leaderboard",
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+        rows = data.get("overview", {}).get(stat_key, {}).get("rows", [])
+        return {"rows": rows, "meta": data.get("meta", {})}
+    except Exception as e:
+        print(f"SSNL fetch error for {class_name}/{stat_key}: {e}")
+        return None
+
 
 def _strip_level(enchant_name: str) -> str:
     """Remove roman numerals and level numbers from enchantment names."""
