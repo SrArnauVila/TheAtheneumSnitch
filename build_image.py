@@ -6,6 +6,36 @@ from typing import Optional
 ITEM_CACHE = "./itempics"
 REALMSCOPE_ASSET = "https://realmscope.gg/asset/{}.png"
 
+_FONT_REGULAR: Optional[str] = None
+_FONT_BOLD:    Optional[str] = None
+
+def _resolve_fonts() -> None:
+    global _FONT_REGULAR, _FONT_BOLD
+    if _FONT_REGULAR is not None:
+        return
+    for path in [
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",           # Debian/Pi
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+        "arial.ttf",                                                   # Windows
+    ]:
+        try:
+            ImageFont.truetype(path, 10)
+            _FONT_REGULAR = path
+            break
+        except Exception:
+            pass
+    for path in [
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+        "arialbd.ttf",
+    ]:
+        try:
+            ImageFont.truetype(path, 10)
+            _FONT_BOLD = path
+            break
+        except Exception:
+            pass
+
 RARITY_COLORS = {
     "Common":    (180, 180, 180),
     "Uncommon":  (100, 220, 100),
@@ -65,11 +95,12 @@ def build_tier_image(tier_label: str, items: dict, enchants: dict,
     img  = Image.new("RGBA", (IMG_W, IMG_H), (18, 22, 32, 255))
     draw = ImageDraw.Draw(img)
 
+    _resolve_fonts()
     try:
-        font_sm   = ImageFont.truetype("arial.ttf",   11)
-        font_med  = ImageFont.truetype("arial.ttf",   13)
-        font_bold = ImageFont.truetype("arialbd.ttf", 15)
-        font_hdr  = ImageFont.truetype("arialbd.ttf", 16)
+        font_sm   = ImageFont.truetype(_FONT_REGULAR, 12)
+        font_med  = ImageFont.truetype(_FONT_REGULAR, 14)
+        font_bold = ImageFont.truetype(_FONT_BOLD,    15)
+        font_hdr  = ImageFont.truetype(_FONT_BOLD,    16)
     except Exception:
         font_sm = font_med = font_bold = font_hdr = ImageFont.load_default()
 
