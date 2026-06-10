@@ -234,14 +234,19 @@ async def run_guild_graveyard():
         await asyncio.sleep(60)
 
 
+_background_tasks_started = False
+
 @bot.event
 async def on_ready():
-    global selenium_lock
-    selenium_lock = asyncio.Lock()
+    global selenium_lock, _background_tasks_started
+    if selenium_lock is None:
+        selenium_lock = asyncio.Lock()
     print(f'We have logged in as {bot.user}')
     if not intents.message_content:
         print('MESSAGE CONTENT intent is disabled; prefix commands may not be available.')
-    bot.loop.create_task(run_guild_graveyard())
+    if not _background_tasks_started:
+        _background_tasks_started = True
+        bot.loop.create_task(run_guild_graveyard())
     #bot.loop.create_task(run_guild_online_tracker())
     #bot.loop.create_task(run_guild_party_tracker())
     #bot.loop.create_task(run_daily_snapshot())
