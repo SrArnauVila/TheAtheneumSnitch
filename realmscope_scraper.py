@@ -114,18 +114,7 @@ def get_player_info(player_name: str) -> Optional[dict]:
 
 def _get_rendered_soup(url: str) -> Optional[BeautifulSoup]:
     """Uses a headless Chrome browser to fetch JS-rendered pages."""
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--js-flags=--max-old-space-size=256")
-    options.add_argument("--log-level=3")
-    options.add_experimental_option("excludeSwitches", ["enable-logging"])
-
-    driver = webdriver.Chrome(
-        service=Service("/usr/bin/chromedriver"),
-        options=options
-    )
+    driver = _make_driver()
     try:
         driver.get(url)
         # Wait until the party table tbody has at least one row
@@ -235,7 +224,8 @@ def _extract_asset_id(src: str) -> Optional[int]:
     except ValueError:
         return None
 
-def get_guild_members(guild_name: str) -> set:
+def _make_driver() -> webdriver.Chrome:
+    """Creates a headless Chrome instance with a 30-second page-load timeout."""
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
@@ -243,10 +233,12 @@ def get_guild_members(guild_name: str) -> set:
     options.add_argument("--js-flags=--max-old-space-size=256")
     options.add_argument("--log-level=3")
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
-    driver = webdriver.Chrome(
-        service=Service("/usr/bin/chromedriver"),
-        options=options
-    )
+    driver = webdriver.Chrome(service=Service("/usr/bin/chromedriver"), options=options)
+    driver.set_page_load_timeout(30)
+    return driver
+
+def get_guild_members(guild_name: str) -> set:
+    driver = _make_driver()
     members = set()
     try:
         driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
@@ -273,19 +265,7 @@ def get_guild_members(guild_name: str) -> set:
 
 def _get_party_members_selenium(party_ids: list) -> dict:
     """Opens the party page and clicks each member dot to get member lists."""
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--js-flags=--max-old-space-size=256")
-    options.add_argument("--log-level=3")
-    options.add_experimental_option("excludeSwitches", ["enable-logging"])
-
-    driver = webdriver.Chrome(
-        service=Service("/usr/bin/chromedriver"),
-        options=options
-    )
-
+    driver = _make_driver()
     result = {}
     try:
         driver.get(f"{REALMSCOPE_BASE}/party")
@@ -450,17 +430,7 @@ def get_guild_party_status_with_members(guild_name: str, guild_members: set) -> 
     return found
 
 def get_guild_roster(guild_name: str) -> Optional[list]:
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--js-flags=--max-old-space-size=256")
-    options.add_argument("--log-level=3")
-    options.add_experimental_option("excludeSwitches", ["enable-logging"])
-    driver = webdriver.Chrome(
-        service=Service("/usr/bin/chromedriver"),
-        options=options
-    )
+    driver = _make_driver()
     members = []
     try:
         driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
@@ -603,17 +573,7 @@ import time as time_module
 
 def get_afk_members(guild_name: str, min_days_offline: int = 30) -> Optional[list]:
     """Returns members offline for at least min_days_offline, sorted longest first."""
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--js-flags=--max-old-space-size=256")
-    options.add_argument("--log-level=3")
-    options.add_experimental_option("excludeSwitches", ["enable-logging"])
-    driver = webdriver.Chrome(
-        service=Service("/usr/bin/chromedriver"),
-        options=options
-    )
+    driver = _make_driver()
     afk = []
     try:
         driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
@@ -880,17 +840,7 @@ def get_guild_online_status(guild_name: str) -> Optional[list]:
     Returns all guild members with their online/offline status.
     Uses the guild page for names, then checks each player's status page.
     """
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--js-flags=--max-old-space-size=256")
-    options.add_argument("--log-level=3")
-    options.add_experimental_option("excludeSwitches", ["enable-logging"])
-    driver = webdriver.Chrome(
-        service=Service("/usr/bin/chromedriver"),
-        options=options
-    )
+    driver = _make_driver()
     members = []
     try:
         driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
@@ -1080,18 +1030,7 @@ def get_guild_member_history(guild_name: str) -> dict:
     Returns dict: { 'playername_lower': unix_timestamp_of_join }
     Only returns players currently in the guild (data-currentguild matches).
     """
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--js-flags=--max-old-space-size=256")
-    options.add_argument("--log-level=3")
-    options.add_experimental_option("excludeSwitches", ["enable-logging"])
-    driver = webdriver.Chrome(
-        service=Service("/usr/bin/chromedriver"),
-        options=options
-    )
-
+    driver = _make_driver()
     join_dates = {}
     guild_lower = guild_name.lower()
 

@@ -4,6 +4,7 @@ import image_downloader as imd
 import guild_graveyard as gg
 import json
 import os
+import subprocess
 from datetime import datetime, timezone
 from dotenv import load_dotenv
 from pathlib import Path
@@ -246,6 +247,11 @@ async def on_ready():
         print('MESSAGE CONTENT intent is disabled; prefix commands may not be available.')
     if not _background_tasks_started:
         _background_tasks_started = True
+        # Kill any chromium processes left over from a previous crash before starting fresh
+        try:
+            subprocess.run(["pkill", "-f", "chromium"], capture_output=True)
+        except Exception:
+            pass
         bot.loop.create_task(run_guild_graveyard())
     #bot.loop.create_task(run_guild_online_tracker())
     #bot.loop.create_task(run_guild_party_tracker())
