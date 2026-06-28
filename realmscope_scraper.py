@@ -28,11 +28,22 @@ _BROWSER_HEADERS = {
     "Upgrade-Insecure-Requests": "1",
 }
 
+try:
+    from curl_cffi import requests as _cffi_req
+    _HAS_CURL_CFFI = True
+except ImportError:
+    _HAS_CURL_CFFI = False
+
 def fetch_page(url: str) -> Optional[BeautifulSoup]:
-    req = urllib.request.Request(url, headers=_BROWSER_HEADERS)
     try:
-        page = urllib.request.urlopen(req, timeout=10)
-        return BeautifulSoup(page.read().decode("utf-8"), "html.parser")
+        if _HAS_CURL_CFFI:
+            resp = _cffi_req.get(url, impersonate="chrome120", timeout=15)
+            resp.raise_for_status()
+            return BeautifulSoup(resp.text, "html.parser")
+        else:
+            req = urllib.request.Request(url, headers=_BROWSER_HEADERS)
+            page = urllib.request.urlopen(req, timeout=10)
+            return BeautifulSoup(page.read().decode("utf-8"), "html.parser")
     except Exception as e:
         print(f"Error fetching {url}: {e}")
         return None
@@ -243,9 +254,14 @@ def _make_driver() -> webdriver.Chrome:
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-software-rasterizer")
+    options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_argument("--log-level=3")
     driver = webdriver.Chrome(service=Service("/usr/bin/chromedriver"), options=options)
     driver.set_page_load_timeout(30)
+    # Hide navigator.webdriver from Cloudflare bot detection
+    driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+        "source": "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
+    })
     return driver
 
 def get_guild_members(guild_name: str) -> set:

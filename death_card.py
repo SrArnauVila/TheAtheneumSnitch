@@ -1,5 +1,11 @@
 import urllib.request
 from bs4 import BeautifulSoup
+
+try:
+    from curl_cffi import requests as _cffi_req
+    _HAS_CURL_CFFI = True
+except ImportError:
+    _HAS_CURL_CFFI = False
 from PIL import Image, ImageDraw, ImageFont
 from typing import Optional
 from datetime import datetime
@@ -48,10 +54,14 @@ RARITY_COLORS = {
 def fetch_latest_deaths(guild_name: str) -> list:
     """Returns a list of death dicts, skipping private deaths."""
     url = f"https://www.realmeye.com/recent-deaths-in-guild/{guild_name}"
-    req = urllib.request.Request(url, headers={"User-Agent": "Magic Browser"})
     try:
-        page = urllib.request.urlopen(req, timeout=10)
-        html = page.read().decode("utf-8")
+        if _HAS_CURL_CFFI:
+            resp = _cffi_req.get(url, impersonate="chrome120", timeout=15)
+            resp.raise_for_status()
+            html = resp.text
+        else:
+            req = urllib.request.Request(url, headers={"User-Agent": "Magic Browser"})
+            html = urllib.request.urlopen(req, timeout=10).read().decode("utf-8")
     except Exception as e:
         print(f"Error fetching graveyard: {e}")
         return []
