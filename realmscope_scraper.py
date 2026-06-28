@@ -17,8 +17,19 @@ import time as time_module
 
 REALMSCOPE_BASE = "https://realmscope.gg"
 
+_BROWSER_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.5",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+}
+
 def fetch_page(url: str) -> Optional[BeautifulSoup]:
-    req = urllib.request.Request(url, headers={'User-Agent': 'Magic Browser'})
+    req = urllib.request.Request(url, headers=_BROWSER_HEADERS)
     try:
         page = urllib.request.urlopen(req, timeout=10)
         return BeautifulSoup(page.read().decode("utf-8"), "html.parser")
@@ -230,9 +241,9 @@ def _make_driver() -> webdriver.Chrome:
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--js-flags=--max-old-space-size=256")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-software-rasterizer")
     options.add_argument("--log-level=3")
-    options.add_experimental_option("excludeSwitches", ["enable-logging"])
     driver = webdriver.Chrome(service=Service("/usr/bin/chromedriver"), options=options)
     driver.set_page_load_timeout(30)
     return driver

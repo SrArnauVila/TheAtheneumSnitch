@@ -184,7 +184,7 @@ async def run_guild_graveyard():
 
     while True:
         try:
-            deaths = dc.fetch_latest_deaths(guild)
+            deaths = await asyncio.get_event_loop().run_in_executor(None, dc.fetch_latest_deaths, guild)
             if not deaths:
                 await asyncio.sleep(60)
                 continue
@@ -2686,7 +2686,7 @@ async def rstest(ctx):
         try:
             req = urllib.request.Request(
                 "https://realmscope.gg/player/arnauvila",
-                headers={"User-Agent": "Magic Browser"}
+                headers=rs._BROWSER_HEADERS,
             )
             with urllib.request.urlopen(req, timeout=15) as resp:
                 body = resp.read()

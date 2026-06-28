@@ -10,7 +10,15 @@ def get_player_characters(player_name: str) -> Optional[list]:
     Returns a list of character dicts, or None if the page couldn't be fetched.
     """
     url = f"{REALMSCOPE_BASE}/player/{player_name}"
-    req = urllib.request.Request(url, headers={'User-Agent': 'Magic Browser'})
+    req = urllib.request.Request(url, headers={
+        "User-Agent": (
+            "Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        ),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Connection": "keep-alive",
+    })
     try:
         page = urllib.request.urlopen(req, timeout=10)
         html = page.read().decode("utf-8")
