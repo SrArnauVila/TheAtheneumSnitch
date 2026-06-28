@@ -47,6 +47,7 @@ async def _get_roster():
     now = time_module.time()
     if _roster_cache["data"] and (now - _roster_cache["timestamp"]) < CACHE_TTL:
         return _roster_cache["data"]
+    print("_get_roster: fetching live roster via Selenium...")
     async with selenium_lock:
         data = await asyncio.get_event_loop().run_in_executor(
             None, rs.get_guild_roster, "TheAtheneum"
@@ -54,6 +55,9 @@ async def _get_roster():
     if data:
         _roster_cache["data"]      = data
         _roster_cache["timestamp"] = time_module.time()
+        print(f"_get_roster: got {len(data)} members")
+    else:
+        print("_get_roster: returned None — check realmscope_scraper logs above")
     return data
 
 async def _get_fame(member_names):
@@ -2671,6 +2675,53 @@ async def help_cmd(ctx, *, command_name: str = ""):
     )
     embed.set_footer(text="The Atheneum  ·  Guill the Intern™  ·  !commands for the full list  ·  !help <command> for details")
     await ctx.send(embed=embed)
+
+@bot.command(name="rstest")
+async def rstest(ctx):
+    """Diagnostic: test realmscope.gg connectivity via urllib and Selenium."""
+    await ctx.send("🔍 Testing RealmScope connectivity — stand by...")
+
+    def test_urllib():
+        import urllib.request
+        try:
+            req = urllib.request.Request(
+                "https://realmscope.gg/player/arnauvila",
+                headers={"User-Agent": "Magic Browser"}
+            )
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                body = resp.read()
+                return f"✅ urllib: HTTP {resp.status} ({len(body):,} bytes)"
+        except Exception as e:
+            return f"❌ urllib: `{type(e).__name__}: {e}`"
+
+    def test_selenium():
+        try:
+            from selenium.webdriver.common.by import By
+            from selenium.webdriver.support.ui import WebDriverWait
+            from selenium.webdriver.support import expected_conditions as EC
+            driver = rs._make_driver()
+            try:
+                driver.get("https://realmscope.gg/guild/TheAtheneum")
+                WebDriverWait(driver, 20).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
+                )
+                return "✅ Selenium: guild page loaded, member table found"
+            except Exception as e:
+                page_title = ""
+                try:
+                    page_title = f" (page title: {driver.title[:60]})"
+                except Exception:
+                    pass
+                return f"❌ Selenium: `{type(e).__name__}: {str(e)[:150]}`{page_title}"
+            finally:
+                driver.quit()
+        except Exception as e:
+            return f"❌ Selenium init: `{type(e).__name__}: {e}`"
+
+    urllib_result   = await asyncio.get_event_loop().run_in_executor(None, test_urllib)
+    selenium_result = await asyncio.get_event_loop().run_in_executor(None, test_selenium)
+    await ctx.send(f"{urllib_result}\n{selenium_result}")
+
 
 discord_key = os.getenv("DISCORD_KEY")
 bot.run(discord_key)
