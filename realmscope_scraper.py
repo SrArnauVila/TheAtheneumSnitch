@@ -139,7 +139,7 @@ def _get_rendered_soup(url: str) -> Optional[BeautifulSoup]:
     driver = _make_driver()
     try:
         driver.get(url)
-        # Wait until the party table tbody has at least one row
+        _wait_for_cloudflare(driver)
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "table.party-table tbody tr"))
         )
@@ -255,14 +255,31 @@ def _make_driver() -> webdriver.Chrome:
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-software-rasterizer")
     options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_argument("--window-size=1920,1080")
     options.add_argument("--log-level=3")
     driver = webdriver.Chrome(service=Service("/usr/bin/chromedriver"), options=options)
     driver.set_page_load_timeout(30)
-    # Hide navigator.webdriver from Cloudflare bot detection
+    # Hide automation signals from Cloudflare bot detection
     driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-        "source": "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
+        "source": "\n".join([
+            "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})",
+            "window.chrome = { runtime: {} }",
+            "Object.defineProperty(navigator, 'plugins', {get: () => [1, 2, 3]})",
+        ])
     })
     return driver
+
+
+def _wait_for_cloudflare(driver, timeout: int = 15) -> bool:
+    """
+    Waits up to `timeout` seconds for Cloudflare's 'Just a moment...' challenge to pass.
+    Returns True if the real page loaded, False if still on Cloudflare after timeout.
+    """
+    for _ in range(timeout):
+        if "just a moment" not in driver.title.lower():
+            return True
+        time.sleep(1)
+    return "just a moment" not in driver.title.lower()
 
 def get_guild_members(guild_name: str) -> set:
     driver = _make_driver()
@@ -461,6 +478,7 @@ def get_guild_roster(guild_name: str) -> Optional[list]:
     members = []
     try:
         driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
+        _wait_for_cloudflare(driver)
         WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
         )

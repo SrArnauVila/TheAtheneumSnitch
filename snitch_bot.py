@@ -253,6 +253,7 @@ async def on_ready():
     if selenium_lock is None:
         selenium_lock = asyncio.Lock()
     print(f'We have logged in as {bot.user}')
+    print(f'curl_cffi available: {rs._HAS_CURL_CFFI}')
     if not intents.message_content:
         print('MESSAGE CONTENT intent is disabled; prefix commands may not be available.')
     if not _background_tasks_started:
@@ -2688,17 +2689,26 @@ async def rstest(ctx):
     await ctx.send("🔍 Testing RealmScope connectivity — stand by...")
 
     def test_urllib():
-        import urllib.request
         try:
-            req = urllib.request.Request(
-                "https://realmscope.gg/player/arnauvila",
-                headers=rs._BROWSER_HEADERS,
-            )
-            with urllib.request.urlopen(req, timeout=15) as resp:
-                body = resp.read()
-                return f"✅ urllib: HTTP {resp.status} ({len(body):,} bytes)"
+            if rs._HAS_CURL_CFFI:
+                from curl_cffi import requests as cffi_req
+                resp = cffi_req.get(
+                    "https://realmscope.gg/player/arnauvila",
+                    impersonate="chrome120", timeout=15
+                )
+                return f"✅ curl_cffi (chrome120): HTTP {resp.status_code} ({len(resp.text):,} chars)"
+            else:
+                import urllib.request
+                req = urllib.request.Request(
+                    "https://realmscope.gg/player/arnauvila",
+                    headers=rs._BROWSER_HEADERS,
+                )
+                with urllib.request.urlopen(req, timeout=15) as resp:
+                    body = resp.read()
+                    return f"✅ urllib: HTTP {resp.status} ({len(body):,} bytes) [curl_cffi not installed]"
         except Exception as e:
-            return f"❌ urllib: `{type(e).__name__}: {e}`"
+            lib = "curl_cffi" if rs._HAS_CURL_CFFI else "urllib"
+            return f"❌ {lib}: `{type(e).__name__}: {e}`"
 
     def test_selenium():
         try:
