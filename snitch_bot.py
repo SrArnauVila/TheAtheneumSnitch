@@ -30,9 +30,10 @@ import random
 
 load_dotenv(Path('keys.env'))
 # ── Cache system ──────────────────────────────────────────────────────────────
-_roster_cache = {"data": None, "timestamp": 0}
+_roster_cache = {"data": None, "timestamp": 0, "last_failure": 0}
 _fame_cache   = {"data": None, "timestamp": 0}
-CACHE_TTL     = 1800  # 30 minutes
+CACHE_TTL          = 1800   # 30 minutes
+ROSTER_FAIL_BACKOFF = 300   # 5 minutes between failed Selenium attempts
 
 def _cache_age_str(timestamp):
     if timestamp == 0:
@@ -47,6 +48,10 @@ async def _get_roster():
     now = time_module.time()
     if _roster_cache["data"] and (now - _roster_cache["timestamp"]) < CACHE_TTL:
         return _roster_cache["data"]
+    # Don't hammer Selenium if it just failed — wait before retrying
+    if (now - _roster_cache["last_failure"]) < ROSTER_FAIL_BACKOFF:
+        print("_get_roster: in failure backoff, returning stale/None")
+        return _roster_cache["data"]
     print("_get_roster: fetching live roster via Selenium...")
     async with selenium_lock:
         data = await asyncio.get_event_loop().run_in_executor(
@@ -57,7 +62,8 @@ async def _get_roster():
         _roster_cache["timestamp"] = time_module.time()
         print(f"_get_roster: got {len(data)} members")
     else:
-        print("_get_roster: returned None — check realmscope_scraper logs above")
+        _roster_cache["last_failure"] = time_module.time()
+        print("_get_roster: Selenium returned None — backoff 5 min before retry")
     return data
 
 async def _get_fame(member_names):
