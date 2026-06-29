@@ -309,14 +309,24 @@ def _extract_asset_id(src: str) -> Optional[int]:
         return None
 
 def _make_driver() -> webdriver.Chrome:
-    """Creates a headless Chrome instance. Uses --headless=new (Chrome 112+) which is
-    significantly harder for Cloudflare to detect than the old --headless mode."""
+    """Create a Chrome instance.
+
+    Prefers non-headless mode when a virtual display (Xvfb) is available because
+    non-headless Chrome's JS environment is indistinguishable from a real browser,
+    which passes Cloudflare's fingerprint checks. Falls back to --headless=new
+    if no DISPLAY is set (Xvfb not installed or not yet started).
+    """
+    import os
+    has_display = bool(os.environ.get("DISPLAY"))
     options = Options()
-    options.add_argument("--headless=new")
+    if not has_display:
+        options.add_argument("--headless=new")
+        print("_make_driver: no DISPLAY — using headless mode (may be detected by CF)")
+    else:
+        print(f"_make_driver: DISPLAY={os.environ['DISPLAY']} — non-headless mode")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
-    options.add_argument("--disable-software-rasterizer")
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_argument("--log-level=3")
     service = Service("/usr/bin/chromedriver", log_path="/tmp/chromedriver.log")

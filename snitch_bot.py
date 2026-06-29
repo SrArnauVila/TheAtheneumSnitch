@@ -258,11 +258,23 @@ async def on_ready():
         print('MESSAGE CONTENT intent is disabled; prefix commands may not be available.')
     if not _background_tasks_started:
         _background_tasks_started = True
-        # Kill any chromium processes left over from a previous crash before starting fresh
         try:
             subprocess.run(["pkill", "-f", "chromium"], capture_output=True)
         except Exception:
             pass
+        # Start a virtual X11 display so Chrome can run in non-headless mode.
+        # Non-headless Chrome on Xvfb has the same JS environment as a real browser,
+        # so Cloudflare's fingerprint checks pass. Headless Chrome (any mode) fails them.
+        if "DISPLAY" not in os.environ:
+            try:
+                subprocess.Popen(["Xvfb", ":99", "-screen", "0", "1366x768x24"])
+                await asyncio.sleep(1)
+                os.environ["DISPLAY"] = ":99"
+                print("Xvfb virtual display started on :99")
+            except Exception as e:
+                print(f"Xvfb unavailable ({e}) — Chrome will fall back to --headless=new")
+        else:
+            print(f"DISPLAY already set to {os.environ['DISPLAY']}")
         bot.loop.create_task(run_guild_graveyard())
     #bot.loop.create_task(run_guild_online_tracker())
     #bot.loop.create_task(run_guild_party_tracker())
@@ -2685,8 +2697,9 @@ async def help_cmd(ctx, *, command_name: str = ""):
 
 @bot.command(name="rstest")
 async def rstest(ctx):
-    """Diagnostic: test realmscope.gg connectivity via urllib and Selenium."""
-    await ctx.send("🔍 Testing RealmScope connectivity — stand by...")
+    """Diagnostic: test realmscope.gg connectivity via the persistent browser."""
+    display = os.environ.get("DISPLAY", "not set")
+    await ctx.send(f"🔍 Testing RealmScope — DISPLAY={display} — stand by...")
 
     def test_browser():
         def read_cd_log():
