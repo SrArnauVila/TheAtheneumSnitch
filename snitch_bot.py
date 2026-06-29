@@ -2699,7 +2699,8 @@ async def help_cmd(ctx, *, command_name: str = ""):
 async def rstest(ctx):
     """Diagnostic: test realmscope.gg connectivity via the persistent browser."""
     display = os.environ.get("DISPLAY", "not set")
-    await ctx.send(f"🔍 Testing RealmScope — DISPLAY={display} — stand by...")
+    xvfb_hint = " ⚠️ Xvfb not running — install with `sudo apt-get install -y xvfb` then restart" if display == "not set" else ""
+    await ctx.send(f"🔍 Testing RealmScope — DISPLAY={display}{xvfb_hint} — stand by...")
 
     def test_browser():
         def read_cd_log():

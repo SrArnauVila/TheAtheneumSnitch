@@ -57,15 +57,29 @@ def _ensure_driver() -> webdriver.Chrome:
                 pass
             _persistent_driver = None
 
-    _persistent_driver = _make_driver()
-    print("Browser: new session, solving CF challenge...")
-    try:
-        _persistent_driver.get(f"{REALMSCOPE_BASE}/")
-        _wait_for_cloudflare(_persistent_driver, timeout=30)
-        print(f"Browser: ready — {_persistent_driver.title[:60]}")
-    except Exception as e:
-        print(f"Browser: warmup failed: {e}")
-    return _persistent_driver
+    # Retry once — first run of undetected-chromedriver needs to patch the binary
+    # which can cause the first Chrome launch attempt to fail.
+    for attempt in range(2):
+        try:
+            _persistent_driver = _make_driver()
+            print(f"Browser: session created (attempt {attempt + 1}), solving CF challenge...")
+            _persistent_driver.get(f"{REALMSCOPE_BASE}/")
+            _wait_for_cloudflare(_persistent_driver, timeout=30)
+            print(f"Browser: ready — {_persistent_driver.title[:60]}")
+            return _persistent_driver
+        except Exception as e:
+            print(f"_ensure_driver attempt {attempt + 1} failed: {type(e).__name__}: {e}")
+            try:
+                if _persistent_driver:
+                    _persistent_driver.quit()
+            except Exception:
+                pass
+            _persistent_driver = None
+            if attempt == 0:
+                time_module.sleep(3)
+
+    print("_ensure_driver: all attempts failed, returning None")
+    return None
 
 
 def _browser_get_soup(url: str, wait_css: str = None) -> Optional[BeautifulSoup]:
@@ -73,6 +87,8 @@ def _browser_get_soup(url: str, wait_css: str = None) -> Optional[BeautifulSoup]
     global _persistent_driver
     with _driver_lock:
         driver = _ensure_driver()
+        if driver is None:
+            return None
         try:
             driver.get(url)
             _wait_for_cloudflare(driver)
@@ -353,6 +369,24 @@ def _make_driver() -> webdriver.Chrome:
             version_main=None,
         )
         driver.set_page_load_timeout(30)
+        # Extra spoofing on top of what uc already patches:
+        # outerWidth/outerHeight are 0 in headless — a reliable CF detection signal.
+        # WebGL shows "SwiftShader" (software renderer) in headless — another tell.
+        try:
+            driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+                "source": """
+                    Object.defineProperty(window, 'outerWidth',  {get: () => 1366});
+                    Object.defineProperty(window, 'outerHeight', {get: () => 768});
+                    const _getParam = WebGLRenderingContext.prototype.getParameter;
+                    WebGLRenderingContext.prototype.getParameter = function(p) {
+                        if (p === 37445) return 'Intel Inc.';
+                        if (p === 37446) return 'Intel Iris OpenGL Engine';
+                        return _getParam.call(this, p);
+                    };
+                """
+            })
+        except Exception:
+            pass
         mode = f"non-headless+Xvfb({os.environ.get('DISPLAY')})" if has_display else "headless=new(no-Xvfb)"
         print(f"_make_driver: undetected-chromedriver {mode} browser={browser_path}")
         return driver
