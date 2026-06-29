@@ -309,21 +309,51 @@ def _extract_asset_id(src: str) -> Optional[int]:
         return None
 
 def _make_driver() -> webdriver.Chrome:
-    """Create a Chrome instance.
+    """Create a Chrome instance that bypasses Cloudflare bot detection.
 
-    Prefers non-headless mode when a virtual display (Xvfb) is available because
-    non-headless Chrome's JS environment is indistinguishable from a real browser,
-    which passes Cloudflare's fingerprint checks. Falls back to --headless=new
-    if no DISPLAY is set (Xvfb not installed or not yet started).
+    Uses undetected-chromedriver (patches cdc_ ChromeDriver variables out of the
+    binary) + non-headless mode via Xvfb (real rendering pipeline, no headless
+    fingerprint). Falls back to regular Selenium if uc isn't installed.
     """
-    import os
+    import os, shutil
     has_display = bool(os.environ.get("DISPLAY"))
+
+    try:
+        import undetected_chromedriver as uc
+
+        options = uc.ChromeOptions()
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--log-level=3")
+
+        # Find system Chromium binary
+        browser_path = next(
+            (p for p in ("/usr/bin/chromium-browser", "/usr/bin/chromium", "/usr/bin/google-chrome")
+             if shutil.which(p)),
+            None,
+        )
+
+        driver = uc.Chrome(
+            options=options,
+            driver_executable_path="/usr/bin/chromedriver",
+            browser_executable_path=browser_path,
+            headless=not has_display,
+            use_subprocess=False,
+            version_main=None,
+        )
+        driver.set_page_load_timeout(30)
+        mode = f"non-headless (DISPLAY={os.environ.get('DISPLAY')})" if has_display else "headless=new"
+        print(f"_make_driver: undetected-chromedriver ({mode}, browser={browser_path})")
+        return driver
+
+    except Exception as e:
+        print(f"_make_driver: undetected-chromedriver unavailable ({e}), using regular Selenium")
+
+    # Fallback: regular Selenium with best-effort anti-detection flags
     options = Options()
     if not has_display:
         options.add_argument("--headless=new")
-        print("_make_driver: no DISPLAY — using headless mode (may be detected by CF)")
-    else:
-        print(f"_make_driver: DISPLAY={os.environ['DISPLAY']} — non-headless mode")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
