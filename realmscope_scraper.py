@@ -311,46 +311,56 @@ def _extract_asset_id(src: str) -> Optional[int]:
 def _make_driver() -> webdriver.Chrome:
     """Create a Chrome instance that bypasses Cloudflare bot detection.
 
-    Uses undetected-chromedriver (patches cdc_ ChromeDriver variables out of the
-    binary) + non-headless mode via Xvfb (real rendering pipeline, no headless
-    fingerprint). Falls back to regular Selenium if uc isn't installed.
+    Strategy:
+    - undetected-chromedriver patches the cdc_ ChromeDriver variables out of the
+      chromedriver binary (Cloudflare checks for these).
+    - We always pass headless=False to uc so it never adds --window-size=1920,1080
+      (that flag crashes ARM Chromium). Instead we add --headless=new ourselves
+      when there is no virtual display (DISPLAY not set).
+    - When Xvfb is running (DISPLAY=:99), Chrome runs fully non-headless which
+      passes all Cloudflare fingerprint checks.
     """
     import os, shutil
     has_display = bool(os.environ.get("DISPLAY"))
+
+    # Find system Chromium binary via PATH search
+    browser_path = None
+    for name in ("chromium-browser", "chromium", "google-chrome", "google-chrome-stable"):
+        p = shutil.which(name)
+        if p:
+            browser_path = p
+            break
 
     try:
         import undetected_chromedriver as uc
 
         options = uc.ChromeOptions()
+        if not has_display:
+            # Add headless ourselves — prevents uc from adding --window-size=1920,1080
+            # which crashes ARM Chromium in headless mode.
+            options.add_argument("--headless=new")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--disable-gpu")
         options.add_argument("--log-level=3")
 
-        # Find system Chromium binary
-        browser_path = next(
-            (p for p in ("/usr/bin/chromium-browser", "/usr/bin/chromium", "/usr/bin/google-chrome")
-             if shutil.which(p)),
-            None,
-        )
-
         driver = uc.Chrome(
             options=options,
             driver_executable_path="/usr/bin/chromedriver",
             browser_executable_path=browser_path,
-            headless=not has_display,
+            headless=False,      # Always False: uc must NOT add --window-size
             use_subprocess=False,
             version_main=None,
         )
         driver.set_page_load_timeout(30)
-        mode = f"non-headless (DISPLAY={os.environ.get('DISPLAY')})" if has_display else "headless=new"
-        print(f"_make_driver: undetected-chromedriver ({mode}, browser={browser_path})")
+        mode = f"non-headless+Xvfb({os.environ.get('DISPLAY')})" if has_display else "headless=new(no-Xvfb)"
+        print(f"_make_driver: undetected-chromedriver {mode} browser={browser_path}")
         return driver
 
     except Exception as e:
-        print(f"_make_driver: undetected-chromedriver unavailable ({e}), using regular Selenium")
+        print(f"_make_driver: undetected-chromedriver failed ({type(e).__name__}: {e}), falling back")
 
-    # Fallback: regular Selenium with best-effort anti-detection flags
+    # Fallback: regular Selenium
     options = Options()
     if not has_display:
         options.add_argument("--headless=new")
