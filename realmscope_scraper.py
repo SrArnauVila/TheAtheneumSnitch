@@ -32,11 +32,37 @@ try:
     from curl_cffi import requests as _cffi_req
     _HAS_CURL_CFFI = True
 except ImportError:
+    _cffi_req = None
     _HAS_CURL_CFFI = False
+
+# Cloudscraper: handles Cloudflare JS challenge + cookie solving
+_cf_session = None
+_HAS_CLOUDSCRAPER = None  # None = not yet probed
+
+def _get_cf_session():
+    global _cf_session, _HAS_CLOUDSCRAPER
+    if _HAS_CLOUDSCRAPER is None:
+        try:
+            import cloudscraper
+            _cf_session = cloudscraper.create_scraper(
+                browser={"browser": "chrome", "platform": "linux", "mobile": False}
+            )
+            _HAS_CLOUDSCRAPER = True
+            print("realmscope_scraper: cloudscraper session ready")
+        except ImportError:
+            _HAS_CLOUDSCRAPER = False
+            print("realmscope_scraper: cloudscraper not installed")
+    return _cf_session if _HAS_CLOUDSCRAPER else None
+
 
 def fetch_page(url: str) -> Optional[BeautifulSoup]:
     try:
-        if _HAS_CURL_CFFI:
+        session = _get_cf_session()
+        if session is not None:
+            resp = session.get(url, timeout=15)
+            resp.raise_for_status()
+            return BeautifulSoup(resp.text, "html.parser")
+        elif _HAS_CURL_CFFI:
             resp = _cffi_req.get(url, impersonate="chrome120", timeout=15)
             resp.raise_for_status()
             return BeautifulSoup(resp.text, "html.parser")
@@ -47,6 +73,33 @@ def fetch_page(url: str) -> Optional[BeautifulSoup]:
     except Exception as e:
         print(f"Error fetching {url}: {e}")
         return None
+
+
+def _inject_cf_cookies(driver, domain: str):
+    """Pre-solve Cloudflare with cloudscraper and inject cf_clearance into Chrome.
+
+    cf_clearance is IP-bound, so it's valid for any process on the same IP.
+    Chrome must already be on the target domain before add_cookie() will work.
+    """
+    session = _get_cf_session()
+    if not session:
+        return
+    try:
+        session.get(f"https://{domain}/", timeout=15)
+        for cookie in session.cookies:
+            if cookie.name in ("cf_clearance", "__cf_bm", "__cflb"):
+                try:
+                    driver.add_cookie({
+                        "name": cookie.name,
+                        "value": cookie.value,
+                        "domain": domain,
+                        "path": "/",
+                    })
+                    print(f"_inject_cf_cookies: injected {cookie.name}")
+                except Exception as ce:
+                    print(f"_inject_cf_cookies: failed to inject {cookie.name}: {ce}")
+    except Exception as e:
+        print(f"_inject_cf_cookies: cloudscraper pre-solve failed: {e}")
 
 def get_player_info(player_name: str) -> Optional[dict]:
     soup = fetch_page(f"{REALMSCOPE_BASE}/player/{player_name}")
@@ -138,6 +191,9 @@ def _get_rendered_soup(url: str) -> Optional[BeautifulSoup]:
     """Uses a headless Chrome browser to fetch JS-rendered pages."""
     driver = _make_driver()
     try:
+        driver.get(f"{REALMSCOPE_BASE}/")
+        time.sleep(1)
+        _inject_cf_cookies(driver, "realmscope.gg")
         driver.get(url)
         _wait_for_cloudflare(driver)
         WebDriverWait(driver, 10).until(
@@ -283,6 +339,9 @@ def get_guild_members(guild_name: str) -> set:
     driver = _make_driver()
     members = set()
     try:
+        driver.get(f"{REALMSCOPE_BASE}/")
+        time.sleep(1)
+        _inject_cf_cookies(driver, "realmscope.gg")
         driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
         WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
@@ -475,6 +534,9 @@ def get_guild_roster(guild_name: str) -> Optional[list]:
     driver = _make_driver()
     members = []
     try:
+        driver.get(f"{REALMSCOPE_BASE}/")
+        time.sleep(1)
+        _inject_cf_cookies(driver, "realmscope.gg")
         driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
         _wait_for_cloudflare(driver)
         WebDriverWait(driver, 20).until(
@@ -619,6 +681,9 @@ def get_afk_members(guild_name: str, min_days_offline: int = 30) -> Optional[lis
     driver = _make_driver()
     afk = []
     try:
+        driver.get(f"{REALMSCOPE_BASE}/")
+        time.sleep(1)
+        _inject_cf_cookies(driver, "realmscope.gg")
         driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
         WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
@@ -886,6 +951,9 @@ def get_guild_online_status(guild_name: str) -> Optional[list]:
     driver = _make_driver()
     members = []
     try:
+        driver.get(f"{REALMSCOPE_BASE}/")
+        time.sleep(1)
+        _inject_cf_cookies(driver, "realmscope.gg")
         driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
         WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
@@ -1078,6 +1146,9 @@ def get_guild_member_history(guild_name: str) -> dict:
     guild_lower = guild_name.lower()
 
     try:
+        driver.get(f"{REALMSCOPE_BASE}/")
+        time.sleep(1)
+        _inject_cf_cookies(driver, "realmscope.gg")
         driver.get(f"{REALMSCOPE_BASE}/member-history-of-guild/{guild_name}")
         WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))

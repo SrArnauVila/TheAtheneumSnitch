@@ -1,11 +1,6 @@
 import urllib.request
 from bs4 import BeautifulSoup
-
-try:
-    from curl_cffi import requests as _cffi_req
-    _HAS_CURL_CFFI = True
-except ImportError:
-    _HAS_CURL_CFFI = False
+from realmscope_scraper import _get_cf_session, _HAS_CURL_CFFI, _cffi_req
 from PIL import Image, ImageDraw, ImageFont
 from typing import Optional
 from datetime import datetime
@@ -55,7 +50,12 @@ def fetch_latest_deaths(guild_name: str) -> list:
     """Returns a list of death dicts, skipping private deaths."""
     url = f"https://www.realmeye.com/recent-deaths-in-guild/{guild_name}"
     try:
-        if _HAS_CURL_CFFI:
+        session = _get_cf_session()
+        if session is not None:
+            resp = session.get(url, timeout=15)
+            resp.raise_for_status()
+            html = resp.text
+        elif _HAS_CURL_CFFI:
             resp = _cffi_req.get(url, impersonate="chrome120", timeout=15)
             resp.raise_for_status()
             html = resp.text

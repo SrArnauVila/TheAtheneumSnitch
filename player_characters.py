@@ -1,12 +1,7 @@
 import urllib.request
 from bs4 import BeautifulSoup
 from typing import Optional
-
-try:
-    from curl_cffi import requests as _cffi_req
-    _HAS_CURL_CFFI = True
-except ImportError:
-    _HAS_CURL_CFFI = False
+from realmscope_scraper import _get_cf_session, _HAS_CURL_CFFI, _cffi_req, _BROWSER_HEADERS
 
 REALMSCOPE_BASE = "https://realmscope.gg"
 
@@ -17,17 +12,17 @@ def get_player_characters(player_name: str) -> Optional[list]:
     """
     url = f"{REALMSCOPE_BASE}/player/{player_name}"
     try:
-        if _HAS_CURL_CFFI:
+        session = _get_cf_session()
+        if session is not None:
+            resp = session.get(url, timeout=15)
+            resp.raise_for_status()
+            html = resp.text
+        elif _HAS_CURL_CFFI:
             resp = _cffi_req.get(url, impersonate="chrome120", timeout=15)
             resp.raise_for_status()
             html = resp.text
         else:
-            req = urllib.request.Request(url, headers={
-                "User-Agent": "Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-                "Accept-Language": "en-US,en;q=0.5",
-                "Connection": "keep-alive",
-            })
+            req = urllib.request.Request(url, headers=_BROWSER_HEADERS)
             html = urllib.request.urlopen(req, timeout=10).read().decode("utf-8")
     except Exception as e:
         print(f"Error fetching realmscope page for {player_name}: {e}")

@@ -2690,9 +2690,14 @@ async def rstest(ctx):
 
     def test_urllib():
         try:
-            if rs._HAS_CURL_CFFI:
-                from curl_cffi import requests as cffi_req
-                resp = cffi_req.get(
+            session = rs._get_cf_session()
+            if session is not None:
+                resp = session.get("https://realmscope.gg/player/arnauvila", timeout=15)
+                snippet = resp.text[:120].replace("\n", " ").strip()
+                status = "✅" if resp.status_code == 200 else "❌"
+                return f"{status} cloudscraper HTTP {resp.status_code} ({len(resp.text):,} chars) — `{snippet}`"
+            elif rs._HAS_CURL_CFFI:
+                resp = rs._cffi_req.get(
                     "https://realmscope.gg/player/arnauvila",
                     impersonate="chrome120", timeout=15
                 )
@@ -2700,16 +2705,14 @@ async def rstest(ctx):
                 status = "✅" if resp.status_code == 200 else "❌"
                 return f"{status} curl_cffi HTTP {resp.status_code} ({len(resp.text):,} chars) — `{snippet}`"
             else:
-                import urllib.request
-                req = urllib.request.Request(
+                req = __import__("urllib.request").request.Request(
                     "https://realmscope.gg/player/arnauvila",
                     headers=rs._BROWSER_HEADERS,
                 )
-                with urllib.request.urlopen(req, timeout=15) as resp:
-                    return f"✅ urllib: HTTP {resp.status} [curl_cffi not installed]"
+                with __import__("urllib.request").request.urlopen(req, timeout=15) as resp:
+                    return f"✅ urllib: HTTP {resp.status} (no cloudscraper/curl_cffi)"
         except Exception as e:
-            lib = "curl_cffi" if rs._HAS_CURL_CFFI else "urllib"
-            return f"❌ {lib}: `{type(e).__name__}: {e}`"
+            return f"❌ HTTP fetch: `{type(e).__name__}: {str(e)[:100]}`"
 
     def test_selenium():
         def read_cd_log():
@@ -2723,9 +2726,14 @@ async def rstest(ctx):
             from selenium.webdriver.common.by import By
             from selenium.webdriver.support.ui import WebDriverWait
             from selenium.webdriver.support import expected_conditions as EC
+            import time as _t
             driver = rs._make_driver()
             try:
+                driver.get("https://realmscope.gg/")
+                _t.sleep(1)
+                rs._inject_cf_cookies(driver, "realmscope.gg")
                 driver.get("https://realmscope.gg/guild/TheAtheneum")
+                rs._wait_for_cloudflare(driver)
                 WebDriverWait(driver, 20).until(
                     EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
                 )
