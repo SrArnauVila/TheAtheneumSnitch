@@ -2688,33 +2688,7 @@ async def rstest(ctx):
     """Diagnostic: test realmscope.gg connectivity via urllib and Selenium."""
     await ctx.send("🔍 Testing RealmScope connectivity — stand by...")
 
-    def test_urllib():
-        try:
-            session = rs._get_cf_session()
-            if session is not None:
-                resp = session.get("https://realmscope.gg/player/arnauvila", timeout=15)
-                snippet = resp.text[:120].replace("\n", " ").strip()
-                status = "✅" if resp.status_code == 200 else "❌"
-                return f"{status} cloudscraper HTTP {resp.status_code} ({len(resp.text):,} chars) — `{snippet}`"
-            elif rs._HAS_CURL_CFFI:
-                resp = rs._cffi_req.get(
-                    "https://realmscope.gg/player/arnauvila",
-                    impersonate="chrome120", timeout=15
-                )
-                snippet = resp.text[:120].replace("\n", " ").strip()
-                status = "✅" if resp.status_code == 200 else "❌"
-                return f"{status} curl_cffi HTTP {resp.status_code} ({len(resp.text):,} chars) — `{snippet}`"
-            else:
-                req = __import__("urllib.request").request.Request(
-                    "https://realmscope.gg/player/arnauvila",
-                    headers=rs._BROWSER_HEADERS,
-                )
-                with __import__("urllib.request").request.urlopen(req, timeout=15) as resp:
-                    return f"✅ urllib: HTTP {resp.status} (no cloudscraper/curl_cffi)"
-        except Exception as e:
-            return f"❌ HTTP fetch: `{type(e).__name__}: {str(e)[:100]}`"
-
-    def test_selenium():
+    def test_browser():
         def read_cd_log():
             try:
                 with open("/tmp/chromedriver.log") as f:
@@ -2723,36 +2697,18 @@ async def rstest(ctx):
             except Exception:
                 return "no log"
         try:
-            from selenium.webdriver.common.by import By
-            from selenium.webdriver.support.ui import WebDriverWait
-            from selenium.webdriver.support import expected_conditions as EC
-            import time as _t
-            driver = rs._make_driver()
-            try:
-                driver.get("https://realmscope.gg/")
-                _t.sleep(1)
-                rs._inject_cf_cookies(driver, "realmscope.gg")
-                driver.get("https://realmscope.gg/guild/TheAtheneum")
-                rs._wait_for_cloudflare(driver)
-                WebDriverWait(driver, 20).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
-                )
-                return "✅ Selenium: guild page loaded, member table found"
-            except Exception as e:
-                page_title = ""
-                try:
-                    page_title = f" (page: {driver.title[:50]})"
-                except Exception:
-                    pass
-                return f"❌ Selenium: `{type(e).__name__}`{page_title}"
-            finally:
-                driver.quit()
+            soup = rs._browser_get_soup("https://realmscope.gg/player/arnauvila")
+            if soup:
+                title = soup.title.string[:60] if soup.title else "no title"
+                has_stats = bool(soup.find("ul", id="player-stats-list"))
+                return f"✅ browser: page loaded — `{title}` — stats element: {has_stats}"
+            else:
+                return f"❌ browser: _browser_get_soup returned None\nCD log: `{read_cd_log()}`"
         except Exception as e:
-            return f"❌ Selenium init: `{type(e).__name__}: {str(e)[:80]}`\nCD log: `{read_cd_log()}`"
+            return f"❌ browser: `{type(e).__name__}: {str(e)[:100]}`\nCD log: `{read_cd_log()}`"
 
-    urllib_result   = await asyncio.get_event_loop().run_in_executor(None, test_urllib)
-    selenium_result = await asyncio.get_event_loop().run_in_executor(None, test_selenium)
-    await ctx.send(f"{urllib_result}\n{selenium_result}")
+    browser_result = await asyncio.get_event_loop().run_in_executor(None, test_browser)
+    await ctx.send(browser_result)
 
 
 discord_key = os.getenv("DISCORD_KEY")

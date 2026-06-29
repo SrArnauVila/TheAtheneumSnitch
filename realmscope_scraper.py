@@ -1,12 +1,10 @@
 import urllib.request
+import threading
 from bs4 import BeautifulSoup
 from typing import Optional
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -35,71 +33,94 @@ except ImportError:
     _cffi_req = None
     _HAS_CURL_CFFI = False
 
-# Cloudscraper: handles Cloudflare JS challenge + cookie solving
-_cf_session = None
-_HAS_CLOUDSCRAPER = None  # None = not yet probed
+# Persistent browser session — one Chrome for the bot's lifetime.
+# Solves Cloudflare's JS challenge once; subsequent requests reuse the session cookies.
+_persistent_driver = None
+_driver_lock = threading.Lock()
+_cf_cookie_cache: dict = {}
+_cf_cookie_ts: float = 0.0
+_CF_COOKIE_TTL: float = 3600.0
 
-def _get_cf_session():
-    global _cf_session, _HAS_CLOUDSCRAPER
-    if _HAS_CLOUDSCRAPER is None:
+
+def _ensure_driver() -> webdriver.Chrome:
+    """Return the persistent Chrome session, (re)creating if crashed. Caller must hold _driver_lock."""
+    global _persistent_driver
+    if _persistent_driver is not None:
         try:
-            import cloudscraper
-            _cf_session = cloudscraper.create_scraper(
-                browser={"browser": "chrome", "platform": "linux", "mobile": False}
-            )
-            _HAS_CLOUDSCRAPER = True
-            print("realmscope_scraper: cloudscraper session ready")
-        except ImportError:
-            _HAS_CLOUDSCRAPER = False
-            print("realmscope_scraper: cloudscraper not installed")
-    return _cf_session if _HAS_CLOUDSCRAPER else None
+            _ = _persistent_driver.current_url
+            return _persistent_driver
+        except Exception:
+            print("Persistent driver died — restarting")
+            try:
+                _persistent_driver.quit()
+            except Exception:
+                pass
+            _persistent_driver = None
+
+    _persistent_driver = _make_driver()
+    print("Browser: new session, solving CF challenge...")
+    try:
+        _persistent_driver.get(f"{REALMSCOPE_BASE}/")
+        _wait_for_cloudflare(_persistent_driver, timeout=30)
+        print(f"Browser: ready — {_persistent_driver.title[:60]}")
+    except Exception as e:
+        print(f"Browser: warmup failed: {e}")
+    return _persistent_driver
+
+
+def _browser_get_soup(url: str, wait_css: str = None) -> Optional[BeautifulSoup]:
+    """Navigate the persistent browser to url and return a BeautifulSoup."""
+    global _persistent_driver
+    with _driver_lock:
+        driver = _ensure_driver()
+        try:
+            driver.get(url)
+            _wait_for_cloudflare(driver)
+            if wait_css:
+                WebDriverWait(driver, 20).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, wait_css))
+                )
+            return BeautifulSoup(driver.page_source, "html.parser")
+        except Exception as e:
+            print(f"_browser_get_soup({url}): {e}")
+            try:
+                _persistent_driver.quit()
+            except Exception:
+                pass
+            _persistent_driver = None
+            return None
+
+
+def _cf_cookies() -> dict:
+    """Return cached CF cookies from the persistent browser, refreshing if stale."""
+    global _cf_cookie_cache, _cf_cookie_ts
+    now = time_module.time()
+    if _cf_cookie_cache and (now - _cf_cookie_ts) < _CF_COOKIE_TTL:
+        return _cf_cookie_cache
+    with _driver_lock:
+        driver = _ensure_driver()
+        try:
+            cookies = {c["name"]: c["value"] for c in driver.get_cookies()
+                       if c["name"] in ("cf_clearance", "__cf_bm", "__cflb")}
+            _cf_cookie_cache = cookies
+            _cf_cookie_ts = now
+            return cookies
+        except Exception:
+            return _cf_cookie_cache
 
 
 def fetch_page(url: str) -> Optional[BeautifulSoup]:
-    try:
-        session = _get_cf_session()
-        if session is not None:
-            resp = session.get(url, timeout=15)
-            resp.raise_for_status()
-            return BeautifulSoup(resp.text, "html.parser")
-        elif _HAS_CURL_CFFI:
-            resp = _cffi_req.get(url, impersonate="chrome120", timeout=15)
-            resp.raise_for_status()
-            return BeautifulSoup(resp.text, "html.parser")
-        else:
-            req = urllib.request.Request(url, headers=_BROWSER_HEADERS)
-            page = urllib.request.urlopen(req, timeout=10)
-            return BeautifulSoup(page.read().decode("utf-8"), "html.parser")
-    except Exception as e:
-        print(f"Error fetching {url}: {e}")
-        return None
-
-
-def _inject_cf_cookies(driver, domain: str):
-    """Pre-solve Cloudflare with cloudscraper and inject cf_clearance into Chrome.
-
-    cf_clearance is IP-bound, so it's valid for any process on the same IP.
-    Chrome must already be on the target domain before add_cookie() will work.
-    """
-    session = _get_cf_session()
-    if not session:
-        return
-    try:
-        session.get(f"https://{domain}/", timeout=15)
-        for cookie in session.cookies:
-            if cookie.name in ("cf_clearance", "__cf_bm", "__cflb"):
-                try:
-                    driver.add_cookie({
-                        "name": cookie.name,
-                        "value": cookie.value,
-                        "domain": domain,
-                        "path": "/",
-                    })
-                    print(f"_inject_cf_cookies: injected {cookie.name}")
-                except Exception as ce:
-                    print(f"_inject_cf_cookies: failed to inject {cookie.name}: {ce}")
-    except Exception as e:
-        print(f"_inject_cf_cookies: cloudscraper pre-solve failed: {e}")
+    """Fetch a static page. Tries curl_cffi with browser CF cookies first, then browser fallback."""
+    if _HAS_CURL_CFFI:
+        try:
+            cookies = _cf_cookies()
+            resp = _cffi_req.get(url, impersonate="chrome120", timeout=15, cookies=cookies)
+            if resp.status_code == 200:
+                return BeautifulSoup(resp.text, "html.parser")
+            print(f"fetch_page: curl_cffi got {resp.status_code} for {url}, using browser")
+        except Exception as e:
+            print(f"fetch_page: curl_cffi error: {e}")
+    return _browser_get_soup(url)
 
 def get_player_info(player_name: str) -> Optional[dict]:
     soup = fetch_page(f"{REALMSCOPE_BASE}/player/{player_name}")
@@ -188,23 +209,8 @@ def get_player_info(player_name: str) -> Optional[dict]:
     }
 
 def _get_rendered_soup(url: str) -> Optional[BeautifulSoup]:
-    """Uses a headless Chrome browser to fetch JS-rendered pages."""
-    driver = _make_driver()
-    try:
-        driver.get(f"{REALMSCOPE_BASE}/")
-        time.sleep(1)
-        _inject_cf_cookies(driver, "realmscope.gg")
-        driver.get(url)
-        _wait_for_cloudflare(driver)
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "table.party-table tbody tr"))
-        )
-        return BeautifulSoup(driver.page_source, "html.parser")
-    except Exception as e:
-        print(f"Selenium error fetching {url}: {e}")
-        return None
-    finally:
-        driver.quit()
+    """Fetch a JS-rendered page via the persistent browser."""
+    return _browser_get_soup(url, wait_css="table.party-table tbody tr")
 
 
 def get_top_parties(limit: int = 5) -> Optional[list]:
@@ -303,9 +309,10 @@ def _extract_asset_id(src: str) -> Optional[int]:
         return None
 
 def _make_driver() -> webdriver.Chrome:
-    """Creates a headless Chrome instance with a 30-second page-load timeout."""
+    """Creates a headless Chrome instance. Uses --headless=new (Chrome 112+) which is
+    significantly harder for Cloudflare to detect than the old --headless mode."""
     options = Options()
-    options.add_argument("--headless")
+    options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
@@ -317,7 +324,12 @@ def _make_driver() -> webdriver.Chrome:
     driver.set_page_load_timeout(30)
     try:
         driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-            "source": "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
+            "source": """
+                Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+                Object.defineProperty(navigator, 'plugins', {get: () => [1, 2, 3, 4, 5]});
+                Object.defineProperty(navigator, 'languages', {get: () => ['en-US', 'en']});
+                window.chrome = {runtime: {}, app: {}, csi: () => {}, loadTimes: () => {}};
+            """
         })
     except Exception:
         pass
@@ -336,129 +348,128 @@ def _wait_for_cloudflare(driver, timeout: int = 15) -> bool:
     return "just a moment" not in driver.title.lower()
 
 def get_guild_members(guild_name: str) -> set:
-    driver = _make_driver()
+    global _persistent_driver
     members = set()
-    try:
-        driver.get(f"{REALMSCOPE_BASE}/")
-        time.sleep(1)
-        _inject_cf_cookies(driver, "realmscope.gg")
-        driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
-        )
-        soup = BeautifulSoup(driver.page_source, "html.parser")
-        # Only use the first table with data-player rows — the members table
-        for table in soup.find_all("table"):
-            rows = table.select("tbody tr[data-player]")
-            if rows:
-                for row in rows:
-                    player = row.get("data-player", "").lower()
-                    if player:
-                        members.add(player)
-                break  # Stop after first matching table
-        print(f"Found {len(members)} guild members")
-    except Exception as e:
-        print(f"Error fetching guild members: {e}")
-    finally:
-        driver.quit()
+    with _driver_lock:
+        driver = _ensure_driver()
+        try:
+            driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
+            _wait_for_cloudflare(driver)
+            WebDriverWait(driver, 20).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
+            )
+            soup = BeautifulSoup(driver.page_source, "html.parser")
+            for table in soup.find_all("table"):
+                rows = table.select("tbody tr[data-player]")
+                if rows:
+                    for row in rows:
+                        player = row.get("data-player", "").lower()
+                        if player:
+                            members.add(player)
+                    break
+            print(f"Found {len(members)} guild members")
+        except Exception as e:
+            print(f"Error fetching guild members: {e}")
+            try:
+                _persistent_driver.quit()
+            except Exception:
+                pass
+            _persistent_driver = None
     return members
 
 
 def _get_party_members_selenium(party_ids: list) -> dict:
     """Opens the party page and clicks each member dot to get member lists."""
-    driver = _make_driver()
+    global _persistent_driver
     result = {}
-    try:
-        driver.get(f"{REALMSCOPE_BASE}/party")
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "table.party-table tbody tr"))
-        )
+    with _driver_lock:
+        driver = _ensure_driver()
+        try:
+            driver.get(f"{REALMSCOPE_BASE}/party")
+            _wait_for_cloudflare(driver)
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "table.party-table tbody tr"))
+            )
 
-        # Scrape basic party info first
-        soup = BeautifulSoup(driver.page_source, "html.parser")
-        for row in soup.select("table.party-table tbody tr"):
-            pid = row.get("data-party-id")
-            if not pid:
-                continue
-            tds = row.find_all("td")
-            if len(tds) < 10:
-                continue
-            desc   = tds[1].get_text(strip=True) or "—"
-            server = tds[7].get_text(strip=True)
-            players_text = tds[2].get_text(strip=True)
-            current, max_p = 0, 50
-            try:
-                parts   = players_text.split("/")
-                current = int(parts[0].strip())
-                max_p   = int(parts[1].strip())
-            except Exception:
-                pass
-            result[pid] = {
-                "desc":    desc,
-                "current": current,
-                "max":     max_p,
-                "server":  server,
-                "members": []
-            }
-
-        # Click each party dot to get member lists
-        for pid in party_ids:
-            if pid not in result:
-                continue
-            try:
-                # Re-find the dot fresh every iteration
-                WebDriverWait(driver, 5).until(
-                    EC.presence_of_element_located(
-                        (By.CSS_SELECTOR, f"tr[data-party-id='{pid}'] .members-dot")
-                    )
-                )
-                dot = driver.find_element(
-                    By.CSS_SELECTOR, f"tr[data-party-id='{pid}'] .members-dot"
-                )
-                driver.execute_script("arguments[0].scrollIntoView(true);", dot)
-                driver.execute_script("arguments[0].click();", dot)
-
-                # Wait for modal to load
-                WebDriverWait(driver, 5).until(
-                    EC.presence_of_element_located(
-                        (By.CSS_SELECTOR, "div.member-grid a.member-card")
-                    )
-                )
-
-                # Parse modal immediately
-                modal_soup = BeautifulSoup(driver.page_source, "html.parser")
-                members = []
-                for card in modal_soup.select("div.member-grid a.member-card"):
-                    href = card.get("href", "")
-                    name = href.replace("/player/", "").lower()
-                    if name:
-                        members.append(name)
-                result[pid]["members"] = members
-
-                # Close modal — re-find button fresh
+            soup = BeautifulSoup(driver.page_source, "html.parser")
+            for row in soup.select("table.party-table tbody tr"):
+                pid = row.get("data-party-id")
+                if not pid:
+                    continue
+                tds = row.find_all("td")
+                if len(tds) < 10:
+                    continue
+                desc   = tds[1].get_text(strip=True) or "—"
+                server = tds[7].get_text(strip=True)
+                players_text = tds[2].get_text(strip=True)
+                current, max_p = 0, 50
                 try:
-                    WebDriverWait(driver, 3).until(
-                        EC.element_to_be_clickable((By.ID, "membersModalClose"))
-                    )
-                    close_btn = driver.find_element(By.ID, "membersModalClose")
-                    driver.execute_script("arguments[0].click();", close_btn)
-                    # Wait for modal to fully disappear before next party
-                    WebDriverWait(driver, 3).until(
-                        EC.invisibility_of_element_located(
-                            (By.CSS_SELECTOR, "div.member-grid")
+                    parts   = players_text.split("/")
+                    current = int(parts[0].strip())
+                    max_p   = int(parts[1].strip())
+                except Exception:
+                    pass
+                result[pid] = {
+                    "desc":    desc,
+                    "current": current,
+                    "max":     max_p,
+                    "server":  server,
+                    "members": []
+                }
+
+            for pid in party_ids:
+                if pid not in result:
+                    continue
+                try:
+                    WebDriverWait(driver, 5).until(
+                        EC.presence_of_element_located(
+                            (By.CSS_SELECTOR, f"tr[data-party-id='{pid}'] .members-dot")
                         )
                     )
-                except Exception:
-                    driver.execute_script("document.body.click();")
+                    dot = driver.find_element(
+                        By.CSS_SELECTOR, f"tr[data-party-id='{pid}'] .members-dot"
+                    )
+                    driver.execute_script("arguments[0].scrollIntoView(true);", dot)
+                    driver.execute_script("arguments[0].click();", dot)
+                    WebDriverWait(driver, 5).until(
+                        EC.presence_of_element_located(
+                            (By.CSS_SELECTOR, "div.member-grid a.member-card")
+                        )
+                    )
+                    modal_soup = BeautifulSoup(driver.page_source, "html.parser")
+                    members = []
+                    for card in modal_soup.select("div.member-grid a.member-card"):
+                        href = card.get("href", "")
+                        name = href.replace("/player/", "").lower()
+                        if name:
+                            members.append(name)
+                    result[pid]["members"] = members
+                    try:
+                        WebDriverWait(driver, 3).until(
+                            EC.element_to_be_clickable((By.ID, "membersModalClose"))
+                        )
+                        close_btn = driver.find_element(By.ID, "membersModalClose")
+                        driver.execute_script("arguments[0].click();", close_btn)
+                        WebDriverWait(driver, 3).until(
+                            EC.invisibility_of_element_located(
+                                (By.CSS_SELECTOR, "div.member-grid")
+                            )
+                        )
+                    except Exception:
+                        driver.execute_script("document.body.click();")
+                        time.sleep(0.5)
+                except Exception as e:
+                    print(f"Could not get members for party {pid}: {e}")
                     time.sleep(0.5)
+                    continue
 
-            except Exception as e:
-                print(f"Could not get members for party {pid}: {e}")
-                time.sleep(0.5)
-                continue
-
-    finally:
-        driver.quit()
+        except Exception as e:
+            print(f"_get_party_members_selenium error: {e}")
+            try:
+                _persistent_driver.quit()
+            except Exception:
+                pass
+            _persistent_driver = None
 
     return result
 
@@ -531,47 +542,44 @@ def get_guild_party_status_with_members(guild_name: str, guild_members: set) -> 
     return found
 
 def get_guild_roster(guild_name: str) -> Optional[list]:
-    driver = _make_driver()
+    global _persistent_driver
     members = []
-    try:
-        driver.get(f"{REALMSCOPE_BASE}/")
-        time.sleep(1)
-        _inject_cf_cookies(driver, "realmscope.gg")
-        driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
-        _wait_for_cloudflare(driver)
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
-        )
-        soup = BeautifulSoup(driver.page_source, "html.parser")
-
-        # Find the FIRST table that has data-player rows and use only that
-        member_table = None
-        for table in soup.find_all("table"):
-            if table.select("tbody tr[data-player]"):
-                member_table = table
-                break
-
-        if member_table:
-            for row in member_table.select("tbody tr[data-player]"):
-                tds = row.find_all("td")
-                if len(tds) < 5:
-                    continue
-                name_link = tds[1].select_one("a.username-link")
-                name      = name_link.get_text(strip=True) if name_link else row.get("data-player", "")
-                members.append({
-                    "name":          name,
-                    "rank":          tds[3].get_text(strip=True),
-                    "fame":          int(row.get("data-totalfame", 0)),
-                    "active_fame":   int(row.get("data-activefame", 0)),
-                    "seasonal_fame": int(row.get("data-seasonalfame", 0)),
-                    "stars":         int(row.get("data-rank", 0)),
-                })
-
-    except Exception as e:
-        print(f"Error fetching guild roster: {e}")
-    finally:
-        driver.quit()
-
+    with _driver_lock:
+        driver = _ensure_driver()
+        try:
+            driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
+            _wait_for_cloudflare(driver)
+            WebDriverWait(driver, 20).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
+            )
+            soup = BeautifulSoup(driver.page_source, "html.parser")
+            member_table = None
+            for table in soup.find_all("table"):
+                if table.select("tbody tr[data-player]"):
+                    member_table = table
+                    break
+            if member_table:
+                for row in member_table.select("tbody tr[data-player]"):
+                    tds = row.find_all("td")
+                    if len(tds) < 5:
+                        continue
+                    name_link = tds[1].select_one("a.username-link")
+                    name      = name_link.get_text(strip=True) if name_link else row.get("data-player", "")
+                    members.append({
+                        "name":          name,
+                        "rank":          tds[3].get_text(strip=True),
+                        "fame":          int(row.get("data-totalfame", 0)),
+                        "active_fame":   int(row.get("data-activefame", 0)),
+                        "seasonal_fame": int(row.get("data-seasonalfame", 0)),
+                        "stars":         int(row.get("data-rank", 0)),
+                    })
+        except Exception as e:
+            print(f"Error fetching guild roster: {e}")
+            try:
+                _persistent_driver.quit()
+            except Exception:
+                pass
+            _persistent_driver = None
     return members if members else None
 
 def get_player_shiny_count(player_name: str) -> int:
@@ -678,64 +686,58 @@ import time as time_module
 
 def get_afk_members(guild_name: str, min_days_offline: int = 30) -> Optional[list]:
     """Returns members offline for at least min_days_offline, sorted longest first."""
-    driver = _make_driver()
+    global _persistent_driver
     afk = []
-    try:
-        driver.get(f"{REALMSCOPE_BASE}/")
-        time.sleep(1)
-        _inject_cf_cookies(driver, "realmscope.gg")
-        driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
-        )
-        soup = BeautifulSoup(driver.page_source, "html.parser")
-        now = int(time_module.time())
-        cutoff = min_days_offline * 86400  # days to seconds
+    with _driver_lock:
+        driver = _ensure_driver()
+        try:
+            driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
+            _wait_for_cloudflare(driver)
+            WebDriverWait(driver, 20).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
+            )
+            soup = BeautifulSoup(driver.page_source, "html.parser")
+            now    = int(time_module.time())
+            cutoff = min_days_offline * 86400
 
-        for table in soup.find_all("table"):
-            rows = table.select("tbody tr[data-player]")
-            if not rows:
-                continue
-            for row in rows:
-                last_seen = int(row.get("data-lastseen", 0))
-                seconds_offline = now - last_seen
-                if seconds_offline < cutoff:
+            for table in soup.find_all("table"):
+                rows = table.select("tbody tr[data-player]")
+                if not rows:
                     continue
+                for row in rows:
+                    last_seen = int(row.get("data-lastseen", 0))
+                    seconds_offline = now - last_seen
+                    if seconds_offline < cutoff:
+                        continue
+                    tds = row.find_all("td")
+                    if len(tds) < 5:
+                        continue
+                    fame = int(row.get("data-totalfame", 0))
+                    rank = tds[3].get_text(strip=True)
+                    name_link = tds[1].select_one("a.username-link")
+                    name = name_link.get_text(strip=True) if name_link else row.get("data-player", "")
+                    days_offline = seconds_offline // 86400
+                    months = days_offline // 30
+                    days   = days_offline % 30
+                    time_str = f"{months}mo {days}d" if months > 0 else f"{days}d"
+                    afk.append({
+                        "name":     name,
+                        "rank":     rank,
+                        "fame":     fame,
+                        "days":     days_offline,
+                        "time_str": time_str,
+                    })
+                break
 
-                tds = row.find_all("td")
-                if len(tds) < 5:
-                    continue
+            afk.sort(key=lambda x: x["days"], reverse=True)
 
-                fame = int(row.get("data-totalfame", 0))
-                rank = tds[3].get_text(strip=True)
-                name_link = tds[1].select_one("a.username-link")
-                name = name_link.get_text(strip=True) if name_link else row.get("data-player", "")
-
-                days_offline = seconds_offline // 86400
-                months = days_offline // 30
-                days   = days_offline % 30
-
-                if months > 0:
-                    time_str = f"{months}mo {days}d"
-                else:
-                    time_str = f"{days}d"
-
-                afk.append({
-                    "name":     name,
-                    "rank":     rank,
-                    "fame":     fame,
-                    "days":     days_offline,
-                    "time_str": time_str,
-                })
-            break  # Only first matching table
-
-        afk.sort(key=lambda x: x["days"], reverse=True)
-
-    except Exception as e:
-        print(f"Error fetching AFK members: {e}")
-    finally:
-        driver.quit()
-
+        except Exception as e:
+            print(f"Error fetching AFK members: {e}")
+            try:
+                _persistent_driver.quit()
+            except Exception:
+                pass
+            _persistent_driver = None
     return afk
 
 def get_wiki_item(item_name: str) -> Optional[dict]:
@@ -948,45 +950,42 @@ def get_guild_online_status(guild_name: str) -> Optional[list]:
     Returns all guild members with their online/offline status.
     Uses the guild page for names, then checks each player's status page.
     """
-    driver = _make_driver()
+    global _persistent_driver
     members = []
-    try:
-        driver.get(f"{REALMSCOPE_BASE}/")
-        time.sleep(1)
-        _inject_cf_cookies(driver, "realmscope.gg")
-        driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
-        )
-        soup = BeautifulSoup(driver.page_source, "html.parser")
-        for table in soup.find_all("table"):
-            rows = table.select("tbody tr[data-player]")
-            if not rows:
-                continue
-            for row in rows:
-                name_link = row.select_one("a.username-link")
-                name = name_link.get_text(strip=True) if name_link else row.get("data-player", "")
-                last_seen = int(row.get("data-lastseen", 0))
-                members.append({"name": name, "last_seen": last_seen})
-            break
-    except Exception as e:
-        print(f"Error fetching guild for online status: {e}")
-    finally:
-        driver.quit()
+    with _driver_lock:
+        driver = _ensure_driver()
+        try:
+            driver.get(f"{REALMSCOPE_BASE}/guild/{guild_name}")
+            _wait_for_cloudflare(driver)
+            WebDriverWait(driver, 20).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
+            )
+            soup = BeautifulSoup(driver.page_source, "html.parser")
+            for table in soup.find_all("table"):
+                rows = table.select("tbody tr[data-player]")
+                if not rows:
+                    continue
+                for row in rows:
+                    name_link = row.select_one("a.username-link")
+                    name = name_link.get_text(strip=True) if name_link else row.get("data-player", "")
+                    last_seen = int(row.get("data-lastseen", 0))
+                    members.append({"name": name, "last_seen": last_seen})
+                break
+        except Exception as e:
+            print(f"Error fetching guild for online status: {e}")
+            try:
+                _persistent_driver.quit()
+            except Exception:
+                pass
+            _persistent_driver = None
 
     if not members:
         return None
 
-    # Check online status for each member via their profile page
-    # Use urllib (fast, no Selenium needed) since status is in static HTML
     results = []
     for m in members:
         status = get_online_status(m["name"])
-        results.append({
-            "name":   m["name"],
-            "status": status or "Offline"
-        })
-
+        results.append({"name": m["name"], "status": status or "Offline"})
     return results
 
 def get_player_fame_history(player_name: str) -> Optional[dict]:
@@ -1141,45 +1140,36 @@ def get_guild_member_history(guild_name: str) -> dict:
     Returns dict: { 'playername_lower': unix_timestamp_of_join }
     Only returns players currently in the guild (data-currentguild matches).
     """
-    driver = _make_driver()
-    join_dates = {}
+    global _persistent_driver
+    join_dates  = {}
     guild_lower = guild_name.lower()
-
-    try:
-        driver.get(f"{REALMSCOPE_BASE}/")
-        time.sleep(1)
-        _inject_cf_cookies(driver, "realmscope.gg")
-        driver.get(f"{REALMSCOPE_BASE}/member-history-of-guild/{guild_name}")
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
-        )
-        soup = BeautifulSoup(driver.page_source, "html.parser")
-
-        for row in soup.select("tbody tr[data-player]"):
-            player     = row.get("data-player", "").lower()
-            event      = row.get("data-event", "")
-            date       = row.get("data-date", "0")
-            cur_guild  = row.get("data-currentguild", "").lower()
-
-            if not player or event != "joined":
-                continue
-
-            # Only count joins where the player is currently in this guild
-            if cur_guild != guild_lower:
-                continue
-
-            # Keep the most recent join date per player
+    with _driver_lock:
+        driver = _ensure_driver()
+        try:
+            driver.get(f"{REALMSCOPE_BASE}/member-history-of-guild/{guild_name}")
+            _wait_for_cloudflare(driver)
+            WebDriverWait(driver, 20).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "tbody tr[data-player]"))
+            )
+            soup = BeautifulSoup(driver.page_source, "html.parser")
+            for row in soup.select("tbody tr[data-player]"):
+                player    = row.get("data-player", "").lower()
+                event     = row.get("data-event", "")
+                date      = row.get("data-date", "0")
+                cur_guild = row.get("data-currentguild", "").lower()
+                if not player or event != "joined" or cur_guild != guild_lower:
+                    continue
+                try:
+                    ts = int(date)
+                except ValueError:
+                    continue
+                if player not in join_dates or ts > join_dates[player]:
+                    join_dates[player] = ts
+        except Exception as e:
+            print(f"Error fetching member history: {e}")
             try:
-                ts = int(date)
-            except ValueError:
-                continue
-
-            if player not in join_dates or ts > join_dates[player]:
-                join_dates[player] = ts
-
-    except Exception as e:
-        print(f"Error fetching member history: {e}")
-    finally:
-        driver.quit()
-
+                _persistent_driver.quit()
+            except Exception:
+                pass
+            _persistent_driver = None
     return join_dates
