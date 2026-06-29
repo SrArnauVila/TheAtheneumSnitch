@@ -2696,7 +2696,9 @@ async def rstest(ctx):
                     "https://realmscope.gg/player/arnauvila",
                     impersonate="chrome120", timeout=15
                 )
-                return f"✅ curl_cffi (chrome120): HTTP {resp.status_code} ({len(resp.text):,} chars)"
+                snippet = resp.text[:120].replace("\n", " ").strip()
+                status = "✅" if resp.status_code == 200 else "❌"
+                return f"{status} curl_cffi HTTP {resp.status_code} ({len(resp.text):,} chars) — `{snippet}`"
             else:
                 import urllib.request
                 req = urllib.request.Request(
@@ -2704,13 +2706,19 @@ async def rstest(ctx):
                     headers=rs._BROWSER_HEADERS,
                 )
                 with urllib.request.urlopen(req, timeout=15) as resp:
-                    body = resp.read()
-                    return f"✅ urllib: HTTP {resp.status} ({len(body):,} bytes) [curl_cffi not installed]"
+                    return f"✅ urllib: HTTP {resp.status} [curl_cffi not installed]"
         except Exception as e:
             lib = "curl_cffi" if rs._HAS_CURL_CFFI else "urllib"
             return f"❌ {lib}: `{type(e).__name__}: {e}`"
 
     def test_selenium():
+        def read_cd_log():
+            try:
+                with open("/tmp/chromedriver.log") as f:
+                    lines = f.readlines()
+                return "".join(lines[-4:])[:300].replace("\n", " | ")
+            except Exception:
+                return "no log"
         try:
             from selenium.webdriver.common.by import By
             from selenium.webdriver.support.ui import WebDriverWait
@@ -2725,14 +2733,14 @@ async def rstest(ctx):
             except Exception as e:
                 page_title = ""
                 try:
-                    page_title = f" (page title: {driver.title[:60]})"
+                    page_title = f" (page: {driver.title[:50]})"
                 except Exception:
                     pass
-                return f"❌ Selenium: `{type(e).__name__}: {str(e)[:150]}`{page_title}"
+                return f"❌ Selenium: `{type(e).__name__}`{page_title}"
             finally:
                 driver.quit()
         except Exception as e:
-            return f"❌ Selenium init: `{type(e).__name__}: {e}`"
+            return f"❌ Selenium init: `{type(e).__name__}: {str(e)[:80]}`\nCD log: `{read_cd_log()}`"
 
     urllib_result   = await asyncio.get_event_loop().run_in_executor(None, test_urllib)
     selenium_result = await asyncio.get_event_loop().run_in_executor(None, test_selenium)

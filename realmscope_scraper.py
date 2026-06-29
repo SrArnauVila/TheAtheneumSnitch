@@ -255,18 +255,16 @@ def _make_driver() -> webdriver.Chrome:
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-software-rasterizer")
     options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_argument("--window-size=1920,1080")
     options.add_argument("--log-level=3")
-    driver = webdriver.Chrome(service=Service("/usr/bin/chromedriver"), options=options)
+    service = Service("/usr/bin/chromedriver", log_path="/tmp/chromedriver.log")
+    driver = webdriver.Chrome(service=service, options=options)
     driver.set_page_load_timeout(30)
-    # Hide automation signals from Cloudflare bot detection
-    driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-        "source": "\n".join([
-            "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})",
-            "window.chrome = { runtime: {} }",
-            "Object.defineProperty(navigator, 'plugins', {get: () => [1, 2, 3]})",
-        ])
-    })
+    try:
+        driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+            "source": "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
+        })
+    except Exception:
+        pass
     return driver
 
 
